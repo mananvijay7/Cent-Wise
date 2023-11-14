@@ -90,6 +90,56 @@ paths:
                 $ref: "#/components/schemas/User"
         "400":
           description: Bad Request
+    patch:
+      tags:
+        - User
+      summary: Update user profile
+      description: (Partially update) the currently logged in user's profile
+      requestBody:
+        description: Required information to update a user account
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "400":
+          description: Bad Request
+  /user/{user_id}:
+    get:
+      tags:
+        - User
+      summary: Fetch a user profile
+      operationId: getUserById
+      parameters:
+        - name: user_id
+          in: path
+          description: ID of the user to return
+          required: true
+          schema:
+            type: number
+            format: uuid
+      responses:
+        "200":
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "400":
+          description: Bad Request - No user id provided
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden - Requesting user does not have access to this data
+        "404":
+          description: User Not Found
 components:
   schemas:
     User:
