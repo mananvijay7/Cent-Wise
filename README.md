@@ -12,3 +12,8 @@ CentWise is a collaborative expense tracking and bill-splitting application, des
 * Multi-Currency Support: Manage expenses in different currencies for international groups.
 * Receipts and Notes: Attach receipts and add notes to transactions for clarity.
 * Settlements: Simplify debt settlements with clear, itemized records.
+
+
+## CentWise - Object Model Diagram
+
+![Alt text](CentWise.jpg)
