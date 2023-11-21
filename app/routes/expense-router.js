@@ -1,5 +1,5 @@
 import express from "express";                  //importing express
-import * as expenseController from "../controllers/expense-controller.js";          //importing controller
+import * as expenseController from "../controllers/expense-controllers.js";          //importing controller
 
 const router = express.Router();          //initialzing router object
 
