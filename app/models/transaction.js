@@ -1,4 +1,4 @@
-//Creating Group Schema
+//Creating Transaction Schema
 
 import mongoose, { trusted } from "mongoose";
 
