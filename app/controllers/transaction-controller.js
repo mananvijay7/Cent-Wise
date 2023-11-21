@@ -1,7 +1,7 @@
 import * as transactionServices from "../services/transaction-services.js";
 import { setResponse, setErrorResponse } from "./response-handler.js";
 
-
+//getting transaction records by parameters
 export const findByParams = async (request, response) => {
     try {
         const params = {...request.query}; 
@@ -13,6 +13,7 @@ export const findByParams = async (request, response) => {
     }
 }
 
+//post method: for creating transaction records
 export const post = async (request, response) => {
     try {
        const newTransaction = {...request.body};
@@ -26,6 +27,7 @@ export const post = async (request, response) => {
     }
 }
 
+// fetching transaction record using id
 export const findById = async(request, response) => {
     try {
         const id = request.params.id;
@@ -37,6 +39,7 @@ export const findById = async(request, response) => {
     }
 }
 
+// put method:  to update data for a transaction
 export const put = async(request, response) => {
     try {
         const id = request.params.id;
@@ -48,6 +51,8 @@ export const put = async(request, response) => {
     }
 }
 
+
+// patch method: to update transaction data partially
 export const patch = async(request, response) => {
     try {
         const id = request.params.id;
@@ -60,7 +65,7 @@ export const patch = async(request, response) => {
     }
 }
 
-
+//  delete method: to delete transaction data
 export const remove = async(request, response) => {
     try {
         const id = request.params.id;
