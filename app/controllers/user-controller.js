@@ -2,6 +2,7 @@ import * as userServices from "../services/user-services.js";
 import { setResponse, setErrorResponse } from "./response-handler.js";
 
 
+//Function to get users on the basis of conditions
 export const findByParams = async (request, response) => {
     try {
         const params = {...request.query}; 
@@ -13,6 +14,7 @@ export const findByParams = async (request, response) => {
     }
 }
 
+//Function to add users to the database
 export const post = async (request, response) => {
     try {
        const newUser = {...request.body};
@@ -26,6 +28,7 @@ export const post = async (request, response) => {
     }
 }
 
+//Function to get users on the basis of ID
 export const findById = async(request, response) => {
     try {
         const id = request.params.id;
@@ -37,6 +40,7 @@ export const findById = async(request, response) => {
     }
 }
 
+//Function to update users
 export const put = async(request, response) => {
     try {
         const id = request.params.id;
@@ -48,6 +52,7 @@ export const put = async(request, response) => {
     }
 }
 
+//Function to partially update users
 export const patch = async(request, response) => {
     try {
         const id = request.params.id;
@@ -60,6 +65,7 @@ export const patch = async(request, response) => {
     }
 }
 
+//Function to delete users from the database
 export const remove = async(request, response) => {
     try {
         const id = request.params.id;
