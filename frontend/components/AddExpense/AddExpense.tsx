@@ -4,7 +4,7 @@ import styles from "./AddExpense.module.css";
 import SecondModal from "./SecondModal";
 import EqualModal from "./EqualModal";
 // import "react-datepicker/dist/react-datepicker.css";
-import DatePicker from "react-datepicker";
+import DatePicker from "react-datepicker"; 
 
 const Modal: React.FC = () => {
   const [modal, setModal] = useState(false);
