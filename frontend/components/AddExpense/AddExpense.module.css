@@ -1,0 +1,210 @@
+body.activeModal {
+    overflow-y: hidden;
+}
+
+.btnModal {
+    /* padding: 10px 20px; */
+    display: block;
+    margin: 2rem auto 0;
+    font-size: 1.125rem;
+    margin-top: -2.5rem; 
+}
+
+.modal, .overlay {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+}
+
+.overlay {
+    background: rgba(49,49,49,0.8);
+}
+.modalContent {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    line-height: 2.8;
+    background: #f1f1f1;
+    padding: 14px 28px;
+    border-radius: 3px;
+    max-width: 80%;
+    min-width: 30%;
+    border-radius: 10px;
+    border: 2px solid;
+    border-color: #01ce67;
+    z-index: 1001;
+    min-height: 20vh;
+    height: auto;
+    z-index: 1001;
+}
+
+.closeModal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 7px;
+}
+.closeModal:hover{
+  background-color: #a5a4a4;
+}
+.description input { 
+    border: none;   
+    outline: none; 
+    background-color:#f1f1f1 ;
+  }
+
+  .currency input{
+    border: none;   
+    outline: none;  
+    background-color:#f1f1f1 ;
+    font-size: x-large;
+    font-weight: bold;
+
+  }
+  .paidByWho{
+    border-style: solid;
+    border-color: #01ce67;
+    border-radius: 20px;
+    /* width: 25%; */
+    height: 15%;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    margin-left: 0.5em;
+  }
+
+  .paidByWho:active{
+    border-color: #009c4e;
+  }
+  .Split{
+    border-style: solid;
+    border-color: #01ce67;
+    border-radius: 25px;
+    /* width: 25%; */
+    height: 15%;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    margin-left: 0.3em;
+  }
+  .Split:active{
+    border-color: #009c4e;
+  }
+  .date{
+    border: 1px solid;
+    border-color: #b5b5b5;
+    border-radius: 25px;
+    width: 65%;
+    height: 1.5em;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 2em;
+
+  }
+  .date:hover{
+    background-color: #a5a4a4;
+  }
+  
+  /* .group{
+    border-style: solid;
+    border-color: #b5b5b5;
+    color: #b5b5b5;
+    border-radius: 20px;
+    margin-top: 1rem;
+    margin-left: -0.5em;
+ 
+  } */
+  .save{
+    color: #f1f1f1;
+    border:none;
+    background-color:#01ce67;
+    border-radius: 15px;
+    height: 2.3em;
+    cursor: pointer;
+    margin-top: 1em;
+    margin-left: 23em;
+  }
+
+  .save:hover{
+    background-color: #009c4e;
+  }
+
+.cancel{
+  
+    border: 1px solid;
+    border-color: #b5b5b5;
+    border-radius: 15px;
+    height: 2.3em;
+    margin-left: 1em;
+    height: 2.3em;
+    cursor: pointer;
+}
+.cancel:active{
+  border-color: #838383;
+}
+.cancel:hover{
+  background-color: #a5a4a4;
+}
+/* AddExpense.module.css */
+.sideModal {
+    position: fixed;
+    margin-left: 43.9em;
+    margin-top: -4.5em;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid;
+    border-color: #01ce67;
+    height: auto;
+    min-height: 15vh;
+    width: 300px; /* Adjust the width as needed */
+    background-color: white; /* Adjust the background color as needed */
+    z-index: 1002; 
+  
+  }
+  .cancel2{
+    position: absolute;
+    top: 12px;
+    right: 9px;
+    padding: 5px 7px;
+    
+  }
+  .cancel2:hover{
+    background-color: #a5a4a4;
+  }
+
+
+
+  /* AddExpense.module.css */
+
+.equalModalContent {
+  position: fixed;
+  margin-left: 43.9em;
+  margin-top: -4.5em;
+  text-align: center;
+  border-radius: 10px;
+  border: 2px solid;
+  border-color: #01ce67;
+  min-height: 15vh;
+  height: auto;
+  width: 300px; /* Adjust the width as needed */
+  background-color: white;
+}
+
+
+
+.cancelEqual {
+  position: absolute;
+  top: 9px;
+  right: 10px;
+  padding: 1px 5px; /* Adjust the value to be higher than .equalModalContent */
+}
+
+ 
+
+
+  
