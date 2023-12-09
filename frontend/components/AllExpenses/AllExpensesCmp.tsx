@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./AllExpensesCmp.module.css"
 import AllExpenses from "./AllExpenses";
-import flightIcon from "../Assets/flight.png";
+import flightIcon from "../../../public/images/AeroplaneIcon.png";
 import AddExpense from "../AddExpense/AddExpense";
 import Settleup from "../Settleup/Settleup"
 

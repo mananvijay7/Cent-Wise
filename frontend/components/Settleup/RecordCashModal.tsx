@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Settleup.module.css";
-import flightIcon from "../Assets/flight.png";
+import flightIcon from "../../../public/images/AeroplaneIcon.png";
 import UserListModal from "./UserListModal";
 import RecipientListModal from "./RecipientListModal";
 import "react-datepicker/dist/react-datepicker.css";
