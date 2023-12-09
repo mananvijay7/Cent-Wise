@@ -1,0 +1,296 @@
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    padding: 20px 80px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 0px 0px 10px 10px;
+    opacity: 1;
+    z-index: 2;
+    display: flex;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100vw;
+    margin: 0;
+  }
+.nav a img{
+  margin-top: 6%;
+}
+  
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .navbar li {
+    display: flex;
+    list-style: none;
+    padding: 0 20px;
+    gap: 50px;
+  }
+  
+nav a img{
+  width: 130px;
+  margin-left: -40px;
+}
+
+.navbar li a{
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.userContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 50px;
+}
+
+.userContainer :hover{
+  cursor: pointer;
+
+}
+
+ .userProfile{
+  width: 35px;
+  height: 35px;  
+  margin-left: 40px;
+  padding: 10px;
+  border-radius: 50px 50px 50px 50px;
+}
+
+.userName{
+ margin-left: -18em;
+ font-weight: 900;
+ color: #353434;
+  font-size: 100%; 
+ font-family: 'Montserrat', sans-serif;
+ 
+}  
+
+.verticalLine{
+  height: 5vh; 
+  width: 2px;
+  background-color: #000;
+  margin-right: 15.625em;
+}
+
+.dropdownMenu{
+  top: 100%; 
+  position: relative;
+  right: 50px;
+}
+
+
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    padding: 20px 80px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 0px 0px 10px 10px;
+    opacity: 1;
+    z-index: 2;
+    display: flex;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100vw;
+    margin: 0;
+  }
+.nav a img{
+  margin-top: 6%;
+}
+  
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .navbar li {
+    display: flex;
+    list-style: none;
+    padding: 0 20px;
+    gap: 50px;
+  }
+  
+nav a img{
+  width: 130px;
+  margin-left: -40px;
+}
+
+.navbar li a{
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.userContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 50px;
+}
+
+.userContainer :hover{
+  cursor: pointer;
+
+}
+
+ .userProfile{
+  width: 35px;
+  height: 35px;  
+  margin-left: 40px;
+  padding: 10px;
+  border-radius: 50px 50px 50px 50px;
+}
+
+.userName{
+ margin-left: -18em;
+ font-weight: 900;
+ color: #353434;
+  font-size: 100%; 
+ font-family: 'Montserrat', sans-serif;
+ 
+}  
+
+.verticalLine{
+  height: 5vh; 
+  width: 2px;
+  background-color: #000;
+  margin-right: 15.625em;
+}
+
+.dropdownMenu{
+  top: 100%; 
+  position: relative;
+  right: 50px;
+}
+
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    padding: 20px 80px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 0px 0px 10px 10px;
+    opacity: 1;
+    z-index: 2;
+    display: flex;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100vw;
+    margin: 0;
+  }
+.nav a img{
+  margin-top: 6%;
+}
+  
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .navbar li {
+    display: flex;
+    list-style: none;
+    padding: 0 20px;
+    gap: 50px;
+  }
+  
+nav a img{
+  width: 130px;
+  margin-left: -40px;
+}
+
+.navbar li a{
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.userContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 50px;
+}
+
+.userContainer :hover{
+  cursor: pointer;
+
+}
+
+ .userProfile{
+  width: 35px;
+  height: 35px;  
+  margin-left: 40px;
+  padding: 10px;
+  border-radius: 50px 50px 50px 50px;
+}
+
+.userName{
+ margin-left: -18em;
+ font-weight: 900;
+ color: #353434;
+  font-size: 100%; 
+ font-family: 'Montserrat', sans-serif;
+ 
+}  
+
+.verticalLine{
+  height: 5vh; 
+  width: 2px;
+  background-color: #000;
+  margin-right: 15.625em;
+}
+
+.dropdownMenu{
+  top: 100%; 
+  position: relative;
+  right: 50px;
+}
+
+

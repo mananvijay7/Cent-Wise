@@ -1,0 +1,37 @@
+@keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .settleUpBtn {
+    font-family: 'Montserrat', sans-serif;
+    font: normal normal 600 16px/19px;
+    font-size: 1em;
+    color: #FFFFFF;
+    background: linear-gradient(45deg, #01CE67, #FF7600);
+    border-radius: 0.5rem;
+    border: 1px solid #01CE67;
+    opacity: 1;
+    width: 13vw;
+    height: 0.3vh;
+    margin-left: -30%;
+    box-shadow: 0px 3px 6px #00000029;
+    padding-bottom: 15%;
+    background-size: 200% 200%;
+    animation: gradientShift 3s infinite;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .settleUpBtn:hover {
+    color: #FFD700; 
+    border-color: #01CE67;
+    animation: none; /* Stop the animation on hover */
+  }
+  
