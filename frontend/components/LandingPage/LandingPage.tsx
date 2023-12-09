@@ -1,5 +1,5 @@
 import styles from "./LandingPage.module.css"
-import logo from "../Assets/MicrosoftTeams-image.png"
+import logo from "../../../public/images/CentwiseLogo.png"
 import LandingPageLeftPanel from "./LandingPageLeftPanel/LandingPageLeftPanel";
 import LandingPageRightPanel from "./LandingPageRightPanel/LandingPageRightPanel";
 
