@@ -1,0 +1,94 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ .modalContainer {
+    background: white;
+    padding: 3%;
+    padding-right: 5%;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+} 
+
+
+.logo{
+    margin-left: 0%;
+    margin-bottom: -6%;
+}
+
+.header span{
+display: flex;
+justify-content: flex-end;
+margin-top: -8%;
+margin-right: -10%;
+
+}
+
+
+
+.close{
+    transform: rotate(-45deg);
+    color: rgb(252, 2, 2);
+    
+}
+
+.close :hover{
+color: rgba(249, 11, 11, 0.805);
+font-weight: 750;
+font-size: 1.5em;
+/* background-color: antiquewhite; */
+}
+
+.close span{
+    font-weight: 600;
+    font-size: 1.5em;
+}
+
+
+.myGrpShallBCalld{
+    color: black;
+    font-weight: 700;
+    font-size: 1.5rem;
+
+}
+
+.groupNameInput {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    font-family:'Montserrat', sans-serif;
+    font: normal normal 600 16px/19px Montserrat;
+}
+
+.saveButton {
+    background-color: #01ce67;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.addMembersButton{
+    font-family:'Montserrat', sans-serif;
+    color: #01ce67;
+}
+
+.addAPerson{
+    font-family:'Montserrat', sans-serif;
+    background: white;
+    padding: 5%;
+    padding-right: 7%;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+

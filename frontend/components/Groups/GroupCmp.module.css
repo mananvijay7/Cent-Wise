@@ -1,0 +1,35 @@
+.mainGroupDiv{
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+.addGroupBtn {
+font-family: 'Montserrat', sans-serif;
+font: normal normal 600 16px/19px;
+font-size: 1em;
+color: #FFFFFF;
+background-color:#01CE67;
+border-radius: 0.5rem;
+border: 2px solid #01CE67;
+width: 10vw;
+height: 0.5vh;
+box-shadow: 0px 3px 6px #00000029;
+padding: 2%;
+
+/* margin-top: -8%; */
+}
+
+.addBtn{
+margin-top: -8%;
+
+}
+
+.GroupsYouAreIn{
+    font-weight: 550;
+}
+
+.addGroupBtn:hover{
+    background-color: rgb(1, 168, 73);
+  }
+  

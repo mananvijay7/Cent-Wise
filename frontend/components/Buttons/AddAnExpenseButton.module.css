@@ -1,0 +1,40 @@
+ @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .addExpenseBtn {
+    font-family: 'Montserrat', sans-serif;
+    font: normal normal 600 16px/19px;
+    letter-spacing: 0px;
+    color: white;
+    opacity: 1;
+    width: 11vw;
+    height: 5.7vh;
+    border-color: orange;
+    border-radius: 0.7em;
+    border: 2px solid;
+    background: linear-gradient(45deg, #FF7600, #FFD700);
+    font-size: 13px;
+    box-shadow: 0px 3px 6px #00000029;
+    padding-bottom: 15%;
+    margin-left: -80%;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    background-size: 200% 200%;
+    animation: gradientShift 3s infinite;
+  }
+  
+  .addExpenseBtn:hover {
+    background: linear-gradient(45deg, #FFD700, #FF7600);
+    color: #fff;
+    border-color: #FF7600;
+    animation: none; /* Stop the animation on hover */
+  }
+  
