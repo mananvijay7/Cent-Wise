@@ -1,5 +1,5 @@
 import express from 'express';
-import initialize from './app/app.js'
+import initialize from './app/app.js';
 const app = express();
 
 const port = 8000;
