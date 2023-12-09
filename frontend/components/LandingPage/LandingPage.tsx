@@ -2,6 +2,7 @@ import styles from "./LandingPage.module.css"
 import logo from "../../../public/images/CentwiseLogo.png"
 import LandingPageLeftPanel from "./LandingPageLeftPanel/LandingPageLeftPanel";
 import LandingPageRightPanel from "./LandingPageRightPanel/LandingPageRightPanel";
+import LandingPageFooter from "./LandingPageFooter/LandingPageFooter";
 
 const LandingPage = () => {
     return (
@@ -19,6 +20,10 @@ const LandingPage = () => {
                     <div className={styles.rightSidePanel}>
                         <LandingPageRightPanel />
                     </div>
+                </div>
+                <div className={styles.midDiv}></div>
+                <div className={styles.footer}>
+                    <LandingPageFooter/>
                 </div>
             </div>
         </div>
