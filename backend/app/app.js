@@ -30,6 +30,11 @@ const initialize = (app) => {
   mongoose.connect("mongodb+srv://centwise:centwise12345@cluster0.fopmn2v.mongodb.net/centwise?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
   const db = mongoose.connection;  
 
+  const store = new MongoStore({
+    uri: 'mongodb+srv://centwise:centwise12345@cluster0.fopmn2v.mongodb.net/centwise?retryWrites=true&w=majority',
+    collection: 'sessions'
+  });
+
   app.use(session({
     name: 'CentWise',
     secret: 'a8f3091c7baba4f391e76d36b90fd0df69086efc60b6c568dcb27b1aae6f0547',
@@ -38,15 +43,7 @@ const initialize = (app) => {
     cookie: {
         maxAge: (1000 * 60 * 100)
     },
-    store: new MongoStore(
-        {
-          mongooseConnection: db,
-        autoRemove: 'disabled'
-        },
-        function(err){
-            console.log(err || "MongoStore is working fine");
-        }
-    )
+    store: store
 })); 
 
 app.use(passport.initialize());
