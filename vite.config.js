@@ -3,10 +3,10 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  root: "app",
+  root: "frontend",
   server: {
     proxy:{
-      "/centwise": "http://localhost:3000/",
+      "/api": "http://localhost:8000/",
     }
   }
 });
