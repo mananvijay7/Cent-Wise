@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+.container {
+    margin-top: 10%;
+    margin-right: 15%;
+    font-family: Montserrat;
+}
+
+.titleContent {
+    font-size: 3em;
+    text-wrap:balance;
+}
+
+.secondaryContent {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.buttonContainer {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;  
+    gap: 50px;  
+}
+
+.login {
+    width: 120px;
+    height: 40px;
+    background-color: #353434;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.signup {
+    width: 120px;
+    height: 40px;
+    border: 2px solid #353434;
+    border-radius: 10px;
+}
