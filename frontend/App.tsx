@@ -16,18 +16,20 @@ import axios from 'axios';
 import CentwiseAuth from './components/CentwiseAuth/CentwiseAuth';
 
 
+
 const App: React.FC = () => {
 
-  /*const [authorizationUrl, setAuthorizationUrl] = useState('');
+const [authorizationUrl, setAuthorizationUrl] = useState('');
   
   useEffect(() => {
     // Perform any setup or side effects on component mount
     // For example, fetch the authorization URL from your server
     // when the component is mounted
-    fetchAuthorizationUrl();
+    //console.log("coming here at app");
+    //fetchAuthorizationUrl();
   }, []);
 
-  const fetchAuthorizationUrl = async () => {
+  /*const fetchAuthorizationUrl = async () => {
     try {
       // Fetch the authorization URL from your server
       const response = await axios.get('/api/user/signin');
@@ -49,15 +51,15 @@ const App: React.FC = () => {
   return (
     <Router>
       <Routes>
-        <Route element={<ProtectedRoute/>}>
-          <Route path='/api/dashboard' element={<CentwiseNavigator title='Dashboard'/>}/>
-          <Route path='/api/expenses' element={<CentwiseNavigator title='AllExpenses'/>}/>
-          <Route path='/api/groups' element={<CentwiseNavigator title='Groups'/>}/>
-          <Route path='/api/friends' element={<CentwiseNavigator title='Dashboard'/>}/>
-        </Route>
+        {/*<Route element={<ProtectedRoute/>}>*/}
+          <Route path='/dashboard' element={<CentwiseNavigator title='Dashboard'/>}/>
+          <Route path='/expenses' element={<CentwiseNavigator title='AllExpenses'/>}/>
+          <Route path='/groups' element={<CentwiseNavigator title='Groups'/>}/>
+          <Route path='/friends' element={<CentwiseNavigator title='Dashboard'/>}/>
+        {/*</Route>*/}
         <Route path='/' element={<LandingPage/>}/>
-        <Route path='/api/user/signin' element={<CentwiseAuth type='signin'/>}/>
-        <Route path='/api/user/signup' element={<CentwiseAuth type='signup'/>}/>
+        <Route path='/user/signin' element={<CentwiseAuth type='signin'/>}/>
+        <Route path='/user/signup' element={<CentwiseAuth type='signup'/>}/>
       </Routes>
     </Router>
   );

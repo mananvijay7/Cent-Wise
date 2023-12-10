@@ -37,10 +37,7 @@ const assignComponent: React.FC<DynamicComponentProps> = ({ componentName }) => 
 const MainContainer = (props: Props) => {
 
     let title: string = props.title;
-    const user = useSelector((state: any) => state.auth.user);
-    console.log("username: " +user?.username);
     
-    alert(user?.username);
     return (
         <div id="main-container">
             <h1 className={styles.mainContainerHeading}>
