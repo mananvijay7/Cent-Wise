@@ -1,27 +1,27 @@
 import User from '../models/UserSchema.js';
 
-    export const create = async function(request, response){
-      console.log(request);
-      try{
-          let user = await User.findOne({email: request.body.email});
-          if(!user){
-              let crte = await User.create({
-                  email: request.body.email,
-                  password: request.body.password,
-                  first_name: request.body.first_name,
-                  last_name: request.body.last_name,
-                  ph_no: request.body.ph_no,
-              });
-              request.flash('success', 'Account Registered');
-              return response.status(200).json({message: "User Created"});
-          }else{
-            return response.status(400).json({message: "User Already exist!"});
-          }
-      }catch(err){
-          console.log('Error occurred while finding the user');
-          return response.status(404).json({message: "Error occured"});
+export const create = async function(request, response){
+  console.log(request);
+  try{
+      let user = await User.findOne({email: request.body.email});
+      if(!user){
+          let crte = await User.create({
+              email: request.body.email,
+              password: request.body.password,
+              first_name: request.body.first_name,
+              last_name: request.body.last_name,
+              ph_no: request.body.ph_no,
+          });
+          //request.flash('success', 'Account Registered');
+          return response.status(200).json({message: "User Created"});
+      }else{
+        return response.status(400).json({message: "User Already exist!"});
       }
-  };
+  }catch(err){
+      console.log('Error occurred while finding the user');
+      return response.status(404).json({message: "Error occured"});
+  }
+};
 
 
 export const signin = function(request, response){
@@ -53,7 +53,7 @@ export const createSession = function(request, response){
   export const sessionDestroy = function(request, response) {
     console.log("I'm in session destrroy");
     //console.log(request.session);
-    req.flash('success', 'Logged Out Successfully');
+    //req.flash('success', 'Logged Out Successfully');
     request.session.destroy(err => {
         if (err) {
           console.error('Error destroying session:', err);

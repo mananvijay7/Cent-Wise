@@ -95,7 +95,7 @@ const SignInForm: React.FC = () => {
             first_name: first_name,
             last_name: last_name,
             ph_no: ph_no,
-            password: password
+            password: password,
           });
     
           if(response.status == 200){
