@@ -68,18 +68,18 @@ const SignInForm: React.FC = () => {
     const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
         if (!validatePassword(password)) {
-            alert("Invalid password! Please follow the password requirements.");
-            return;
+          alert("Invalid password! Please follow the password requirements.");
+          return;
         }
-
+    
         if (password !== confirmPassword) {
-            alert("Passwords do not match. Please enter matching passwords.");
-            return;
+          alert("Passwords do not match. Please enter matching passwords.");
+          return;
         }
-
-    };
-
-    const handleGoogleOauth = () => {
+    
+      };
+    
+      const handleGoogleOauth = () => {
         window.location.href = '/api/user/auth/google';
       }
     

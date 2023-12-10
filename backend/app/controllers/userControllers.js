@@ -52,15 +52,13 @@ export const createSession = function(request, response){
   
   export const sessionDestroy = function(request, response) {
     console.log("I'm in session destrroy");
-    console.log(request.session);
-
+    //console.log(request.session);
+    req.flash('success', 'Logged Out Successfully');
     request.session.destroy(err => {
         if (err) {
           console.error('Error destroying session:', err);
           response.sendStatus(500);
         } else {
-          // Redirect the user to the login page or any other page
-          //req.flash('success', 'Logged Out Successfully');
           return response.status(200).send('Logged Out Successfully');
         }
       });

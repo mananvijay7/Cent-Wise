@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import AuthApi from 'splitwise-node';
 import cookieParse from 'cookie-parser';
 import session from 'express-session';
-import flash from 'express-flash';
+import flash from 'connect-flash';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import * as passportLocal from '../auth/passport-local-strategy.js';

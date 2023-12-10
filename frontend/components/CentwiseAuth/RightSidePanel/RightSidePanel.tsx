@@ -29,12 +29,12 @@ const RightSidePanel = (params: Props) => {
         primaryHeading = "New Here!";
         secondaryHeading = "Start Journey with us...";
         buttonText = "Sign Up";
-        routePath = "/api/user/signup"
+        routePath = "/user/signup"
     } else {
         primaryHeading = "Loyal Navigators!";
         secondaryHeading = "Embark on Your Journey..."
         buttonText = "Sign In";
-        routePath = "/api/user/signin";
+        routePath = "/user/signin";
     }
 
     const handleClick = () => {

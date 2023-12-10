@@ -15,33 +15,33 @@ const SignInForm = () => {
 
 
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
-    event.preventDefault();
-    await handleLocalSignin(email, password);
-    // You can perform additional actions after the login if needed
-  };
-
-  const handleLocalSignin = async (email: string, password: string) => {
-    try {
-      const response = await axios.post('/api/user/localLogin', {
-        email: email,
-        password: password,
-      });
-
-      if(response.status === 200){
-        navigate('/dashboard');
-      }else if(response.status === 400){
-        alert('User does not exist');
-        navigate('/user/signin');
-      }else{
-        alert('Cannot process your request at this time');
-        navigate('/');
-      }
-
-    } catch (error) {
-      console.error('Error logging in:', error);
-    }
-  };
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+        event.preventDefault();
+        await handleLocalSignin(email, password);
+        // You can perform additional actions after the login if needed
+      };
+    
+      const handleLocalSignin = async (email: string, password: string) => {
+        try {
+          const response = await axios.post('/api/user/localLogin', {
+            email: email,
+            password: password,
+          });
+    
+          if(response.status === 200){
+            navigate('/dashboard');
+          }else if(response.status === 400){
+            alert('User does not exist');
+            navigate('/user/signin');
+          }else{
+            alert('Cannot process your request at this time');
+            navigate('/');
+          }
+    
+        } catch (error) {
+          console.error('Error logging in:', error);
+        }
+      };
 
   const handleGoogleOauth = () => {
     window.location.href = '/api/user/auth/google';
@@ -84,6 +84,7 @@ const SignInForm = () => {
                             placeholder="Enter your email id"
                             required
                             id="email"
+                            name="email"
                         />
                         <br /><br />
                         <input
@@ -94,6 +95,7 @@ const SignInForm = () => {
                             placeholder="Enter your password"
                             required
                             id="password"
+                            name="password"
                         />
                         <br /><br />
                         <button className={styles.submitBtn} type="submit">Sign in</button>
