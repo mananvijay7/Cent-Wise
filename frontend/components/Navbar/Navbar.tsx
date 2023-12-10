@@ -5,6 +5,7 @@ import SettleUpButton from "../Buttons/SettleUpButton";
 import DropDownProfile from '../DropDownProfile/DropDownProfile';
 import userData from "./navbarUserData.json";
 import { useTranslation } from 'react-i18next';
+import centwiseLogoPath from "../../../public/images/CentwiseLogo.png";
 
 function Navbar() {
 
@@ -31,7 +32,7 @@ function Navbar() {
 
       <nav className={styles.nav}>
         <a href="index.html">
-          <img id="centWiseLogo" src="../components/Assets/Centwise.png" ></img>
+          <img className={styles.centwiseLogo} src={centwiseLogoPath} ></img>
         </a>
         <div className={styles.navContainer}>
           <ul className={styles.navbar}>

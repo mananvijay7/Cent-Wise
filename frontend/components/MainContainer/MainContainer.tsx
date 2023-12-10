@@ -40,7 +40,6 @@ const MainContainer = (props: Props) => {
     const user = useSelector((state: any) => state.auth.user);
     console.log("username: " +user?.username);
     
-    alert(user?.username);
     return (
         <div id="main-container">
             <h1 className={styles.mainContainerHeading}>

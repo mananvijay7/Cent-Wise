@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import ProtectedRoute from "./Utilities/ProtectedRoute";
-import { Signin } from "./components/Centwiselogin/Signin";
-import { CreateAccount } from "./components/Centwiselogin/CreateAccount";
 import CentwiseNavigator from './components/CentwiseNavigator/CentwiseNavigator';
 import LandingPage from './components/LandingPage/LandingPage';
 import { Provider } from 'react-redux';

@@ -27,9 +27,18 @@
 .login {
     width: 120px;
     height: 40px;
-    background-color: #353434;
+    background-color: #00CE67;
     color: #fff;
     border-radius: 10px;
+    font-family: Montserrat;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login:hover {
+    color: #fff;
+    background-color: #FF7600;
+    box-shadow: 2px 3px 6px #00000029;
 }
 
 .signup {
@@ -37,4 +46,6 @@
     height: 40px;
     border: 2px solid #353434;
     border-radius: 10px;
+    font-family: Montserrat;
+    background-color: hwb(136 89% 0%);
 }

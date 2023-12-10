@@ -7,9 +7,13 @@
 }
 
 .mainBody {
-  margin-top: 100px;
+  margin-top: 60px;
+  padding-top: 40px;
   display: flex;
   flex-direction: row;
+  margin-right: 0;
+  margin-left: 0;
+  height: 100vh;
 }
 
 .navbar {
@@ -17,7 +21,9 @@
 }
 
 .leftSidePanel {
+  left: 0px;
   position:fixed;
+  margin-left: 0px;
 }
 
 .container {

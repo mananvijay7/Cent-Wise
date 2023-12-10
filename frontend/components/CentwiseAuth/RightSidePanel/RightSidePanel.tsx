@@ -30,7 +30,7 @@ const RightSidePanel = (params: Props) => {
         secondaryHeading = "Start Journey with us...";
         buttonText = "Sign Up";
         routePath = "/api/user/signup"
-    } else {
+    } else if (params.type === "signup") {
         primaryHeading = "Loyal Navigators!";
         secondaryHeading = "Embark on Your Journey..."
         buttonText = "Sign In";
