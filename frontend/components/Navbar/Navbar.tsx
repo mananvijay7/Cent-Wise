@@ -5,11 +5,63 @@ import SettleUpButton from "../Buttons/SettleUpButton";
 import DropDownProfile from '../DropDownProfile/DropDownProfile';
 import userData from "./navbarUserData.json";
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
+import { Document, Types } from 'mongoose';
+
+
+interface Friend {
+    friend: {
+      _id: string;
+      email: string;
+      password: string;
+      first_name: string;
+      last_name: string;
+      ph_no: string;
+      created_date: Date;
+      totalOweAmount: number;
+      totalOweToSelf: number;
+      totalBalance: number;
+      friends: Friend[];
+      expenses: Expense[];
+    };
+    amountInDeal: number;
+  }
+
+  interface Participant {
+    _id: Types.ObjectId;
+  }
+
+  interface Expense {
+    _id: string,
+    Payer: Types.ObjectId;
+    participants: Participant[];
+    amount: number;
+    currency: string;
+    created_by: Types.ObjectId;
+    created_date: Date;
+    partition: string[];
+  }
+
+  interface UserData extends Document {
+    _id: string,
+    email: string;
+    password: string;
+    first_name: string;
+    last_name: string;
+    ph_no: string;
+    created_date: Date;
+    totalOweAmount: number;
+    totalOweToSelf: number;
+    totalBalance: number;
+    friends: Friend[];
+    expenses: Expense[];
+  }
 
 function Navbar() {
 
 
   const { t } = useTranslation('common');
+  const [userData, setUserData] = useState<UserData | null>(null);
   const [user, setUser] = useState({
     username: '',
     profilePicture: ''
@@ -17,8 +69,17 @@ function Navbar() {
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
   useEffect(() => {
-    // Fetch user data when the component mounts
-    setUser(userData);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('/api/dashboard/userDetails');
+        const data = response.data;
+        setUserData(data);
+      } catch (error: any) {
+        console.error('Error getting data from the database:', error.message);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const toggleDropdown = () => {
@@ -44,9 +105,9 @@ function Navbar() {
               </div>
               <p className={styles.verticalLine}>  </p>
               <div className={styles.userContainer}>
-                <img className={styles.userProfile} src={user.profilePicture} alt="User Profile img" onClick={toggleDropdown} />
+                <img className={styles.userProfile} src='../components/Assets/Yash Lambodiya.jpg' alt="User Profile img" onClick={toggleDropdown} />
                 <p className={styles.userName} onClick={toggleDropdown}>
-                  {user.username}</p>
+                {`${userData?.first_name}`} {` ${userData?.last_name}`}</p>
                 {/* </div> */}
                 {dropdownVisible && (
                   <div className={styles.dropdownMenu}>

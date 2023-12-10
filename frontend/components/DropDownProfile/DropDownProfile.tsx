@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styles from "./DropDownProfile.module.css"
 import MyProfileModal from '../myProfileModal/MyProfileModal.tsx';
 import InviteFriendsModal from '../InviteFriendsModal/InvitefrndsModal.tsx';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const Menus = ['My Account', 'Invite Friends' , 'Sign Out'];
@@ -10,6 +12,7 @@ function DropDownProfile(){
   const [isModalOpen, setModalOpen] = useState(false);
   const [isInviteFriendsModalOpen, setInviteFriendsModalOpen] = useState(false);
   const [isDropdownVisible, setDropdownVisible] = useState(true);
+  const navigate = useNavigate(); 
   
 
   const handleMyAccountClick = () => {
@@ -22,19 +25,33 @@ const handleInviteFriendsClick = () => {
   setDropdownVisible(false);
 };
 
+const logout = async () => {
+  try {
+    const response = await axios.get('/api/user/signout');
+    console.log(response.data);
+    if(response.data.status === 200){
+      navigate('/');
+    }else{
+      navigate('/');
+    }
+  } catch (error: any) {
+    console.error('Error while logout:', error.message);
+  }
+};
+
 const handleMenuClick = (menu: string) => {
   switch (menu) {
     case 'My Account':
       handleMyAccountClick();
       break;
     case 'Sign Out':
-      // Handle Sign Out logic (e.g., log out the user)
+      logout();
       break;
     case 'Invite Friends':
       handleInviteFriendsClick();
       // Handle Invite Friends logic (e.g., navigate to the invite page)
       break;
-    // Add more cases for other menu items
+
     default:
       break;
   }

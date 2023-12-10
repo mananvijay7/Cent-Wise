@@ -1,18 +1,80 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from './MyProfileModal.module.css';
-import profileData from './userData.json';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import axios from 'axios';
+import { Document, Types } from 'mongoose';
+
+interface UserData extends Document {
+  _id: string,
+  email: string;
+  password: string;
+  first_name: string;
+  last_name: string;
+  ph_no: string;
+  created_date: Date;
+  totalOweAmount: number;
+  totalOweToSelf: number;
+  totalBalance: number;
+}
+
 
 function MyProfileModal({ closeModal }) {
-  const { fullName: initialFullName, email: initialEmail, phoneNumber: initialPhoneNumber } = profileData.person;
+  let initial_first_name = '';
+  let initial_last_name = '';
+  let initial_email = '';
+  let initial_ph_no = '';
+  let [userData, setUserData] = useState<UserData | null>(null);
 
-  const [fullName, setFullName] = useState(initialFullName);
-  const [email, setEmail] = useState(initialEmail);
-  const [phoneNumber, setPhoneNumber] = useState(initialPhoneNumber);
+  useEffect(() => {
+    // Fetch user data when the component mounts
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('/api/dashboard/userDetails');
+        const data = response.data;
+        setUserData(data);
+      } catch (error: any) {
+        console.error('Error getting data from the database:', error.message);
+      }
+    };
+
+    fetchData();
+    let initial_first_name = userData?.first_name;
+    let initial_last_name = userData?.last_name;
+    let initial_email = userData?.email;
+    let initial_ph_no = userData?.ph_no;
+  }, []);
+
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   const [editModeFullName, setEditModeFullName] = useState(false);
   const [editModeEmail, setEditModeEmail] = useState(false);
   const [editModePhoneNumber, setEditModePhoneNumber] = useState(false);
+
+  const handleSave = async () => {
+    try {
+      const resourceId = userData?._id;
+      const [firstName, lastName] = fullName.split(" ");
+      if(firstName === '' || lastName === '' || email === ''){
+        alert('Enter all of the values');
+      }else if(!email.includes('@')){
+        alert('Enter correct email address');
+      }
+      const updatedData = {
+        first_name: firstName,
+        last_name: lastName,
+        ph_no: phoneNumber,
+        email: email
+      };
+      const userId = userData?._id;
+      const response = await axios.patch(`/api/dashboard/updateProfile/${userId}`, updatedData);
+      console.log('PATCH request successful:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error making PATCH request:', error);
+    }
+  };
 
   const handleEditClickFullName = () => {
     setEditModeFullName(true);
@@ -33,7 +95,7 @@ function MyProfileModal({ closeModal }) {
   };
 
   const handleSaveClick = () => {
-    // Perform save logic here (e.g., send data to server)
+    handleSave();
     setEditModeFullName(false);
     setEditModeEmail(false);
     setEditModePhoneNumber(false);
@@ -41,9 +103,10 @@ function MyProfileModal({ closeModal }) {
 
   const handleCancelClick = () => {
     // Reset fields to initial values
+    let initialFullName = initial_first_name + initial_last_name;
     setFullName(initialFullName);
-    setEmail(initialEmail);
-    setPhoneNumber(initialPhoneNumber);
+    setEmail(initial_email);
+    setPhoneNumber(initial_ph_no);
     setEditModeFullName(false);
     setEditModeEmail(false);
     setEditModePhoneNumber(false);
@@ -71,7 +134,7 @@ function MyProfileModal({ closeModal }) {
                   <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} className={styles.editInput} />
                 ) : (
                   <>
-                    {fullName}
+                    {`${userData?.first_name}`} {` ${userData?.last_name}`}
                     <span>
                       <ModeEditIcon onClick={handleEditClickFullName} />
                     </span>
@@ -92,7 +155,7 @@ function MyProfileModal({ closeModal }) {
                   <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} className={styles.editInput} />
                 ) : (
                   <>
-                    {email}
+                    {`${userData?.email}`}
                     <span>
                       <ModeEditIcon onClick={handleEditClickEmail} />
                     </span>
@@ -113,7 +176,7 @@ function MyProfileModal({ closeModal }) {
                   <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} className={styles.editInput}/>
                 ) : (
                   <>
-                    {phoneNumber}
+                    {`${userData?.ph_no}`}
                     <span>
                       <ModeEditIcon onClick={handleEditClickPhoneNumber} />
                     </span>
@@ -136,4 +199,3 @@ function MyProfileModal({ closeModal }) {
 }
 
 export default MyProfileModal;
-
