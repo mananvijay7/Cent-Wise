@@ -13,8 +13,12 @@
   top: 0px;
   left: 0px;
   right: 0px;
-  width: 100vw;
+  width: 100%;
   margin: 0;
+}
+
+.navContainer {
+  margin-right: 80px;
 }
 
 
@@ -32,10 +36,6 @@
   gap: 50px;
 }
 
-nav a img {
-  /*width: 130px;*/
-  
-}
 
 .centwiseLogo {
   width: 130px;
@@ -50,11 +50,16 @@ nav a img {
   justify-content: center;
 }
 
-.buttons, .userContainer {
+.userContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-right: 50px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
 }
 
 .userContainer:hover {
@@ -62,15 +67,14 @@ nav a img {
 }
 
 .userProfile {
-  width: 35px;
-  height: 35px;
-  margin-left: 40px;
-  padding: 10px;
+  width: 40px;
+  height: 40px;
   border-radius: 50px 50px 50px 50px;
+  border: 2px solid #00CE67;
 }
 
 .userName {
-  margin-left: -18em;
+  margin-left: 20px;
   font-weight: 900;
   color: #353434;
   font-size: 100%;
@@ -78,10 +82,9 @@ nav a img {
 }
 
 .verticalLine {
-  height: 5vh;
-  width: 2px;
+  height: 30px;
+  width: 3px;
   background-color: #000;
-  margin-right: 15.625em;
 }
 
 .dropdownMenu {
