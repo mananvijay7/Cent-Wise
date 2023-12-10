@@ -14,11 +14,11 @@ const LandingPageLeftPanel = () => {
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        navigate("api/user/signin");
+        navigate("/user/signin");
     }
 
     const handleSignup = () => {
-        navigate("api/user/signup");
+        navigate("/user/signup");
     }
 
 

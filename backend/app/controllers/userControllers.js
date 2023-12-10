@@ -46,7 +46,7 @@ export const signin = function(request, response){
 
 export const createSession = function(request, response){
       request.flash('success', 'Logged In Successfully');
-      console.log('reached create session ' + "request " + request + "response " + response);
+      //console.log('reached create session ' + "request " + request + "response " + response);
       return response.redirect('/dashboard');
   }
   
