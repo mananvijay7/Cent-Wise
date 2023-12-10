@@ -13,6 +13,7 @@ import MainContainer from './components/MainContainer/MainContainer';
 import LeftSidePanel from './components/LeftSidePanel/LeftSidePanel';
 import Navbar from './components/Navbar/Navbar';
 import axios from 'axios';
+import CentwiseAuth from './components/CentwiseAuth/CentwiseAuth';
 
 
 const App: React.FC = () => {
@@ -55,8 +56,8 @@ const App: React.FC = () => {
           <Route path='/api/friends' element={<CentwiseNavigator title='Dashboard'/>}/>
         </Route>
         <Route path='/' element={<LandingPage/>}/>
-        <Route path='/api/user/signin' element={<Signin/>}/>
-        <Route path='/api/user/signup' element={<CreateAccount/>}/>
+        <Route path='/api/user/signin' element={<CentwiseAuth type='signin'/>}/>
+        <Route path='/api/user/signup' element={<CentwiseAuth type='signup'/>}/>
       </Routes>
     </Router>
   );
