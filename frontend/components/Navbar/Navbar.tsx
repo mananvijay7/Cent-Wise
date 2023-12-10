@@ -8,6 +8,7 @@ import userData from "./navbarUserData.json";
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { Document, Types } from 'mongoose';
+import userPhotoPath from "../../../public/images/YashLimbodiya.jpg";
 
 
 interface Friend {
@@ -92,21 +93,21 @@ function Navbar() {
     <>
 
       <nav className={styles.nav}>
-        <a href="index.html">
+        <a href="#">
           <img className={styles.centwiseLogo} src={centwiseLogoPath} ></img>
         </a>
         <div className={styles.navContainer}>
           <ul className={styles.navbar}>
             <li>
               <div className={styles.buttons}>
-                <a href="index.html">
+                <a href="#">
                   <AddanExpenseButton />
                 </a>
-                <a href="index.html"><SettleUpButton /></a>
+                <a href="#"><SettleUpButton /></a>
               </div>
               <p className={styles.verticalLine}>  </p>
               <div className={styles.userContainer}>
-                <img className={styles.userProfile} src='../components/Assets/Yash Lambodiya.jpg' alt="User Profile img" onClick={toggleDropdown} />
+                <img className={styles.userProfile} src={userPhotoPath} alt="User Profile img" onClick={toggleDropdown} />
                 <p className={styles.userName} onClick={toggleDropdown}>
                 {`${userData?.first_name}`} {` ${userData?.last_name}`}</p>
                 {/* </div> */}
