@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+.container  {
+    /*background: linear-gradient(to right, white 0%, white 70%) left,
+                linear-gradient(to right, #01CE67 70%,  #01CE67 100%) right;
+    background-size: 70% 100%;
+    background-repeat: no-repeat;*/
+    /* min-height: 100vh; */
+    /*display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;*/
+    font-family: Montserrat;
+  }
+
+
+   
+  .centwiseLogo {
+    margin: 2%;
+    height: 40px;
+    width: 180px;
+  }
+
+  .mainFormContainer {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .formHeading {
+    text-align: center;
+    display: block;
+    margin-top: 50px;
+    font-size: 1.5em;
+    margin-bottom: 30px;
+  }
+
+  .googleButton {
+    text-align: center;
+    width: 50%;
+    border-radius: 30px;
+    border: 2px solid #B5B5B5;
+    display: flex;
+    justify-content: center;
+    padding: 0.6em 1.2em;
+    background-color: #ffffff;
+    cursor: pointer; 
+  }
+
+  .googleButton:hover {
+    border: 2px solid;
+    border-color: #01CE67;
+  }
+
+  .Or {
+    font-weight: bold;
+    margin: 2%;
+  }
+
+  .googleLogo {
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    text-align: center;
+  }
+
+  .googleText {
+    margin: 0px;
+    padding: 1.5%;
+  }
+
+
+  .inputs{
+    margin-top: 10px;
+    width: 500px;
+    height: 35px;
+    border: 2px solid #B5B5B5;
+    border-radius: 5px;
+    text-indent: 15px;
+  }
+
+
+  *:focus{
+    outline: none;
+  }
+  .inputs:focus,
+  .inputs:focus-visible {
+    border: 2px solid #01CE67;
+  }
+  .inputs::placeholder{
+    color: #999; 
+    font-weight: bold;
+    /* font-style: italic; */
+    text-align: justify;
+    margin-left: 100px;
+  }
+
+  .passwordRequirements{
+    font-size:small;
+  }
+  
+  
+
+   .submitBtn{
+    text-align: center;
+    margin-left: 180px;
+    /* margin-top: -200px; */
+    background-color: #01CE67;
+    border-radius: 50px;
+    color: #ffffff;
+    width: 150px;
+    margin-top: 30px;
+    cursor: pointer;
+    height: 40px;
+  } 
+
+  
+  .submitBtn:hover{
+    border: 2px solid #01CE67;
+    color: #01CE67;
+    background-color: #ffffff;
+    font-weight: bold;
+  
+  }
+  .submitBtn:active {
+    border: 2px solid rgb(28, 130, 26); /* Add a border when the button is clicked */
+  }
+
+
+  .text{
+    text-align: center;
+    margin-top: 210px;
+    margin-left: 150px;
+  }
+  
+  .showpassword{
+    margin-left: -130px;
+     height: 20px;
+    border-color: #213547;
+    font-size: small;
+    border: none;
+  }
+  .showpassword:hover{
+    background-color: #e4e0e0e9;
+  }
+  .showconfirmpassword{
+    margin-left: -130px;
+    /* height: 20px; */
+    /* border-color: #213547; */
+    font-size: small;
+    /* border-width: 0.01px; */
+    border: none;
+  }
+  .showconfirmpassword:hover{
+    background-color: #e4e0e0e9;
+  }
+  
+
+   .forgotPassword{
+    font-size: small;
+    margin-top: 30px;
+    margin-left: 370px;
+   }
+   .forgotPassword:active{
+    border: 2px solid #01CE67;
+
+   }
+   .forgotPassword:hover{
+    border: 2px solid #01CE67;
+    font-weight: bold;
+    color: #01CE67;
+   }
