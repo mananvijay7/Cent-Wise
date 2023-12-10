@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import AuthApi from 'splitwise-node';
 import cookieParse from 'cookie-parser';
 import session from 'express-session';
+import flash from 'express-flash';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import * as passportLocal from '../auth/passport-local-strategy.js';
@@ -27,13 +28,9 @@ const initialize = (app) => {
   app.use(express.urlencoded({ extended: true }));
   app.use(cookieParse());
   // TODO: MongoDB connection
-  mongoose.connect("mongodb+srv://centwise:centwise12345@cluster0.fopmn2v.mongodb.net/centwise?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+  mongoose.connect('mongodb+srv://centwise:centwise12345@cluster0.fopmn2v.mongodb.net/centwise?retryWrites=true&w=majority');
+  //mongoose.connect('mongodb+srv://centwise:centwise12345@cluster0.fopmn2v.mongodb.net/centwise?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
   const db = mongoose.connection;  
-
-  const store = new MongoStore({
-    uri: 'mongodb+srv://centwise:centwise12345@cluster0.fopmn2v.mongodb.net/centwise?retryWrites=true&w=majority',
-    collection: 'sessions'
-  });
 
   app.use(session({
     name: 'CentWise',
@@ -43,13 +40,18 @@ const initialize = (app) => {
     cookie: {
         maxAge: (1000 * 60 * 100)
     },
-    store: store
+     store: new MongoStore({
+    uri: 'mongodb+srv://centwise:centwise12345@cluster0.fopmn2v.mongodb.net/centwise?retryWrites=true&w=majority',
+    collection: 'sessions'
+  })
 })); 
 
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passportLocal.setAuthenticatedUser);
+app.use(flash());
 registerRoutes(app);
+
 
   /*let userOAuthToken, userOAuthTokenSecret;
   var authApi = new AuthApi(oauthDetails[0].consumerKey, oauthDetails[0].consumerSecret);

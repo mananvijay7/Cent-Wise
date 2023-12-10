@@ -22,8 +22,8 @@ const UserSchema = new Schema({
   },
   ph_no: {
     type: String,
-    required: true,
-    unique: true,
+    //required: true,
+    //unique: true,
   },
   created_date:{
     type: Date,

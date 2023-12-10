@@ -81,35 +81,35 @@ const SignInForm: React.FC = () => {
 
     const handleGoogleOauth = () => {
         window.location.href = '/api/user/auth/google';
-    }
-
-    const handleLocalSignupSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+      }
+    
+      const handleLocalSignupSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
         await handleLocalSignup(email, first_name, last_name, ph_no, password);
-    }
-
-    const handleLocalSignup = async (email: string, first_name: string, last_name: string, ph_no: string, password: string) => {
-        try {
-            const response = await axios.post('/api/user/create', {
-                email: email,
-                first_name: first_name,
-                last_name: last_name,
-                ph_no: ph_no,
-                password: password
-            });
-
-            if (response.status == 200) {
-                navigate('/user/signin');
-            } else {
-                alert('User already exist');
-            }
-
-            console.log(response);
-
-        } catch (error) {
-            console.log(error + " Issue with sign up");
+      }
+    
+      const handleLocalSignup = async (email: string, first_name: string, last_name: string, ph_no: string, password: string) => {
+        try{
+          const response = await axios.post('/api/user/create', {
+            email: email,
+            first_name: first_name,
+            last_name: last_name,
+            ph_no: ph_no,
+            password: password
+          });
+    
+          if(response.status == 200){
+            navigate('/user/signin');
+          }else{
+            alert('User already exist');
+          }
+    
+          console.log(response);
+    
+        }catch(error){
+          console.log(error + " Issue with sign up");
         }
-    };
+      };
 
 
     return (
@@ -120,14 +120,14 @@ const SignInForm: React.FC = () => {
             <div className={styles.mainFormContainer}>
                 <h2 className={styles.formHeading}>Sign up to account</h2>
 
-                <button className={styles.googleButton}>
+                <button className={styles.googleButton} onClick={handleGoogleOauth}>
                     <img className={styles.googleLogo} src={googleLogoPath} alt="Google Logo" />
                     <p className={styles.googleText}><b>Sign in with Google</b></p>
                 </button>
 
                 <div className={styles.Or}>OR</div>
 
-                <form onSubmit={(e) => handleLocalSignupSubmit(e)} method="POST">
+                <form onSubmit= {(e) => handleLocalSignupSubmit(e)}  method="POST">
                     <input className={styles.inputs} value={first_name} onChange={(e) => setFirstName(e.target.value)} type="text" placeholder="Enter your first name" required id="first_name" name='first_name' />
                     <br /><input className={styles.inputs} value={last_name} onChange={(e) => setLastName(e.target.value)} type="text" placeholder="Enter your last name" required id="last_name" name='last_name' />
                     <br /><input className={styles.inputs} value={ph_no || ''} onChange={handlePhoneNumberChange} type="tel" placeholder="Enter your phone number" required id="ph_no" name='ph_no' />
