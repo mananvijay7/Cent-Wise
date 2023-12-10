@@ -49,12 +49,12 @@ const [authorizationUrl, setAuthorizationUrl] = useState('');
   return (
     <Router>
       <Routes>
-        {/*<Route element={<ProtectedRoute/>}>*/}
+       <Route element={<ProtectedRoute/>}>
           <Route path='/dashboard' element={<CentwiseNavigator title='Dashboard'/>}/>
           <Route path='/expenses' element={<CentwiseNavigator title='AllExpenses'/>}/>
           <Route path='/groups' element={<CentwiseNavigator title='Groups'/>}/>
           <Route path='/friends' element={<CentwiseNavigator title='Dashboard'/>}/>
-        {/*</Route>*/}
+        </Route>
         <Route path='/' element={<LandingPage/>}/>
         <Route path='/user/signin' element={<CentwiseAuth type='signin'/>}/>
         <Route path='/user/signup' element={<CentwiseAuth type='signup'/>}/>
