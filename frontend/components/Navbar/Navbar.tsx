@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from "./Navbar.module.css";
+import centwiseLogoPath from "../../../public/images/CentwiseLogo.png";
 import AddanExpenseButton from "../Buttons/AddanExpenseButton";
 import SettleUpButton from "../Buttons/SettleUpButton";
 import DropDownProfile from '../DropDownProfile/DropDownProfile';
@@ -92,7 +93,7 @@ function Navbar() {
 
       <nav className={styles.nav}>
         <a href="index.html">
-          <img id="centWiseLogo" src="../components/Assets/Centwise.png" ></img>
+          <img className={styles.centwiseLogo} src={centwiseLogoPath} ></img>
         </a>
         <div className={styles.navContainer}>
           <ul className={styles.navbar}>
