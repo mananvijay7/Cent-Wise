@@ -67,6 +67,23 @@ totalBalance: {
       },
     }
   ],
+  groups: [
+    {
+      group: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Group',
+      },
+      group_name: {
+        type: String,
+      },
+      you_paid: {
+        type: Number,
+      },
+      you_lent: {
+        type: Number,
+      }
+    }
+  ],
 });
 
 const User = mongoose.model('User', UserSchema);
