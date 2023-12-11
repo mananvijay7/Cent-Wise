@@ -34,8 +34,7 @@ const fileUpload = multer({ storage: storage });
 
 // Route for uploading a file
 router.post('/uploadfile', upload.single('file'), userController.create);
-
-
+router.get('/checkAuth', userController.checkAuth);
 router.get('/signout', userController.sessionDestroy);
 router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 router.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: '/api/user/signin'}), userController.createSession);

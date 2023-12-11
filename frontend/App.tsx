@@ -17,38 +17,8 @@ import InviteFriendsModal from './components/InviteFriendsModal/InvitefrndsModal
 
 
 const App: React.FC = () => {
-
-const [authorizationUrl, setAuthorizationUrl] = useState('');
-  
-  useEffect(() => {
-    // Perform any setup or side effects on component mount
-    // For example, fetch the authorization URL from your server
-    // when the component is mounted
-    //console.log("coming here at app");
-    //fetchAuthorizationUrl();
-  }, []);
-
-  /*const fetchAuthorizationUrl = async () => {
-    try {
-      // Fetch the authorization URL from your server
-      const response = await axios.get('/api/user/signin');
-      const data = await response.data;
-      console.log(data + " datataatatat");
-
-      //setAuthorizationUrl(data.authorizationUrl);
-    } catch (error: any) {
-      console.error('Error fetching authorization URL:', error.message);
-    }
-  };
-
-  const handleAuthorization = () => {
-    window.open(authorizationUrl);
-  };
-
-  handleAuthorization();*/
-
   const [isInviteFriendsModalOpen, setInviteFriendsModalOpen] = useState(false);
-  
+
   const handleInviteFriendsClick = () => {
     setInviteFriendsModalOpen(!isInviteFriendsModalOpen);
   };
@@ -56,20 +26,54 @@ const [authorizationUrl, setAuthorizationUrl] = useState('');
   return (
     <Router>
       <Routes>
-       {/*<Route element={<ProtectedRoute/>}>*/}
-          <Route path='/dashboard' element={<CentwiseNavigator title='Dashboard'/>}/>
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <CentwiseNavigator title="Dashboard" />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route path='/expenses' element={<CentwiseNavigator title='AllExpenses'/>}/>
+        <Route
+          path="/expenses"
+          element={
+            <ProtectedRoute>
+              <CentwiseNavigator title="AllExpenses" />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route path='/groups' element={<CentwiseNavigator title='Groups'/>}/>
+        <Route
+          path="/groups"
+          element={
+            <ProtectedRoute>
+              <CentwiseNavigator title="Groups" />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route path='/friends' element={<CentwiseNavigator title='Friends'/>}/>
+        <Route
+          path="/friends"
+          element={
+            <ProtectedRoute>
+              <CentwiseNavigator title="Friends" />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route path='/invitefriends' element={<InviteFriendsModal closeModal={handleInviteFriendsClick}/>}/>
-        {/*</Route>*/}
-        <Route path='/' element={<LandingPage/>}/>
-        <Route path='/user/signin' element={<CentwiseAuth type='signin'/>}/>
-        <Route path='/user/signup' element={<CentwiseAuth type='signup'/>}/>
+        <Route
+          path="/invitefriends"
+          element={
+            <ProtectedRoute>
+              <InviteFriendsModal closeModal={handleInviteFriendsClick} />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/user/signin" element={<CentwiseAuth type="signin" />} />
+        <Route path="/user/signup" element={<CentwiseAuth type="signup" />} />
       </Routes>
     </Router>
   );

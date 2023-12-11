@@ -77,3 +77,17 @@ export const createSession = function(request, response){
         }
       });
 };
+
+export const checkAuth = function(request, response) {
+  try{
+    //console.log(request);
+    if(request.isAuthenticated()){
+      return response.status(200).send('User Authenticated');
+      }
+    //return response.render('user_sign_in');
+    return response.status(404).send('User not Authenticated');
+}catch(err){
+    console.error(err);
+    response.status(500).send('Internal Server Error');
+}
+};
