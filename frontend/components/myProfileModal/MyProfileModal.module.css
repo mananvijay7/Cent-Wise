@@ -1,12 +1,12 @@
-.overlay {
+/* .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    backdrop-filter: blur(5px); /* Blur effect for supporting browsers */
-    z-index: 998; /* Ensure the overlay is on top of other elements */
+    background: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(5px);
+    z-index: 998; 
   }
 
 
@@ -14,13 +14,12 @@
     width: 65%;
     height: 95%;
     border-radius: 50%;
-    /* border: 2px solid #01ce67; */
     object-fit: cover;
 }
 
 .modelBackground{
 
-    position: relative; /* Make sure it's relative to allow absolute positioning of the modal */
+    position: relative; 
     display: flex;
     justify-content: center;
     z-index: 1000; 
@@ -100,8 +99,218 @@ justify-content: space-between;
 }
 
 .editInput::placeholder {
-    /* Add your placeholder styling here */
+    
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    /* Add other styles as needed */
+  } */.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    backdrop-filter: blur(5px); /* Blur effect for supporting browsers */
+    z-index: 998; /* Ensure the overlay is on top of other elements */
   }
+
+
+.userImg{
+    width: 65%;
+    height: 95%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.modelBackground{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    z-index: 1000; 
+}
+
+.modalContainer
+{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0px 3px 6px #00000029;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    border: 2px solid #01ce67;
+    z-index: 1001
+}
+
+/* Close button */
+.titleCloseBtn{
+    margin-top: -7%;
+    margin-right: -7%;
+    display: flex;
+    justify-content: flex-end;
+
+}
+.titleCloseBtn button{
+    background-color: transparent;
+    border: none;
+    font-size: 2.0rem;
+    cursor: pointer;
+    transform: rotate(45deg);
+}
+.titleCloseBtn button:hover{
+    color: rgb(252, 8, 8);
+}
+
+
+/* /// */
+
+.heading{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    margin-top:5%;
+}
+
+.title{
+    display: flex;
+    align-items: center;
+    margin-left: 35%;
+    
+}
+
+
+
+
+/* all the maine fields */
+.body{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: larger;
+    margin-top: -6%;
+}
+
+.name p{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+}
+
+.email p{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.phone p{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* //////end///////////// */
+
+
+.editInput {
+  width: auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: large;
+  width: auto;
+  border:2px solid #01ce67;
+  border-radius: 5px;
+}
+
+.editInputContainer{
+    /* margin-left: 3%; */
+    box-shadow: 0px 3px 6px #00000029;
+
+}
+.editInputContainer
+:hover{
+    color: black;
+    background-color: whitesmoke;
+    border-color: #05fc80;
+    cursor: text;
+    /* margin-left: 3%; */
+    
+    box-shadow: 0px 3px 6px #00000029;
+}
+
+  .editIcon {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .editIcon div{
+    display: flex;
+    justify-content: center;
+    font-size: large;
+    border: 2px solid  #01ce67;
+    padding: 2%;
+    border-radius: 0.4em;
+    box-shadow: 0px 3px 6px #00000029;
+  }
+
+  .editIcon :hover{
+    color: black;
+    background-color: #01ce67;
+    border-color:  #05fc80;
+  }
+  
+ .editButtons{
+    display: flex;
+    cursor: pointer;
+    justify-content: space-around;
+    padding: 5%;
+    
+ }
+
+ .save,
+ .cancel{
+    border: 2px solid;
+    border-color: #01ce67;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 8px;
+    /* padding: 5%; */
+    
+    
+ }
+ 
+ .save{
+    margin-right: 20%;
+ }
+
+ .save:hover{
+    color: black;
+    background-color: #01ce67;
+    border-color:  #05fc80;
+ } 
+
+ .cancel{
+    margin-right: -20%;
+ }
+
+ .cancel:hover{
+    color: black;
+    background-color: #01ce67;
+    border-color:  #05fc80;
+ } 
+
+ .cancel:focus
+ {
+    border-color: #1b7647;
+
+ }
+
+ .save:focus
+ {
+    border-color: #1b7647;
+ }
+
+
+
+
+  
