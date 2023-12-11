@@ -3,6 +3,7 @@ import DashboardCmp from "../Dashboard/DashboardCmp";
 import GroupCmp from "../Groups/GroupCmp";
 import AllExpensesCmp from "../AllExpenses/AllExpensesCmp";
 import { useSelector } from "react-redux";
+import FriendsCmp from "../Friends/FriendsCmp";
 
 
 interface ComponentMap {
@@ -20,7 +21,8 @@ type Props = {
 const componentMap: ComponentMap = {
     Dashboard: DashboardCmp,
     Groups: GroupCmp,
-    AllExpenses: AllExpensesCmp
+    AllExpenses: AllExpensesCmp,
+    Friends: FriendsCmp
 };
 
 const assignComponent: React.FC<DynamicComponentProps> = ({ componentName }) => {

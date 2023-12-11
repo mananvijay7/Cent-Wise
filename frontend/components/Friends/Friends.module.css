@@ -1,0 +1,17 @@
+.mainContainer {
+	margin-bottom: 20px;
+}
+
+.summary {
+	font-weight: bold;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 14px;
+	color: #353434;
+}
+
+
+.listCard {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
