@@ -1,8 +1,13 @@
 import User from '../models/UserSchema.js';
+import multer from 'multer';
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 export const create = async function(request, response){
   //console.log(request);
   try{
+    const uploadedFile = request.file;
       let user = await User.findOne({email: request.body.email});
       if(!user){
           let crte = await User.create({
@@ -12,6 +17,15 @@ export const create = async function(request, response){
               last_name: request.body.last_name,
               ph_no: request.body.ph_no,
           });
+      // Add the uploaded file data to the user model if needed
+      if (uploadedFile) {
+        createUser.profilePicture = {
+          data: uploadedFile.buffer,
+          contentType: uploadedFile.mimetype,
+        };
+        await createUser.save(); // Save the user model with the updated profilePicture field
+      }
+
           //request.flash('success', 'Account Registered');
           return response.status(200).json({message: "User Created"});
       }else{

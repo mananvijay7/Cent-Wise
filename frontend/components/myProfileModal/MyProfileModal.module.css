@@ -11,10 +11,9 @@
 
 
 .userImg{
-    width: 65%;
-    height: 95%;
-    border-radius: 50%;
-    object-fit: cover;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px 50px 50px 50px;
 }
 
 .modelBackground{
@@ -237,7 +236,41 @@ justify-content: space-between;
     border-color: #1b7647;
  }
 
+ .chooseFile {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  
+  .saveButton {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 2px 8px;
+    margin-left: -1em;
+    cursor: pointer;
+    margin-top: 1em;
+  }
+  .profilecancel{
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 2px 8px;
+    margin-left: 5px;
+    cursor: pointer;
+    margin-top: 1em;
+  }
 
+  .editIcon {
+    float: right; /* or use other positioning styles as needed */
+  }
+  .choosefile{
+    margin-left: -1em;
+  }
+  
 
 
   
