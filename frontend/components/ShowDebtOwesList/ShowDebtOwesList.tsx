@@ -87,23 +87,27 @@ const ShowDebtOwesList: React.FC<Props> = ({ userData }) => {
         <div className={styles.flexChild}>
           <div className={styles.label}>You Owe</div>
           {friendsList.map((friend) => (
-            <ShowDebtOwesListCard
-              key={friend.friend._id}
-              imgSrc={"src/assets/person.jpg"}
-              username={`${friend.friend_first_name}`}
-              amount={`$${friend.amountInDeal.toFixed(2)}`}
-            />
+            friend.amountInDeal < 0 && (
+              <ShowDebtOwesListCard
+                key={friend.friend._id}
+                imgSrc={"src/assets/person.jpg"}
+                username={`${friend.friend_first_name}`}
+                amount={`$${Math.abs(friend.amountInDeal).toFixed(2)}`}
+              />
+            )
           ))}
         </div>
         <div className={styles.flexChild}>
           <div className={styles.label}>You are owed</div>
           {friendsList.map((friend) => (
-            <ShowDebtOwesListCard
-              key={friend.friend._id}
-              imgSrc={"src/assets/person.jpg"}
-              username={`${friend.friend_first_name}`}
-              amount={`$${friend.amountInDeal.toFixed(2)}`}
-            />
+            friend.amountInDeal > 0 && (
+              <ShowDebtOwesListCard
+                key={friend.friend._id}
+                imgSrc={"src/assets/person.jpg"}
+                username={`${friend.friend_first_name}`}
+                amount={`$${friend.amountInDeal.toFixed(2)}`}
+              />
+            )
           ))}
         </div>
       </div>

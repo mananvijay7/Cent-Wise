@@ -44,8 +44,8 @@ interface Friend {
     interface Group {
       group: Types.ObjectId;
       group_name: string;
-      you_paid: number;
-      you_lent: number;
+      you_paid: string;
+      you_lent: string;
     }
     
     interface UserData extends Document {
@@ -100,7 +100,7 @@ const ShowDebtOwesGroupList: React.FC<Props> = ({userData}) => {
               key={group.group.toString()} 
               imgSrc={"src/assets/person.jpg"} 
               username={`${group.group_name}`} 
-              you_lent={group.you_lent} 
+              you_lent={''} 
               you_paid={group.you_paid} 
             />
           ))}
@@ -113,7 +113,7 @@ const ShowDebtOwesGroupList: React.FC<Props> = ({userData}) => {
             imgSrc={"src/assets/person.jpg"} 
             username={`${group.group_name}`} 
             you_lent={group.you_lent} 
-            you_paid={group.you_paid}  
+            you_paid={''}  
             />
           ))}
                 </div>
