@@ -1,4 +1,19 @@
 import User from '../models/UserSchema.js';
+import UserVerification from '../models/UserVerification.js';
+import nodemailer from 'nodemailer';
+import {v4 as uuidv4} from 'uuid';
+// import ("dotenv").config();
+import 'dotenv/config'
+
+let transporter = nodemailer.createTransport({
+  service:"gmail",
+  auth:{
+    user: process.env.AUTH_EMAIL,
+    pass: process.env.AUTH_PASS,
+  }
+});
+
+
 
 export const create = async function(request, response){
   console.log(request);
@@ -12,6 +27,16 @@ export const create = async function(request, response){
               last_name: request.body.last_name,
               ph_no: request.body.ph_no,
           });
+          
+          transporter.verify((error, success) => {
+            if(error){
+              console.log(error);
+            } else {
+              console.log("Ready for messages");
+              console.log(success);
+            }
+          });
+          
           //request.flash('success', 'Account Registered');
           return response.status(200).json({message: "User Created"});
       }else{
