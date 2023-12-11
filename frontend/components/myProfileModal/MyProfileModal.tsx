@@ -93,7 +93,6 @@ function MyProfileModal({ closeModal }: { closeModal: (flag: boolean) => void })
   };
 
   const handleSaveClick = () => {
-    handleSave();
     setEditModeProfilePicture(false);
   };
 
