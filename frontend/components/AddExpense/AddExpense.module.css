@@ -67,7 +67,7 @@ body.activeModal {
     font-weight: bold;
 
   }
-  .paidByWho{
+  .btn{
     border-style: solid;
     border-color: #01ce67;
     border-radius: 20px;
@@ -84,28 +84,11 @@ body.activeModal {
 
   }
 
-  .paidByWho:active{
+  .btn:active{
     border-color: #009c4e;
     font-weight: bold;
   }
-  .Split{
-    border-style: solid;
-    border-color: #01ce67;
-    border-radius: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
-    outline: none;
-    box-shadow: none;
-    cursor: pointer;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-family: Montserrat;
-  }
-  .Split:active{
-    border-color: #009c4e;
-  }
+
   .date{
     border: 2px solid;
     border-color: #B5B5B5;
