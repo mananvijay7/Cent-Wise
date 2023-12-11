@@ -6,11 +6,9 @@ const groupSchema = new Schema({
   description: {
     type: String,
     required: true,
-    unique: true,
   },
   group_type: {
       type: String,
-      required: true
   },
   created_date:{
       type: Date,
