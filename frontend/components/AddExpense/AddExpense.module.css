@@ -24,6 +24,7 @@ body.activeModal {
     background: rgba(49,49,49,0.8);
 }
 .modalContent {
+  margin-top: 50px;
     position: fixed;
     top: 40%;
     left: 50%;
@@ -70,40 +71,53 @@ body.activeModal {
     border-style: solid;
     border-color: #01ce67;
     border-radius: 20px;
-    /* width: 25%; */
-    height: 15%;
+    margin-left: 10px;
+    margin-right: 10px;
     outline: none;
     box-shadow: none;
     cursor: pointer;
-    margin-left: 0.5em;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-family: Montserrat;
+
   }
 
   .paidByWho:active{
     border-color: #009c4e;
+    font-weight: bold;
   }
   .Split{
     border-style: solid;
     border-color: #01ce67;
-    border-radius: 25px;
-    /* width: 25%; */
-    height: 15%;
+    border-radius: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     outline: none;
     box-shadow: none;
     cursor: pointer;
-    margin-left: 0.3em;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-family: Montserrat;
   }
   .Split:active{
     border-color: #009c4e;
   }
   .date{
-    border: 1px solid;
-    border-color: #b5b5b5;
+    border: 2px solid;
+    border-color: #B5B5B5;
     border-radius: 25px;
-    width: 65%;
-    height: 1.5em;
     cursor: pointer;
     text-align: center;
     margin-top: 2em;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-family: Montserrat;
 
   }
   .date:hover{
@@ -121,39 +135,55 @@ body.activeModal {
   } */
   .save{
     color: #f1f1f1;
-    border:none;
+    border:2px solid #fff;
     background-color:#01ce67;
     border-radius: 15px;
-    height: 2.3em;
     cursor: pointer;
     margin-top: 1em;
-    margin-left: 23em;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-shadow: 0px 3px 6px #00000029;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    font-weight: bold;
   }
 
   .save:hover{
-    background-color: #009c4e;
+    background-color: #fff;
+    border-color: #01ce67;
+    color: #01ce67;
   }
 
 .cancel{
   
-    border: 1px solid;
-    border-color: #b5b5b5;
+    border: 2px solid;
+    border-color: #B5B5B5;
     border-radius: 15px;
-    height: 2.3em;
     margin-left: 1em;
-    height: 2.3em;
     cursor: pointer;
+    color: #B5B5B5;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-shadow: 0px 3px 6px #00000029;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    font-weight: bold;
 }
 .cancel:active{
-  border-color: #838383;
+  border-color: #fff;
+  background-color: #B70019;
+  color: #fff;
 }
 .cancel:hover{
-  background-color: #a5a4a4;
+  border-color: #fff;
+  background-color: #B70019;
+  color: #fff;
 }
 /* AddExpense.module.css */
 .sideModal {
     position: fixed;
-    margin-left: 43.9em;
     margin-top: -4.5em;
     text-align: center;
     border-radius: 10px;
@@ -163,8 +193,8 @@ body.activeModal {
     min-height: 15vh;
     width: 300px; /* Adjust the width as needed */
     background-color: white; /* Adjust the background color as needed */
-    z-index: 1002; 
-  
+    z-index: 1001;
+
   }
   .cancel2{
     position: absolute;

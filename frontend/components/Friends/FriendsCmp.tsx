@@ -74,7 +74,13 @@ const DashboardCmp = () => {
         <div>
             <div className={styles.mainContainer}>
                 <div className={styles.listCard}>
-                    <div className={styles.summary}>Friends</div>
+                  <div className={styles.heading}>
+                  <div className={styles.summary}>Friends</div>
+                    <button className={styles.addFriendBtn}>
+                    + Add Friend
+                  </button>
+                  </div>
+                  <hr className={styles.hr}/>
                     <ShowDebtOwesList userData={userData}/>
                 </div>
             </div>
