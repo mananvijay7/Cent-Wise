@@ -10,14 +10,14 @@ const AddGroupModal: React.FC<AddGroupModalProps> = ({ isOpen, onClose }) => {
   const [groupName, setGroupName] = useState<string>("");
   const [showAddMembers, setShowAddMembers] = useState<boolean>(false);
   const [newMemberName, setNewMemberName] = useState<string>("");
-  const [groupMembers, setGroupMembers] = useState<string[]>(["User"]); // Initial member is the user
+  const [groupMembers, setGroupMembers] = useState<string[]>([]); // Initial member is the user
 
   useEffect(() => {
     // Reset component state when the component is mounted
     setGroupName("");
     setShowAddMembers(false);
     setNewMemberName("");
-    setGroupMembers(["User"]);
+    setGroupMembers([]);
   }, [isOpen]);
 
   const handleGroupNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +46,7 @@ const AddGroupModal: React.FC<AddGroupModalProps> = ({ isOpen, onClose }) => {
     setGroupName("");
     setShowAddMembers(false);
     setNewMemberName("");
-    setGroupMembers(["User"]);
+    setGroupMembers([]);
     onClose();
   };
 
@@ -88,13 +88,13 @@ const AddGroupModal: React.FC<AddGroupModalProps> = ({ isOpen, onClose }) => {
               <div>
                 <input
                   type="text"
-                  placeholder="Enter member name"
+                  placeholder="Enter members email address"
                   value={newMemberName}
                   onChange={(event) => setNewMemberName(event.target.value)}
                   className={styles.addAPerson}
                 />
                 <button onClick={handleAddMember} className={styles.addMembersButton}>
-                  + Add a person
+                   Add a person
                 </button>
               </div>
             </div>
