@@ -30,7 +30,7 @@ body.activeModal {
     left: 50%;
     transform: translate(-50%,-50%);
     line-height: 2.8;
-    background: #f1f1f1;
+    background-color: #f1f1f1;
     padding: 14px 28px;
     border-radius: 3px;
     max-width: 80%;

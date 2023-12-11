@@ -3,6 +3,8 @@ import ShowDebtOwesList from "../ShowDebtOwesList/ShowDebtOwesList";
 import React, { useState, ChangeEvent, FormEvent,useEffect  } from "react";
 import axios from 'axios';
 import { Document, Types } from 'mongoose';
+import { useNavigate } from "react-router-dom";
+import AddedCentwiseFriend from "../AddCentwiseFriend/AddCentwiseFriend";
 
 
 interface Friend {
@@ -55,6 +57,9 @@ interface Friend {
 
 const DashboardCmp = () => {
     const [userData, setUserData] = useState<UserData | null>(null);
+    const [addFriendModal, setAddFriendModal] = useState(false);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -70,13 +75,18 @@ const DashboardCmp = () => {
           fetchData();
     }, []);
 
+    const handleClick = () => {
+      setAddFriendModal(!addFriendModal);
+    }
+
     return (
         <div>
+            {addFriendModal && <AddedCentwiseFriend  />}
             <div className={styles.mainContainer}>
                 <div className={styles.listCard}>
                   <div className={styles.heading}>
                   <div className={styles.summary}>Friends</div>
-                    <button className={styles.addFriendBtn}>
+                    <button className={styles.addFriendBtn} onClick={handleClick}>
                     + Add Friend
                   </button>
                   </div>
