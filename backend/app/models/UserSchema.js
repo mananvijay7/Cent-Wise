@@ -78,9 +78,11 @@ totalBalance: {
       },
       you_paid: {
         type: Number,
+        default: 0,
       },
       you_lent: {
         type: Number,
+        default: 0,
       }
     }
   ],
