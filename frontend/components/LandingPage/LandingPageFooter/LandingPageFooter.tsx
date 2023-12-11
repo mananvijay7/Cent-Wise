@@ -21,7 +21,7 @@ const LandingPageFooter = () => {
               <ul>Yashvardhan Limbodiya</ul>
               <ul>Manan Vijayvargiya</ul>
               <ul>Ashay Saoji</ul>
-              <ul>Kshiti Dongre</ul>
+              <ul>Kshiti Dangore</ul>
             </li>
           </section>
           <section className={styles.logo_social_media}>
