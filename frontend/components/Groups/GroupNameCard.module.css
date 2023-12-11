@@ -2,13 +2,11 @@
     display: flex;
     flex-direction: column;
     margin-top: 20px;
-    margin-left: 50px;
   }
 
 .userProfile{
     width: 35px;
     height: 35px;  
-    margin-left: 40px;
     padding: 10px;
     border-radius: 50px;
   }

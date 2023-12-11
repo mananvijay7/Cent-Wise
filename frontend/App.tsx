@@ -53,7 +53,7 @@ const [authorizationUrl, setAuthorizationUrl] = useState('');
           <Route path='/dashboard' element={<CentwiseNavigator title='Dashboard'/>}/>
           <Route path='/expenses' element={<CentwiseNavigator title='AllExpenses'/>}/>
           <Route path='/groups' element={<CentwiseNavigator title='Groups'/>}/>
-          <Route path='/friends' element={<CentwiseNavigator title='Dashboard'/>}/>
+          <Route path='/friends' element={<CentwiseNavigator title='Friends'/>}/>
         {/*</Route>*/}
         <Route path='/' element={<LandingPage/>}/>
         <Route path='/user/signin' element={<CentwiseAuth type='signin'/>}/>

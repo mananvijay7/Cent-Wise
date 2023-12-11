@@ -19,8 +19,7 @@ const GroupCmp: React.FC = () => {
             <div className={styles.mainGroupDiv}>
                 <p className={styles.GroupsYouAreIn}>Groups you are in</p>
                 <button className={styles.addGroupBtn} onClick={openModal}>
-                <div className={styles.addBtn}>+ Add Group
-                </div>
+                + Add Group
                 </button>
             </div>
             <div>
