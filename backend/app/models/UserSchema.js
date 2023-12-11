@@ -30,7 +30,8 @@ const UserSchema = new Schema({
     default: Date.now,
 },
 verified:{
- type:Boolean
+ type:Boolean,
+ required: true,
 },
 totalOweAmount: {
   type: Number,

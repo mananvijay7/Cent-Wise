@@ -1,8 +1,7 @@
 import User from '../models/UserSchema.js';
-import UserVerification from '../models/UserVerification.js';
+
 import nodemailer from 'nodemailer';
-import {v4 as uuidv4} from 'uuid';
-// import ("dotenv").config();
+
 import 'dotenv/config'
 
 let transporter = nodemailer.createTransport({
@@ -12,8 +11,6 @@ let transporter = nodemailer.createTransport({
     pass: process.env.AUTH_PASS,
   }
 });
-
-
 
 export const create = async function(request, response){
   console.log(request);
@@ -28,25 +25,64 @@ export const create = async function(request, response){
               ph_no: request.body.ph_no,
           });
           
-          transporter.verify((error, success) => {
-            if(error){
-              console.log(error);
-            } else {
-              console.log("Ready for messages");
-              console.log(success);
-            }
-          });
-          
-          //request.flash('success', 'Account Registered');
-          return response.status(200).json({message: "User Created"});
+        
+          return response.status(200).json({message: "User Created. Verification email sent."});
       }else{
-        return response.status(400).json({message: "User Already exist!"});
+        return response.status(400).json({message: "User Already exists!"});
       }
   }catch(err){
-      console.log('Error occurred while finding the user');
+      console.log('Error occurred while finding/creating the user');
       return response.status(404).json({message: "Error occured"});
   }
 };
+
+
+
+export const forgotPassword = async function (request, response) {
+  try {
+    const { email } = request.body;
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return response.status(404).json({
+        message: 'User not found with this email address.',
+      });
+    }
+
+    const resetLink = `http://your-domain.com/user/reset-password/${resetToken}`;
+
+    const emailTo = 'saoji.a@northeastern.edu'; 
+    const emailContent = `Click the following link to reset your password: ${resetLink}`;
+
+    const mailOptions = {
+      from: process.env.AUTH_EMAIL,
+      to: emailTo,
+      subject: 'Password Reset',
+      text: emailContent,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        return response.status(500).json({
+          message: 'Error sending password reset email.',
+        });
+      } else {
+        console.log('Password reset email sent: ' + info.response);
+        return response.status(200).json({
+          message: 'Password reset email sent. Check your inbox.',
+        });
+      }
+    });
+  } catch (error) {
+    console.error('Error occurred during forgot password:', error);
+    return response.status(500).json({
+      message: 'Internal Server Error',
+    });
+  }
+};
+
+
 
 
 export const signin = function(request, response){
