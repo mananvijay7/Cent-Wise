@@ -135,7 +135,7 @@ const Modal: React.FC = () => {
                   className={styles.paidByWho}
                   onClick={toggleSecondModal}
                 >
-                  Groups
+                  Select
                 </button>
               </label>
 
@@ -149,7 +149,17 @@ const Modal: React.FC = () => {
                   Equally
                 </button>
               </label>
-              {/* ($02.56 per person) */}
+              <br />
+              <label>
+                Peoples:
+                <button
+                  type="button"
+                  className={styles.paidByWho}
+                  onClick={toggleSecondModal}
+                >
+                  Select
+                </button>
+              </label>
               <br />
               <DatePicker
                 className={styles.date}
