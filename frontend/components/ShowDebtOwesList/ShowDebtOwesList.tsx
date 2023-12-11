@@ -90,7 +90,7 @@ const ShowDebtOwesList: React.FC<Props> = ({ userData }) => {
             <ShowDebtOwesListCard
               key={friend.friend._id}
               imgSrc={"src/assets/person.jpg"}
-              username={friend.friend.first_name}
+              username={`${friend.friend_first_name}`}
               amount={`$${friend.amountInDeal.toFixed(2)}`}
             />
           ))}
