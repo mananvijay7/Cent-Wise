@@ -1,6 +1,7 @@
 import ShowAmountDetails from "../ShowAmountDetails/ShowAmountDetails";
 import styles from "./DashboardCmp.module.css";
 import ShowDebtOwesList from "../ShowDebtOwesList/ShowDebtOwesList";
+import ShowDebtOwesGroupList from '../ShowDebtOwesList/ShowDebtOwesGroupList';
 import React, { useState, ChangeEvent, FormEvent,useEffect  } from "react";
 import axios from 'axios';
 import { Document, Types } from 'mongoose';
@@ -101,7 +102,7 @@ const DashboardCmp = () => {
             <hr className={styles.hr} />
             <div className={styles.listCard}>
                 <div className={styles.summary}>Groups</div>
-                <ShowDebtOwesList userData={userData}/>
+                <ShowDebtOwesGroupList userData={userData}/>
             </div>
         </div>
     );
