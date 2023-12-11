@@ -19,8 +19,8 @@ interface Friend {
     expenses: Expense[];
   };
   amountInDeal: number;
-  friend_first_name?: string; // Add optional properties for friend's first and last names
-  friend_last_name?: string;
+  friend_first_name: string;
+  friend_last_name: string;
 }
 
 interface Participant {

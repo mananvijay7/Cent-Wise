@@ -23,6 +23,8 @@
       expenses: Expense[];
     };
     amountInDeal: number;
+    friend_first_name: string;
+    friend_last_name: string;
   }
 
   interface Participant {
@@ -79,7 +81,7 @@
               <ShowDebtOwesListCard
                 key={friend.friend._id} 
                 imgSrc={"src/assets/person.jpg"} 
-                username={friend.friend.first_name} 
+                username={`${friend.friend_first_name}` + `${friend.friend_last_name}`} 
                 amount={`$${friend.amountInDeal.toFixed(2)}`} 
               />
             ))}
@@ -90,7 +92,7 @@
               <ShowDebtOwesListCard
                 key={friend.friend._id} 
                 imgSrc={"src/assets/person.jpg"} 
-                username={friend.friend.first_name} 
+                username={`${friend.friend_first_name}` + `${friend.friend_last_name}`} 
                 amount={`$${friend.amountInDeal.toFixed(2)}`}
               />
             ))}

@@ -22,6 +22,8 @@ interface Friend {
       expenses: Expense[];
     };
     amountInDeal: number;
+    friend_first_name: string;
+    friend_last_name: string;
   }
   
   interface Participant {
@@ -38,6 +40,13 @@ interface Friend {
     created_date: Date;
     partition: string[];
   }
+
+  interface Group {
+    group: Types.ObjectId;
+    group_name: string;
+    you_paid: number;
+    you_lent: number;
+  }
   
   interface UserData extends Document {
     _id: string,
@@ -52,6 +61,7 @@ interface Friend {
     totalBalance: number;
     friends: Friend[];
     expenses: Expense[];
+    groups: Group[];
   }
 
 const DashboardCmp = () => {
