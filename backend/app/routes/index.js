@@ -1,6 +1,7 @@
 import express from 'express';
 import userRouter from './userRoutes.js';
 import dashboardRouter from './dashboardRouter.js';
+import friendsRoutes from './friendsRoutes.js';
 const router = express.Router();
 
 router.get('/api', (req, res) => {
@@ -16,4 +17,5 @@ router.get('/api', (req, res) => {
 export default (app) => {
       app.use('/api/user', userRouter);
       app.use('/api/dashboard', dashboardRouter);
+      app.use('/api/friends', friendsRoutes);
 }

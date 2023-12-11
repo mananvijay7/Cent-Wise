@@ -50,7 +50,13 @@ totalBalance: {
     amountInDeal: {
       type: Number,
       default: 0
-    }
+    },
+    friend_first_name: {
+      type: String,
+    },
+    friend_last_name: {
+      type: String,
+    },
   }
   ],
   expenses: [
