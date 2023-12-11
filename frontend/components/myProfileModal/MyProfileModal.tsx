@@ -15,15 +15,20 @@ interface UserData extends Document {
   totalOweAmount: number;
   totalOweToSelf: number;
   totalBalance: number;
+  profilePicture: string;
+}
+interface MyProfileModalProps {
+  closeModal: (value: boolean) => void;
 }
 
-
-function MyProfileModal({ closeModal }) {
+const MyProfileModal: React.FC<MyProfileModalProps> = ({ closeModal }: MyProfileModalProps) => {
   let initial_first_name = '';
   let initial_last_name = '';
   let initial_email = '';
   let initial_ph_no = '';
   let [userData, setUserData] = useState<UserData | null>(null);
+  let [profilePicture, setProfilePicture] = useState<string | null>(null);
+
 
   useEffect(() => {
     // Fetch user data when the component mounts
@@ -32,6 +37,7 @@ function MyProfileModal({ closeModal }) {
         const response = await axios.get('/api/dashboard/userDetails');
         const data = response.data;
         setUserData(data);
+        setProfilePicture(data.profilePicture);
       } catch (error: any) {
         console.error('Error getting data from the database:', error.message);
       }
@@ -51,6 +57,7 @@ function MyProfileModal({ closeModal }) {
   const [editModeFullName, setEditModeFullName] = useState(false);
   const [editModeEmail, setEditModeEmail] = useState(false);
   const [editModePhoneNumber, setEditModePhoneNumber] = useState(false);
+  const [editModeProfilePicture, setEditModeProfilePicture] = useState(false);
 
   const handleSave = async () => {
     try {
@@ -65,7 +72,8 @@ function MyProfileModal({ closeModal }) {
         first_name: firstName,
         last_name: lastName,
         ph_no: phoneNumber,
-        email: email
+        email: email,
+        profilePicture: profilePicture,
       };
       const userId = userData?._id;
       const response = await axios.patch(`/api/dashboard/updateProfile/${userId}`, updatedData);
@@ -80,18 +88,29 @@ function MyProfileModal({ closeModal }) {
     setEditModeFullName(true);
     setEditModeEmail(false);
     setEditModePhoneNumber(false);
+    setEditModeProfilePicture(false);
+      
   };
 
   const handleEditClickEmail = () => {
     setEditModeEmail(true);
     setEditModeFullName(false);
     setEditModePhoneNumber(false);
+    setEditModeProfilePicture(false);
   };
 
   const handleEditClickPhoneNumber = () => {
     setEditModePhoneNumber(true);
     setEditModeFullName(false);
     setEditModeEmail(false);
+    setEditModeProfilePicture(false);
+  };
+
+  const handleEditClickProfilePicture = () => {
+    setEditModeProfilePicture(true);
+    setEditModeFullName(false);
+    setEditModeEmail(false);
+    setEditModePhoneNumber(false);
   };
 
   const handleSaveClick = () => {
@@ -99,6 +118,8 @@ function MyProfileModal({ closeModal }) {
     setEditModeFullName(false);
     setEditModeEmail(false);
     setEditModePhoneNumber(false);
+    setEditModeProfilePicture(false);
+    
   };
 
   const handleCancelClick = () => {
@@ -110,6 +131,14 @@ function MyProfileModal({ closeModal }) {
     setEditModeFullName(false);
     setEditModeEmail(false);
     setEditModePhoneNumber(false);
+    setEditModeProfilePicture(false);
+  };
+  const handleProfilePictureChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+  
+    if (file) {
+      setProfilePicture(URL.createObjectURL(file));
+    }
   };
 
   return (
@@ -122,7 +151,23 @@ function MyProfileModal({ closeModal }) {
             <button onClick={() => closeModal(false)}> + </button>
           </div>
           <div className={styles.title}>
-            <img className={styles.userImg} src='src\assets\Yash Lambodiya.jpg' alt="User"></img>
+          <div className={styles.imageContainer}>
+  {editModeProfilePicture ? (
+    <>
+      <img className={styles.userImg} src={profilePicture || 'src\assets\Yash Lambodiya.jpg'} alt="User" />
+      <div className={styles.fileInputWrapper}>
+        <input type="file" className={styles.choosefile}onChange={(e) => handleProfilePictureChange(e)} />
+        <button onClick={handleSaveClick} className={styles.saveButton}>Save</button>
+        <button onClick={handleCancelClick} className={styles.profilecancel}>Cancel</button>
+      </div>
+    </>
+  ) : (
+    <>
+      <img className={styles.userImg} src={profilePicture || 'src\assets\Yash Lambodiya.jpg'} alt="User" />
+      <ModeEditIcon onClick={handleEditClickProfilePicture} className={styles.editIcon}/>
+    </>
+  )}
+</div>
           </div>
           <div className={styles.heading}>
             <p>Your Details:</p>
