@@ -1,6 +1,7 @@
 import ShowAmountDetails from "../ShowAmountDetails/ShowAmountDetails";
 import styles from "./DashboardCmp.module.css";
 import ShowDebtOwesList from "../ShowDebtOwesList/ShowDebtOwesList";
+import ShowDebtOwesGroupList from '../ShowDebtOwesList/ShowDebtOwesGroupList';
 import React, { useState, ChangeEvent, FormEvent,useEffect  } from "react";
 import axios from 'axios';
 import { Document, Types } from 'mongoose';
@@ -22,6 +23,8 @@ interface Friend {
       expenses: Expense[];
     };
     amountInDeal: number;
+    friend_first_name: string;
+    friend_last_name: string;
   }
   
   interface Participant {
@@ -38,6 +41,13 @@ interface Friend {
     created_date: Date;
     partition: string[];
   }
+
+  interface Group {
+    group: Types.ObjectId;
+    group_name: string;
+    you_paid: number;
+    you_lent: number;
+  }
   
   interface UserData extends Document {
     _id: string,
@@ -52,6 +62,7 @@ interface Friend {
     totalBalance: number;
     friends: Friend[];
     expenses: Expense[];
+    groups: Group[];
   }
 
 const DashboardCmp = () => {
@@ -91,7 +102,7 @@ const DashboardCmp = () => {
             <hr className={styles.hr} />
             <div className={styles.listCard}>
                 <div className={styles.summary}>Groups</div>
-                <ShowDebtOwesList userData={userData}/>
+                <ShowDebtOwesGroupList userData={userData}/>
             </div>
         </div>
     );

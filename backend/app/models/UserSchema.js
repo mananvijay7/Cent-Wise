@@ -50,7 +50,13 @@ totalBalance: {
     amountInDeal: {
       type: Number,
       default: 0
-    }
+    },
+    friend_first_name: {
+      type: String,
+    },
+    friend_last_name: {
+      type: String,
+    },
   }
   ],
   expenses: [
@@ -59,6 +65,23 @@ totalBalance: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Expense',
       },
+    }
+  ],
+  groups: [
+    {
+      group: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Group',
+      },
+      group_name: {
+        type: String,
+      },
+      you_paid: {
+        type: Number,
+      },
+      you_lent: {
+        type: Number,
+      }
     }
   ],
 });

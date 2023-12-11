@@ -1,66 +1,114 @@
 import React, {useState, useEffect} from "react";
 import styles from "./GroupNameCard.module.css";
+import { Document, Types } from 'mongoose';
+import axios from 'axios';
+
+interface Friend {
+  friend: {
+    _id: string;
+    email: string;
+    password: string;
+    first_name: string;
+    last_name: string;
+    ph_no: string;
+    created_date: Date;
+    totalOweAmount: number;
+    totalOweToSelf: number;
+    totalBalance: number;
+    friends: Friend[];
+    expenses: Expense[];
+  };
+  amountInDeal: number;
+  friend_first_name: string;
+  friend_last_name: string;
+}
+
+interface Participant {
+  _id: Types.ObjectId;
+}
+
+interface Expense {
+  _id: string;
+  Payer: Types.ObjectId;
+  participants: Participant[];
+  amount: number;
+  currency: string;
+  created_by: Types.ObjectId;
+  created_date: Date;
+  partition: string[];
+}
 
 interface Group {
-  _id: number;
-  icon: string;
-  title: string;
-  "You paid": string;
-  "You lent": string;
+  group: Types.ObjectId;
+  group_name: string;
+  you_paid: number;
+  you_lent: number;
+}
+
+interface UserData extends Document {
+  email: string;
+  password: string;
+  first_name: string;
+  last_name: string;
+  ph_no: string;
+  created_date: Date;
+  totalOweAmount: number;
+  totalOweToSelf: number;
+  totalBalance: number;
+  friends: Friend[];
+  expenses: Expense[];
+  groups: Group[];
 }
 function GroupNameCard() {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const [groups, setGroups] =  useState<Group[]>([]); //using the useState hook of react to know the separate state if each component
-
-      const fetchData=()=>{
-          fetch('http://localhost:5173/components/Groups/groupData.json')
-          .then((res)=>res.json()) //the fetched data is in json format so we have to store it in json format as well 
-          .then((data: Group[]) => {
-            setGroups(data);
-              // console.log(data) //just to check the data is being fetched or not 
-          })
-          .catch(e=>console.log(e.message));//error handling if the data doesnt get fetched
+  const [userData, setUserData] = useState<UserData | null>(null);
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+          const response = await axios.get('/api/dashboard');
+          const data = response.data;
+          setUserData(data);
+        } catch (error: any) {
+          console.error('Error getting data from the database:', error.message);
+        }
       };
-  
-      //using the useEffect hook so that when the site loads the user sees the dynamic data as the first thing on the screen
-      useEffect(()=>{
-          fetchData();
-           //to trigger the detchdata function, whihc is to use the declared function
-      },[]);
+
+      fetchData();
+}, []);
       <img src=""></img>
 
-    return (
-      <>
-<div className={styles.GroupNameCard}>
-    {groups.map((group) => (
-      <div key={group._id} className={styles.groupCard}>
-         <div className={styles.horizontalLine}></div>
-      <div className={styles.justBeforeTheDp}>
-             <img
-              className={styles.userProfile}
-              src={group.icon}
-              alt={`Group Icon for ${group.title}`}
-            />
-          <div className={styles.groupDetails}>
-                <p className={styles.groupName}>{group.title}</p>
+      return (
+        <>
+          <div className={styles.GroupNameCard}>
+            {userData?.groups &&
+              userData.groups.map((group) => (
+                <div key={String(group.group)} className={styles.groupCard}>
+                  <div className={styles.horizontalLine}></div>
+                  <div className={styles.justBeforeTheDp}>
+                    {/* Adjust the image source accordingly */}
+                    <img
+                      className={styles.userProfile}
+                      //src={/* group.icon */} 
+                      alt={`Group Icon for ${group.group_name}`} 
+                    />
+                    <div className={styles.groupDetails}>
+                      <p className={styles.groupName}>{group.group_name}</p>
+                    </div>
+                    <div className={styles.groupExpenses}>
+                      <div className={styles.youPaid}>
+                        <p>You paid</p>
+                        <p className={styles.paidAmount}>{group.you_paid}</p>
+                      </div>
+                      <div className={styles.youLent}>
+                        <p>You lent</p>
+                        <p className={styles.lentAmount}>{group.you_lent}</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-            <div className={styles.groupExpenses}>
-              <div className={styles.youPaid}>
-                 <p>You paid</p>
-                 <p className={styles.paidAmount}>{group["You paid"]}</p>
-              </div>
-                <div className={styles.youLent}>
-                  <p>You lent</p>
-                  <p className={styles.lentAmount}>{group["You lent"]}</p>
-                </div>
-            </div>
+              ))}
           </div>
-       
-    </div>
-   ))}
-  </div>
-  </>
-);
+        </>
+      );
 }
 
 export default GroupNameCard;
