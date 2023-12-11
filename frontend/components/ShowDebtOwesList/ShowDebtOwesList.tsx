@@ -1,49 +1,11 @@
-  import ShowDebtOwesListCard from "../ShowDebtOwesListCard/ShowDebtOwesListCard";
-  import styles from "./ShowDebtOwesList.module.css";
-  import { Document, Types } from 'mongoose';
+import React, { useState } from 'react';
+import ShowDebtOwesListCard from "../ShowDebtOwesListCard/ShowDebtOwesListCard";
+import styles from "./ShowDebtOwesList.module.css";
+import ChartModal from "../ChartVisuals/ChartModal";
 
-
-  const viewChartHandler = () => {
-      alert("In Progress");
-  }
-
-  interface Friend {
-    friend: {
-      _id: string;
-      email: string;
-      password: string;
-      first_name: string;
-      last_name: string;
-      ph_no: string;
-      created_date: Date;
-      totalOweAmount: number;
-      totalOweToSelf: number;
-      totalBalance: number;
-      friends: Friend[];
-      expenses: Expense[];
-    };
-    amountInDeal: number;
-    friend_first_name: string;
-    friend_last_name: string;
-  }
-
-  interface Participant {
-    _id: Types.ObjectId;
-  }
-
-  interface Expense {
-    _id: string,
-    Payer: Types.ObjectId;
-    participants: Participant[];
-    amount: number;
-    currency: string;
-    created_by: Types.ObjectId;
-    created_date: Date;
-    partition: string[];
-  }
-
-  interface UserData extends Document {
-    _id: string,
+interface Friend {
+  friend: {
+    _id: string;
     email: string;
     password: string;
     first_name: string;
@@ -54,52 +16,74 @@
     totalOweToSelf: number;
     totalBalance: number;
     friends: Friend[];
-    expenses: Expense[];
-  }
+    expenses: any[]; // Change 'Expense[]' to 'any[]' for simplicity
+  };
+  amountInDeal: number;
+}
 
-  interface Props {
-    userData?: UserData | null;
-  }
+interface UserData {
+  _id: string,
+  email: string;
+  password: string;
+  first_name: string;
+  last_name: string;
+  ph_no: string;
+  created_date: Date;
+  totalOweAmount: number;
+  totalOweToSelf: number;
+  totalBalance: number;
+  friends: Friend[];
+  expenses: any[]; // Change 'Expense[]' to 'any[]' for simplicity
+}
 
-  const ShowDebtOwesList: React.FC<Props> = ({userData}) => {
+interface Props {
+  userData?: UserData | null;
+}
 
-      const friendsList = userData?.friends || [];
+const ShowDebtOwesList: React.FC<Props> = ({ userData }) => {
+  const friendsList = userData?.friends || [];
+  const [isModalVisible, setModalVisible] = useState(false);
 
-      return (
-          <div className={styles.container}>
-              <div>
-                  <button className={styles.viewChartbtn} onClick={viewChartHandler}>View Chart</button>
-              </div>
+  const viewChartHandler = () => {
+    setModalVisible(true);
+  };
 
-              <div className={styles.flexContainer}>
+  const closeModalHandler = () => {
+    setModalVisible(false);
+  };
 
-                  <div className={styles.flexChild}>
-                      <div className={styles.label}>
-                          You Owe
-                      </div>
-                      {friendsList.map((friend) => (
-              <ShowDebtOwesListCard
-                key={friend.friend._id} 
-                imgSrc={"src/assets/person.jpg"} 
-                username={`${friend.friend_first_name}` + `${friend.friend_last_name}`} 
-                amount={`$${friend.amountInDeal.toFixed(2)}`} 
-              />
-            ))}
-          </div>
-          <div className={styles.flexChild}>
-            <div className={styles.label}>You are owed</div>
-            {friendsList.map((friend) => (
-              <ShowDebtOwesListCard
-                key={friend.friend._id} 
-                imgSrc={"src/assets/person.jpg"} 
-                username={`${friend.friend_first_name}` + `${friend.friend_last_name}`} 
-                amount={`$${friend.amountInDeal.toFixed(2)}`}
-              />
-            ))}
-                  </div>
-              </div>
-          </div>
-      );
-  }
+  return (
+    <div className={styles.container}>
+      <div>
+        <button className={styles.viewChartbtn} onClick={viewChartHandler}>View Chart</button>
+      </div>
+      {isModalVisible && <ChartModal isVisible={isModalVisible} onClose={closeModalHandler} />}
+      <div className={styles.flexContainer}>
+        <div className={styles.flexChild}>
+          <div className={styles.label}>You Owe</div>
+          {friendsList.map((friend) => (
+            <ShowDebtOwesListCard
+              key={friend.friend._id}
+              imgSrc={"src/assets/person.jpg"}
+              username={friend.friend.first_name}
+              amount={`$${friend.amountInDeal.toFixed(2)}`}
+            />
+          ))}
+        </div>
+        <div className={styles.flexChild}>
+          <div className={styles.label}>You are owed</div>
+          {friendsList.map((friend) => (
+            <ShowDebtOwesListCard
+              key={friend.friend._id}
+              imgSrc={"src/assets/person.jpg"}
+              username={friend.friend.first_name}
+              amount={`$${friend.amountInDeal.toFixed(2)}`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
-  export default ShowDebtOwesList;
+export default ShowDebtOwesList;

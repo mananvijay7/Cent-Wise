@@ -1,11 +1,10 @@
 import ShowDebtOwesListGroupCard from "../ShowDebtOwesListCard/ShowDebtOwesListGroupCard";
 import styles from "./ShowDebtOwesList.module.css";
 import { Document, Types } from 'mongoose';
+import ChartModal from "../ChartVisuals/ChartModal";
+import { useState } from "react";
 
 
-const viewChartHandler = () => {
-    alert("In Progress");
-}
 
 interface Friend {
       friend: {
@@ -72,12 +71,23 @@ interface Props {
 const ShowDebtOwesGroupList: React.FC<Props> = ({userData}) => {
 
     const groupList = userData?.groups || [];
+    const [isModalVisible, setModalVisible] = useState(false);
+
+    const viewChartHandler = () => {
+      setModalVisible(true);
+    };
+  
+    const closeModalHandler = () => {
+      setModalVisible(false);
+    };
+  
 
     return (
         <div className={styles.container}>
             <div>
                 <button className={styles.viewChartbtn} onClick={viewChartHandler}>View Chart</button>
             </div>
+            {isModalVisible && <ChartModal isVisible={isModalVisible} onClose={closeModalHandler} />}
 
             <div className={styles.flexContainer}>
 
