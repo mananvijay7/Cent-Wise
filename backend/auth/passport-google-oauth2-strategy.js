@@ -12,7 +12,7 @@ passport.use(
         },
         function (accessToken, refreshToken, profile, done) {
           // Check if profile.emails is defined before accessing it
-          console.log("reached in google oauth");
+          //console.log("reached in google oauth");
           //console.log("PROFILE: " + profile.json());
           if (profile.emails && profile.emails.length > 0) {
             User.findOne({ email: profile.emails[0].value }).exec(function (err, user) {
@@ -20,7 +20,7 @@ passport.use(
                 console.log('error in google strategy passport', err);
                 return done(err);
               }
-              console.log(profile);
+              //console.log(profile);
               if (user) {
                 return done(null, user);
               } else {

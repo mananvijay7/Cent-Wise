@@ -6,7 +6,7 @@ import groupsRoutes from './groupsRoutes.js';
 const router = express.Router();
 
 router.get('/api', (req, res) => {
-      console.log("Manan is here api router");
+      //console.log("Manan is here api router");
       if (req.isAuthenticated()) {
         return res.json({ isAuthenticated: true, user: req.user });
       } else {

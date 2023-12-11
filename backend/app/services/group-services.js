@@ -3,7 +3,7 @@ import Group from '../models/GroupSchema.js';
 
 export const findUsers = async (request) => {
       try{
-            console.log(request);
+            //console.log(request);
             const { description, users } = request.body;
             const userDocuments = await User.find({ email: { $in: users } });
             const userReferences = userDocuments.map((user) => ({ user: user._id }));
@@ -26,7 +26,7 @@ export const findUsers = async (request) => {
                   })
                 );
 
-                console.log(newGroup);
+                //console.log(newGroup);
 
             return newGroup;    
       }catch(error){

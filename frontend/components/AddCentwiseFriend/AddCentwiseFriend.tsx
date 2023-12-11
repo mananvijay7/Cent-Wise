@@ -1,5 +1,7 @@
 import { useRef, useState } from "react";
 import styles from "./AddCentwiseFriend.module.css";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 //Component to add existing centwise user 
@@ -7,12 +9,17 @@ const AddedCentwiseFriend: React.FC = () => {
 
     const [email, setEmail] = useState<string>('');
     const [modal, setModal] = useState(true);
+    const navigate = useNavigate();
 
     const modalContentRef = useRef<HTMLDivElement>(null);
 
 
     const handleFormSubmit = () => {
-        alert("Add Friend Logic" + email);
+        if(email === ''){
+            alert("Add Friend's email address");
+        }else{
+            addFriend(email);   
+        }
     }
 
     const handleClose = () => {
@@ -23,6 +30,25 @@ const AddedCentwiseFriend: React.FC = () => {
     const toggleModal = () => {
         setModal(!modal);
     }
+
+    const addFriend = async (email: string) => {
+        try {
+          // Make a request to your server to create the group
+          const response = await axios.post('/api/friends/addFriend',
+            {
+              email: email,
+            },
+          );
+    
+          navigate('/friends');
+    
+          // Log the response or handle it as needed
+          console.log('Group creation response:', response.data);
+        } catch (error: any) {
+          // Handle errors, e.g., log them or show an error message to the user
+          console.error('Error creating group:', error.message);
+        }
+      };
 
 
 
@@ -45,7 +71,7 @@ const AddedCentwiseFriend: React.FC = () => {
                             <br />
                             <div className={styles.buttonGroup}>
                                 <button type="submit" className={styles.add}>
-                                    Add Friend
+                                    Add Friend 
                                 </button>
                                 <button
                                     type="button"

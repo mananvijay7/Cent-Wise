@@ -1,7 +1,7 @@
 import User from '../models/UserSchema.js';
 
 export const create = async function(request, response){
-  console.log(request);
+  //console.log(request);
   try{
       let user = await User.findOne({email: request.body.email});
       if(!user){
@@ -39,7 +39,7 @@ export const signin = function(request, response){
 
   export const localLogin = function(request, response){
     request.flash('success', 'Logged In Successfully');
-    console.log(response);
+    //console.log(response);
     return response.status(200).send('User logged in');
 }
 

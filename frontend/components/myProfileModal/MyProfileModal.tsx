@@ -66,7 +66,7 @@ function MyProfileModal({ closeModal }: { closeModal: (flag: boolean) => void })
       };
       const userId = userData?._id;
       const response = await axios.patch(`/api/dashboard/updateProfile/${userId}`, updatedData);
-      console.log('PATCH request successful:', response.data);
+      //console.log('PATCH request successful:', response.data);
       setUserData(response.data); // Update user data after a successful save
       setEditMode(false);
     } catch (error) {

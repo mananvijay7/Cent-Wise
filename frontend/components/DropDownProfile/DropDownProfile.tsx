@@ -28,7 +28,7 @@ const handleInviteFriendsClick = () => {
 const logout = async () => {
   try {
     const response = await axios.get('/api/user/signout');
-    console.log(response.data);
+    //console.log(response.data);
     if(response.data.status === 200){
       navigate('/');
     }else{

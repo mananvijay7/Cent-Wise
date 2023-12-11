@@ -11,7 +11,7 @@ export const fetchUserData = async (id) => {
 
 export const updateUserData = async(userId, updatedData) => {
         const updatedUser = await User.findByIdAndUpdate(userId, updatedData, { new: true });
-        console.log('Updated User');
-        console.log(updatedUser);
+        //console.log('Updated User');
+        //console.log(updatedUser);
         return updatedUser; 
 }

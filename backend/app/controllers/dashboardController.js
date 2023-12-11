@@ -1,7 +1,7 @@
 import * as dashboardServices from '../services/dashboard-services.js';
 
 export const fetchAllData = async function(request, response){ 
-      console.log(request.isAuthenticated())
+      //console.log(request.isAuthenticated())
       try{
             if(request.isAuthenticated()){
                   const userId = request.user._id;
@@ -54,8 +54,8 @@ export const updateUserProfile = async function(request, response){
             const updatedData = request.body;
             const updatedUserData = await dashboardServices.updateUserData(userId, updatedData);
 
-            console.log('updatedUserData');
-            console.log(updatedUserData);
+            //console.log('updatedUserData');
+            //console.log(updatedUserData);
 
             if (!updatedUserData) {
                   return response.status(404).json({ success: false, error: 'User not found' });

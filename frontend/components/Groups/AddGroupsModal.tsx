@@ -39,8 +39,8 @@ const AddGroupModal: React.FC<AddGroupModalProps> = ({ isOpen, onClose }) => {
 
   const handleSave = () => {
     // You can handle the save action here, for example, send the group name and members to a function or API
-    console.log("Group Name:", groupName);
-    console.log("Group Members:", groupMembers);
+    //console.log("Group Name:", groupName);
+    //console.log("Group Members:", groupMembers);
     createGroup(groupName, groupMembers);
     // Close the modal after saving
     onClose();

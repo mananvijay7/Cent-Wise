@@ -46,6 +46,7 @@ totalBalance: {
     friend: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
+      unique: true,
     },
     amountInDeal: {
       type: Number,

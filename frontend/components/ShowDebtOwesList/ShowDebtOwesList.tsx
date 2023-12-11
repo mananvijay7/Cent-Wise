@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ShowDebtOwesListCard from "../ShowDebtOwesListCard/ShowDebtOwesListCard";
 import styles from "./ShowDebtOwesList.module.css";
 import ChartModal from "../ChartVisuals/ChartModal";
+import { Document, Types } from 'mongoose';
 
 interface Friend {
   friend: {
@@ -16,13 +17,36 @@ interface Friend {
     totalOweToSelf: number;
     totalBalance: number;
     friends: Friend[];
-    expenses: any[]; // Change 'Expense[]' to 'any[]' for simplicity
+    expenses: Expense[];
   };
   amountInDeal: number;
+  friend_first_name: string;
+  friend_last_name: string;
 }
 
-interface UserData {
-  _id: string,
+interface Participant {
+  _id: Types.ObjectId;
+}
+
+interface Expense {
+  _id: string;
+  Payer: Types.ObjectId;
+  participants: Participant[];
+  amount: number;
+  currency: string;
+  created_by: Types.ObjectId;
+  created_date: Date;
+  partition: string[];
+}
+
+interface Group {
+  group: Types.ObjectId;
+  group_name: string;
+  you_paid: number;
+  you_lent: number;
+}
+
+interface UserData extends Document {
   email: string;
   password: string;
   first_name: string;
@@ -33,7 +57,8 @@ interface UserData {
   totalOweToSelf: number;
   totalBalance: number;
   friends: Friend[];
-  expenses: any[]; // Change 'Expense[]' to 'any[]' for simplicity
+  expenses: Expense[];
+  groups: Group[];
 }
 
 interface Props {
@@ -76,7 +101,7 @@ const ShowDebtOwesList: React.FC<Props> = ({ userData }) => {
             <ShowDebtOwesListCard
               key={friend.friend._id}
               imgSrc={"src/assets/person.jpg"}
-              username={friend.friend.first_name}
+              username={`${friend.friend_first_name}`}
               amount={`$${friend.amountInDeal.toFixed(2)}`}
             />
           ))}

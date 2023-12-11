@@ -104,7 +104,7 @@ const SignInForm: React.FC = () => {
             alert('User already exist');
           }
     
-          console.log(response);
+          //console.log(response);
     
         }catch(error){
           console.log(error + " Issue with sign up");

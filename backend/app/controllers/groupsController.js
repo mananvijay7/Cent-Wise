@@ -6,7 +6,7 @@ export const createGroup = async function(request, response){
       
             const userDocuments = await groupService.findUsers(request);
         
-            console.log(userDocuments);
+            //console.log(userDocuments);
             // Respond with a success message
             response.status(200).json({ message: 'Group created successfully', group: userDocuments });
           } catch (error) {
