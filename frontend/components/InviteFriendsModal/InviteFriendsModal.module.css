@@ -10,7 +10,6 @@
   }
 
 .modelBackground{
-
     position: relative; /* Make sure it's relative to allow absolute positioning of the modal */
     display: flex;
     justify-content: center;
@@ -23,8 +22,8 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 15vw;
-    height: 25vh;
+    width: auto;
+    height: auto;
     border-radius: 12px;
     background-color: white;
     box-shadow: 0px 3px 6px #00000029;
@@ -33,59 +32,83 @@
     padding: 10px;
     padding-bottom: 5px;
     border: 2px solid #01ce67;
-    z-index: 1001
+    z-index: 1001;
+    padding: 2%;
 }
 
 .titleCloseBtn{
-    margin-top: -7%;
-    margin-right: -7%;
+    margin-top: -18%; 
+    margin-right: -26%;
     display: flex;
     justify-content: flex-end;
-
 }
+
+
 .titleCloseBtn button{
     background-color: transparent;
     border: none;
     font-size: 2.0rem;
     cursor: pointer;
     transform: rotate(45deg);
-}
-.titleCloseBtn button:hover{
-    color: rgb(252, 8, 8);
+    color: red;
+    /* z-index: 1000; */
 }
 
 .heading{
+
+    display: flex;
+    justify-content: center;
     font-family: 'Montserrat', sans-serif;
+    width: 120%;
+    margin-left: -9.3%;
     font-weight: 900;
-    margin-top:5%;
+    margin-top:-27%;
     background-color: #01ce67;
     color: whitesmoke;
-    padding-left:5%;
+    border-radius: 8px;
 }
 
 .title{
     display: flex;
     align-items: center;
     margin-left: 35%;
-    
+}
+
+.email{
+    margin-top: 25px;
+    box-shadow: 0px 1px 1px #00000029;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: large;
+    padding: 5%;
 }
 
 .body{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    margin-top: -6%;
+    display: flex;
+    justify-content: center;
+}
 
+.body :hover{
+    cursor: text;
 }
 
 .footer button{
     box-shadow: 0px 3px 6px #00000029;
     margin-top: 2%;
     border-radius: 5px;
-
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    border: 2px solid #01ce67;
 }
 
-.email{
-    margin-top: 15px;
-    box-shadow: 0px 1px 1px #00000029;
-    border-radius: 5px;
+.footer :hover{
+    color: black;
+    background-color: #01ce67;
+    border-color:  #05fc80;
+}
+
+.footer{
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
 }

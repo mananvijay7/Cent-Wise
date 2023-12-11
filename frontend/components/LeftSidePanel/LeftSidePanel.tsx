@@ -3,6 +3,7 @@ import styles from "./LeftSidePanel.module.css";
 import {LeftSidePanelData} from "./LeftSidePanelData";
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import InviteFriendsModal from '../InviteFriendsModal/InvitefrndsModal';
 
 interface LeftSidePanelItem {
   titleKey: string;
@@ -14,8 +15,20 @@ function LeftSidePanel() {
   const { t } = useTranslation('common');
     const [focusedItem, setFocusedItem] = useState<number | null>(null);
     const [currPage, setCurrPage] = useState<string | null>("/");
+    const [isInviteFriendsModalOpen, setInviteFriendsModalOpen] = useState<boolean>(false);
+
     const handleItemClick = (index: number) => {
       setFocusedItem(index);
+      if (LeftSidePanelData[index]?.link === '/invitefriends') {
+        console.log('Opening Invite Friends modal');
+        setInviteFriendsModalOpen(true);
+      } else {
+        console.log('Closing Invite Friends modal');
+        setInviteFriendsModalOpen(false);
+      }
+    };
+    const closeModal = () => {
+      setInviteFriendsModalOpen(false);
     };
 
     return (
@@ -50,6 +63,7 @@ function LeftSidePanel() {
             })}
           </ul>
         </div>
+        {isInviteFriendsModalOpen && <InviteFriendsModal closeModal={closeModal} />}
       </>
     );
   }

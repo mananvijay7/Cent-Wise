@@ -12,6 +12,7 @@ import LeftSidePanel from './components/LeftSidePanel/LeftSidePanel';
 import Navbar from './components/Navbar/Navbar';
 import axios from 'axios';
 import CentwiseAuth from './components/CentwiseAuth/CentwiseAuth';
+import InviteFriendsModal from './components/InviteFriendsModal/InvitefrndsModal';
 
 
 
@@ -46,14 +47,25 @@ const [authorizationUrl, setAuthorizationUrl] = useState('');
 
   handleAuthorization();*/
 
+  const [isInviteFriendsModalOpen, setInviteFriendsModalOpen] = useState(false);
+  
+  const handleInviteFriendsClick = () => {
+    setInviteFriendsModalOpen(!isInviteFriendsModalOpen);
+  };
+
   return (
     <Router>
       <Routes>
        {/*<Route element={<ProtectedRoute/>}>*/}
           <Route path='/dashboard' element={<CentwiseNavigator title='Dashboard'/>}/>
+
           <Route path='/expenses' element={<CentwiseNavigator title='AllExpenses'/>}/>
+
           <Route path='/groups' element={<CentwiseNavigator title='Groups'/>}/>
+
           <Route path='/friends' element={<CentwiseNavigator title='Friends'/>}/>
+
+          <Route path='/invitefriends' element={<InviteFriendsModal closeModal={handleInviteFriendsClick}/>}/>
         {/*</Route>*/}
         <Route path='/' element={<LandingPage/>}/>
         <Route path='/user/signin' element={<CentwiseAuth type='signin'/>}/>

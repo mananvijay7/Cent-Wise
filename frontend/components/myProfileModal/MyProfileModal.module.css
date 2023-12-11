@@ -14,13 +14,11 @@
     width: 65%;
     height: 95%;
     border-radius: 50%;
-    /* border: 2px solid #01ce67; */
     object-fit: cover;
 }
 
 .modelBackground{
-
-    position: relative; /* Make sure it's relative to allow absolute positioning of the modal */
+    position: relative;
     display: flex;
     justify-content: center;
     z-index: 1000; 
@@ -32,8 +30,8 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 28vw;
-    height: 65vh;
+    width: auto;
+    height: auto;
     border-radius: 12px;
     background-color: white;
     box-shadow: 0px 3px 6px #00000029;
@@ -44,6 +42,7 @@
     z-index: 1001
 }
 
+/* Close button */
 .titleCloseBtn{
     margin-top: -7%;
     margin-right: -7%;
@@ -62,6 +61,9 @@
     color: rgb(252, 8, 8);
 }
 
+
+/* /// */
+
 .heading{
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
@@ -75,9 +77,14 @@
     
 }
 
+
+
+
+/* all the maine fields */
 .body{
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
+    font-size: larger;
     margin-top: -6%;
 }
 
@@ -99,9 +106,104 @@ justify-content: space-between;
     justify-content: space-between;
 }
 
-.editInput::placeholder {
-    /* Add your placeholder styling here */
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    /* Add other styles as needed */
+/* //////end///////////// */
+
+
+.editInput {
+  width: auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: large;
+  width: auto;
+  border:2px solid #01ce67;
+  border-radius: 5px;
+}
+
+.editInputContainer{
+    /* margin-left: 3%; */
+    box-shadow: 0px 3px 6px #00000029;
+
+}
+.editInputContainer
+:hover{
+    color: black;
+    background-color: whitesmoke;
+    border-color: #05fc80;
+    cursor: text;
+    /* margin-left: 3%; */
+    
+    box-shadow: 0px 3px 6px #00000029;
+}
+
+  .editIcon {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
   }
+
+  .editIcon div{
+    display: flex;
+    justify-content: center;
+    font-size: large;
+    border: 2px solid  #01ce67;
+    padding: 2%;
+    border-radius: 0.4em;
+    box-shadow: 0px 3px 6px #00000029;
+  }
+
+  .editIcon :hover{
+    color: black;
+    background-color: #01ce67;
+    border-color:  #05fc80;
+  }
+  
+ .editButtons{
+    display: flex;
+    cursor: pointer;
+    justify-content: space-around;
+    
+ }
+
+ .save,
+ .cancel{
+    border: 2px solid;
+    border-color: #01ce67;
+    box-shadow: 0px 3px 6px #00000029;
+    
+    
+ }
+ 
+ .save{
+    margin-right: 5%;
+ }
+
+ .save:hover{
+    color: black;
+    background-color: #01ce67;
+    border-color:  #05fc80;
+ } 
+
+ .cancel{
+    margin-right: -5%;
+ }
+
+ .cancel:hover{
+    color: black;
+    background-color: #01ce67;
+    border-color:  #05fc80;
+ } 
+
+ .cancel:focus
+ {
+    border-color: #1b7647;
+
+ }
+
+ .save:focus
+ {
+    border-color: #1b7647;
+ }
+
+
+
+
+  

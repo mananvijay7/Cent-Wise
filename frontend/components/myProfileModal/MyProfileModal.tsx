@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import styles from './MyProfileModal.module.css';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import axios from 'axios';
-import { Document, Types } from 'mongoose';
+import { Document } from 'mongoose';
 
 interface UserData extends Document {
-  _id: string,
+  _id: string;
   email: string;
   password: string;
   first_name: string;
@@ -17,8 +17,7 @@ interface UserData extends Document {
   totalBalance: number;
 }
 
-
-function MyProfileModal({ closeModal }) {
+function MyProfileModal({ closeModal }: { closeModal: (flag: boolean) => void }) {
   let initial_first_name = '';
   let initial_last_name = '';
   let initial_email = '';
@@ -38,28 +37,26 @@ function MyProfileModal({ closeModal }) {
     };
 
     fetchData();
-    let initial_first_name = userData?.first_name;
-    let initial_last_name = userData?.last_name;
-    let initial_email = userData?.email;
-    let initial_ph_no = userData?.ph_no;
+    initial_first_name = userData?.first_name || '';
+    initial_last_name = userData?.last_name || '';
+    initial_email = userData?.email || '';
+    initial_ph_no = userData?.ph_no || '';
   }, []);
 
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-
-  const [editModeFullName, setEditModeFullName] = useState(false);
-  const [editModeEmail, setEditModeEmail] = useState(false);
-  const [editModePhoneNumber, setEditModePhoneNumber] = useState(false);
+  const [editMode, setEditMode] = useState(false);
 
   const handleSave = async () => {
     try {
-      const resourceId = userData?._id;
       const [firstName, lastName] = fullName.split(" ");
-      if(firstName === '' || lastName === '' || email === ''){
+      if (firstName === '' || lastName === '' || email === '') {
         alert('Enter all of the values');
-      }else if(!email.includes('@')){
+        return;
+      } else if (!email.includes('@')) {
         alert('Enter correct email address');
+        return;
       }
       const updatedData = {
         first_name: firstName,
@@ -70,46 +67,24 @@ function MyProfileModal({ closeModal }) {
       const userId = userData?._id;
       const response = await axios.patch(`/api/dashboard/updateProfile/${userId}`, updatedData);
       console.log('PATCH request successful:', response.data);
-      return response.data;
+      setUserData(response.data); // Update user data after a successful save
+      setEditMode(false);
     } catch (error) {
       console.error('Error making PATCH request:', error);
     }
   };
 
-  const handleEditClickFullName = () => {
-    setEditModeFullName(true);
-    setEditModeEmail(false);
-    setEditModePhoneNumber(false);
-  };
-
-  const handleEditClickEmail = () => {
-    setEditModeEmail(true);
-    setEditModeFullName(false);
-    setEditModePhoneNumber(false);
-  };
-
-  const handleEditClickPhoneNumber = () => {
-    setEditModePhoneNumber(true);
-    setEditModeFullName(false);
-    setEditModeEmail(false);
-  };
-
-  const handleSaveClick = () => {
-    handleSave();
-    setEditModeFullName(false);
-    setEditModeEmail(false);
-    setEditModePhoneNumber(false);
+  const handleEditClick = () => {
+    setEditMode(true);
+    // Set initial values when entering edit mode
+    setFullName(`${userData?.first_name} ${userData?.last_name}`);
+    setEmail(userData?.email || '');
+    setPhoneNumber(userData?.ph_no || '');
   };
 
   const handleCancelClick = () => {
     // Reset fields to initial values
-    let initialFullName = initial_first_name + initial_last_name;
-    setFullName(initialFullName);
-    setEmail(initial_email);
-    setPhoneNumber(initial_ph_no);
-    setEditModeFullName(false);
-    setEditModeEmail(false);
-    setEditModePhoneNumber(false);
+    setEditMode(false);
   };
 
   return (
@@ -130,20 +105,13 @@ function MyProfileModal({ closeModal }) {
           <div className={styles.body}>
             <div className={styles.name}>
               <p>
-                Name: {editModeFullName ? (
-                  <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} className={styles.editInput} />
+                Name: {editMode ? (
+                  <span className={styles.editInputContainer}>
+                    <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} className={styles.editInput} />
+                  </span>
                 ) : (
                   <>
                     {`${userData?.first_name}`} {` ${userData?.last_name}`}
-                    <span>
-                      <ModeEditIcon onClick={handleEditClickFullName} />
-                    </span>
-                  </>
-                )}
-                {editModeFullName && (
-                  <>
-                    <button onClick={handleSaveClick}>Save</button>
-                    <button onClick={handleCancelClick}>Cancel</button>
                   </>
                 )}
               </p>
@@ -151,20 +119,13 @@ function MyProfileModal({ closeModal }) {
 
             <div className={styles.email}>
               <p>
-                Email: {editModeEmail ? (
-                  <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} className={styles.editInput} />
+                Email: {editMode ? (
+                  <span className={styles.editInputContainer}>
+                    <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} className={styles.editInput} />
+                  </span>
                 ) : (
                   <>
                     {`${userData?.email}`}
-                    <span>
-                      <ModeEditIcon onClick={handleEditClickEmail} />
-                    </span>
-                  </>
-                )}
-                {editModeEmail && (
-                  <>
-                    <button onClick={handleSaveClick}>Save</button>
-                    <button onClick={handleCancelClick}>Cancel</button>
                   </>
                 )}
               </p>
@@ -172,24 +133,30 @@ function MyProfileModal({ closeModal }) {
 
             <div className={styles.phone}>
               <p>
-                Phone: {editModePhoneNumber ? (
-                  <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} className={styles.editInput}/>
+                Phone: {editMode ? (
+                  <span className={styles.editInputContainer}>
+                    <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} className={styles.editInput} />
+                  </span>
                 ) : (
                   <>
                     {`${userData?.ph_no}`}
-                    <span>
-                      <ModeEditIcon onClick={handleEditClickPhoneNumber} />
-                    </span>
-                  </>
-                )}
-                {editModePhoneNumber && (
-                  <>
-                    <button onClick={handleSaveClick}>Save</button>
-                    <button onClick={handleCancelClick}>Cancel</button>
                   </>
                 )}
               </p>
             </div>
+
+            {editMode && (
+              <div className={styles.editButtons}>
+               <div> <button className={styles.save} onClick={handleSave}>Save</button>
+                <button className={styles.cancel} onClick={handleCancelClick}>Cancel</button></div>
+              </div>
+            )}
+
+            {!editMode && (
+              <span className={styles.editIcon} onClick={handleEditClick}>
+                <div><ModeEditIcon /> Edit</div>
+              </span>
+            )}
           </div>
           <div className={styles.footer}></div>
         </div>

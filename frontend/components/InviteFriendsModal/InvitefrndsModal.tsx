@@ -1,13 +1,17 @@
 import React, {useState} from "react";
 import styles from "./InviteFriendsModal.module.css";
 
-function InviteFriendsModal({closeModal}){
+interface InviteFriendsModalProps {
+  closeModal: (param: boolean) => void;
+}
+
+function InviteFriendsModal({ closeModal }: { closeModal: (param: boolean) => void }){
 
     const [email, setEmail] = useState<string>('');
     const [isValidEmail, setIsValidEmail] = useState<boolean>(true);
 
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = e.target.value;
         setEmail(inputValue);
 
@@ -48,9 +52,6 @@ function InviteFriendsModal({closeModal}){
                  placeholder="Enter email id"
                  required id="email"
                  />
-                  {/* {!isValidEmail && (
-                  <p style={{ color: "red" }}>Please enter a valid email address</p>
-                    )} */}
                 </div>
                 <div className={styles.footer}>
                 <button onClick={handleSendInvite}>Send Invite</button>

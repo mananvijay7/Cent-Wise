@@ -38,6 +38,6 @@ export const LeftSidePanelData = [
       {
         titleKey: "left.side.panel.invite.friends",
         icon: <GroupAddIcon />,
-        link: "/dashboard"
+        link: "/invitefriends"
       }
 ];
