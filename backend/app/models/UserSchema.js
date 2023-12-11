@@ -32,6 +32,10 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
 },
+verified:{
+ type:Boolean,
+ required: true,
+},
 totalOweAmount: {
   type: Number,
   default: 0

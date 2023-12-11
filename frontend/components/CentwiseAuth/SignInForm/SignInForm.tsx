@@ -15,6 +15,8 @@ const SignInForm = () => {
 
 
 
+
+
     const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
         await handleLocalSignin(email, password);
@@ -27,7 +29,7 @@ const SignInForm = () => {
             email: email,
             password: password,
           });
-    
+
           if(response.status === 200){
             navigate('/dashboard');
           }else if(response.status === 400){
@@ -46,9 +48,15 @@ const SignInForm = () => {
   const handleGoogleOauth = () => {
     window.location.href = '/api/user/auth/google';
   }
-    const handleForgotPasswordClick = (): void => {
-      alert("Enter your email Id");
-    };
+  const handleForgotPasswordClick = async (): Promise<void> => {
+    try {
+      await axios.post('/api/user/forgot-password', { email: 'saoji.a@northeastern.edu' });
+      alert('Password reset email sent. Check your inbox.');
+    } catch (error) {
+      console.error('Error sending password reset email:', error);
+      alert('Error sending password reset email.');
+    }
+  };
     // const handleBackToSignInClick = (): void => {
     //   setShowForgotPassword(false);
     // };  

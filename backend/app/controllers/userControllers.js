@@ -4,6 +4,18 @@ import multer from 'multer';
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
+import nodemailer from 'nodemailer';
+
+import 'dotenv/config'
+
+let transporter = nodemailer.createTransport({
+  service:"gmail",
+  auth:{
+    user: process.env.AUTH_EMAIL,
+    pass: process.env.AUTH_PASS,
+  }
+});
+
 export const create = async function(request, response){
   //console.log(request);
   try{
@@ -29,13 +41,62 @@ export const create = async function(request, response){
           //request.flash('success', 'Account Registered');
           return response.status(200).json({message: "User Created"});
       }else{
-        return response.status(400).json({message: "User Already exist!"});
+        return response.status(400).json({message: "User Already exists!"});
       }
   }catch(err){
-      console.log('Error occurred while finding the user');
+      console.log('Error occurred while finding/creating the user');
       return response.status(404).json({message: "Error occured"});
   }
 };
+
+
+
+export const forgotPassword = async function (request, response) {
+  try {
+    const { email } = request.body;
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return response.status(404).json({
+        message: 'User not found with this email address.',
+      });
+    }
+
+    const resetLink = `http://your-domain.com/user/reset-password/${resetToken}`;
+
+    const emailTo = 'saoji.a@northeastern.edu'; 
+    const emailContent = `Click the following link to reset your password: ${resetLink}`;
+
+    const mailOptions = {
+      from: process.env.AUTH_EMAIL,
+      to: emailTo,
+      subject: 'Password Reset',
+      text: emailContent,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        return response.status(500).json({
+          message: 'Error sending password reset email.',
+        });
+      } else {
+        console.log('Password reset email sent: ' + info.response);
+        return response.status(200).json({
+          message: 'Password reset email sent. Check your inbox.',
+        });
+      }
+    });
+   
+  } catch (error) {
+    console.error('Error occurred during forgot password:', error);
+    return response.status(500).json({
+      message: 'Internal Server Error',
+    });
+  }
+};
+
+
 
 
 export const signin = function(request, response){
