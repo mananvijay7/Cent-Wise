@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./AddGroupsModal.module.css";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface AddGroupModalProps {
   isOpen: boolean;
@@ -11,6 +13,8 @@ const AddGroupModal: React.FC<AddGroupModalProps> = ({ isOpen, onClose }) => {
   const [showAddMembers, setShowAddMembers] = useState<boolean>(false);
   const [newMemberName, setNewMemberName] = useState<string>("");
   const [groupMembers, setGroupMembers] = useState<string[]>([]); // Initial member is the user
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Reset component state when the component is mounted
@@ -37,6 +41,7 @@ const AddGroupModal: React.FC<AddGroupModalProps> = ({ isOpen, onClose }) => {
     // You can handle the save action here, for example, send the group name and members to a function or API
     console.log("Group Name:", groupName);
     console.log("Group Members:", groupMembers);
+    createGroup(groupName, groupMembers);
     // Close the modal after saving
     onClose();
   };
@@ -48,6 +53,26 @@ const AddGroupModal: React.FC<AddGroupModalProps> = ({ isOpen, onClose }) => {
     setNewMemberName("");
     setGroupMembers([]);
     onClose();
+  };
+
+  const createGroup = async (groupName: string, groupMembers: string[]) => {
+    try {
+      // Make a request to your server to create the group
+      const response = await axios.post('/api/groups/createGroup',
+        {
+          description: groupName,
+          users: groupMembers,
+        },
+      );
+
+      navigate('/groups');
+
+      // Log the response or handle it as needed
+      console.log('Group creation response:', response.data);
+    } catch (error: any) {
+      // Handle errors, e.g., log them or show an error message to the user
+      console.error('Error creating group:', error.message);
+    }
   };
 
   if (!isOpen) {
