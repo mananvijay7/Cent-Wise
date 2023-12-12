@@ -24,6 +24,7 @@ const App: React.FC = () => {
   };
 
   return (
+    <Provider store={store}>
     <Router>
       <Routes>
         <Route
@@ -76,6 +77,7 @@ const App: React.FC = () => {
         <Route path="/user/signup" element={<CentwiseAuth type="signup" />} />
       </Routes>
     </Router>
+    </Provider>
   );
 };
 

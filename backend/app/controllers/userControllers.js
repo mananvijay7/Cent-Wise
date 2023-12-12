@@ -73,7 +73,7 @@ export const forgotPassword = async function (request, response) {
     const mailOptions = {
       from: AUTH_EMAIL,
       to: email,
-      subject: 'Reset Centwise Password Reset',
+      subject: 'Reset Centwise Password',
       text: emailContent,
     };
 
