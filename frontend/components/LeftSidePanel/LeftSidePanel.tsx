@@ -11,6 +11,10 @@ interface LeftSidePanelItem {
   link: string;
 }
 
+interface LeftSidePanelProps {
+  setInviteFriendsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 function LeftSidePanel() {
   const { t } = useTranslation('common');
     const [focusedItem, setFocusedItem] = useState<number | null>(null);

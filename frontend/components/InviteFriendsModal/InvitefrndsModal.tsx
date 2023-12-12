@@ -2,10 +2,10 @@ import React, {useState} from "react";
 import styles from "./InviteFriendsModal.module.css";
 
 interface InviteFriendsModalProps {
-  closeModal: (param: boolean) => void;
+  closeModal: (param?: boolean) => void;
 }
 
-function InviteFriendsModal({ closeModal }: { closeModal: (param: boolean) => void }){
+function InviteFriendsModal({ closeModal }: InviteFriendsModalProps){
 
     const [email, setEmail] = useState<string>('');
     const [isValidEmail, setIsValidEmail] = useState<boolean>(true);
@@ -38,7 +38,7 @@ function InviteFriendsModal({ closeModal }: { closeModal: (param: boolean) => vo
         <div className={styles.modalBackground}>
             <div className={styles.modalContainer}>
                 <div className={styles.titleCloseBtn}>
-                <button onClick={() => closeModal(false)}> + </button>
+                <button onClick={() => closeModal()}> + </button>
                 </div>
                 <div className={styles.title}>
                 </div>

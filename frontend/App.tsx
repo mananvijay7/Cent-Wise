@@ -13,6 +13,7 @@ import Navbar from './components/Navbar/Navbar';
 import axios from 'axios';
 import CentwiseAuth from './components/CentwiseAuth/CentwiseAuth';
 import InviteFriendsModal from './components/InviteFriendsModal/InvitefrndsModal';
+import DropDownProfile from './components/DropDownProfile/DropDownProfile';
 
 
 
@@ -75,6 +76,12 @@ const App: React.FC = () => {
         <Route path="/user/signin" element={<CentwiseAuth type="signin" />} />
         <Route path="/user/signup" element={<CentwiseAuth type="signup" />} />
       </Routes>
+
+      
+
+      {isInviteFriendsModalOpen && (
+        <InviteFriendsModal closeModal={() => setInviteFriendsModalOpen(false)} />
+      )}
     </Router>
   );
 };

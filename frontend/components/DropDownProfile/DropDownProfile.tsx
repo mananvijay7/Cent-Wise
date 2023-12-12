@@ -5,6 +5,9 @@ import InviteFriendsModal from '../InviteFriendsModal/InvitefrndsModal.tsx';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+interface DropDownProfileProps {
+  setInviteFriendsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 const Menus = ['My Account', 'Invite Friends' , 'Sign Out'];
 
@@ -95,3 +98,5 @@ const handleMenuClick = (menu: string) => {
     );
 }
 export default DropDownProfile;
+
+
