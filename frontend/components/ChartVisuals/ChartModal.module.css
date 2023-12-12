@@ -1,5 +1,4 @@
-/* ChartModal.module.css */
-
+/* ChartModal.module.scss */
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -10,10 +9,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(18px); /* Add backdrop-filter for blurring effect */
+  -webkit-backdrop-filter: blur(18px);
+          backdrop-filter: blur(18px); /* Add backdrop-filter for blurring effect */
 }
-
-.visible {
+.modalOverlay.visible {
   display: flex;
 }
 
@@ -32,46 +31,38 @@
   justify-content: space-around; /* Adjust as needed */
   align-items: center; /* Adjust as needed */
 }
-
-.closeButton {
+.modalContent .closeButton {
   position: absolute;
   top: 9px;
   right: 10px;
   padding: 2px 6px;
 }
-
-.closeButton:hover {
+.modalContent .closeButton:hover {
   background-color: #b3b3b3;
 }
-h2 {
-  font-family: 'Montserrat', sans-serif;
+.modalContent h2 {
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
   margin-top: 5%;
-  /* background-color:  #01ce67; Initial background color */
   color: #0a0909; /* Initial text color */
-  /* padding: 10px; Add padding for better visibility */
   transition: background-color 0.5s ease, color 0.5s ease; /* Add transitions for both background-color and color */
 }
-
-h2:hover {
+.modalContent h2:hover {
   background-color: #e74c3c; /* Updated background color on hover */
   color: #ffffff; /* Updated text color on hover */
 }
-
 
 .chartContainer {
   width: 45%; /* Adjust the width as needed */
   height: 500px;
   margin: 10px; /* Adjust the margin as needed */
-
-  canvas {
-    max-width: 100%; /* Ensure the canvas doesn't exceed the container width */
-    max-height: 100%; /* Ensure the canvas doesn't exceed the container height */
-  }
 }
-
+.chartContainer canvas {
+  max-width: 100%; /* Ensure the canvas doesn't exceed the container width */
+  max-height: 100%; /* Ensure the canvas doesn't exceed the container height */
+}
 @media (max-width: 768px) {
   .chartContainer {
     width: 100%; /* Full width on smaller screens */
   }
-}
+}/*# sourceMappingURL=ChartModal.module.css.map */

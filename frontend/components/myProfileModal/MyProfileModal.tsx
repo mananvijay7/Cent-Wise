@@ -117,7 +117,7 @@ function MyProfileModal({ closeModal }: { closeModal: (flag: boolean) => void })
       <div className={styles.modalBackground}>
         <div className={styles.modalContainer}>
           <div className={styles.titleCloseBtn}>
-            <button onClick={() => closeModal(false)}> + </button>
+            <button onClick={() => closeModal(false)}> x </button>
           </div>
           <div className={styles.title}>
           
@@ -127,6 +127,7 @@ function MyProfileModal({ closeModal }: { closeModal: (flag: boolean) => void })
       <img className={styles.userImg} src={profilePicture || 'src\assets\Yash Lambodiya.jpg'} alt="User" />
       <div className={styles.fileInputWrapper}>
         <input type="file" className={styles.choosefile}onChange={(e) => handleProfilePictureChange(e)} />
+       
         <button onClick={handleSaveClick} className={styles.saveButton}>Save</button>
         <button onClick={handleCancelClick} className={styles.profilecancel}>Cancel</button>
       </div>
