@@ -77,6 +77,8 @@ const Modal: React.FC = () => {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [secondModalCat, setSecondModalCat] = useState("");
   const [userData, setUserData] = useState<UserData | null | undefined>(undefined);
+  const [selectedFriend, setSelectedFriend] = useState<string>("");
+  const [selectedPeople, setSelectedPeople] = useState<string[]>([]);
 
   const modalContentRef = useRef<HTMLDivElement>(null);
 
@@ -171,6 +173,30 @@ const Modal: React.FC = () => {
     setShowEqualModal(false);
   };
 
+  const addExpense = async (description: string, amount: string, selectedFriend: string, selectedPeople: string[]) => {
+    try {
+    // Create an expenseData object to send in the request
+    const expenseData = {
+      Payer: selectedFriend,
+      description: description,
+      amount: amount,
+      peopleInvolved: selectedPeople,
+    };
+
+    // Use Axios to send a POST request
+    const response = await axios.post('/api/expense/createExpense', expenseData,);
+
+    console.log('Expense added successfully:', response.data);
+    // You can also return the response if needed
+    return response.data;
+  } catch (error: any) {
+    // Handle errors
+    console.error('Error adding expense:', error.message);
+    // You might want to throw the error or handle it accordingly
+    throw error;
+  }
+  };
+
   return (
     <>
       <button onClick={toggleModal} className={styles.btnModal}>
@@ -213,21 +239,25 @@ const Modal: React.FC = () => {
                     }}
                   />
                 </label>
-
                 <br />
                 <hr />
                 <label>
-                  Paid by:
-                  <button
-                    type="button"
-                    value="paidBy"
-                    className={styles.btn}
-                    onClick={toggleSecondModal}
-                  >
-                    Select
-                  </button>
-                </label>
-
+                    Paid by:
+                    <select
+                      value={selectedFriend}
+                      onChange={(e) => setSelectedFriend(e.target.value)}
+                      className={styles.dropdown}
+                    >
+                      <option value="" disabled>
+                        Select
+                      </option>
+                      {userData?.friends.map((friend) => (
+                        <option key={friend.friend._id} value={friend.friend._id}>
+                          {friend.friend.first_name} {friend.friend.last_name}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
                 <label>
                   and Split:
                   <button
@@ -241,32 +271,37 @@ const Modal: React.FC = () => {
                 </label>
                 <br />
                 <label>
-                  People:
-                  <button
-                    type="button"
-                    className={styles.btn}
-                    onClick={toggleSecondModal}
-                  >
-                    Select
-                  </button>
-                </label>
+                    People
+                    <select
+                        value={selectedPeople}
+                        onChange={(e) => setSelectedPeople(Array.from(e.target.selectedOptions, option => option.value))}
+                        className={styles.dropdown}
+                        multiple
+                      >
+                      <option value="" disabled>
+                        Select
+                      </option>
+                      {userData?.friends.map((friend) => (
+                      <option key={friend.friend._id} value={String(friend.friend._id)}>
+                        {friend.friend.first_name} {friend.friend.last_name}
+                      </option>
+                    ))}
+                    {userData?.groups.map((group) => (
+                      <option key={String(group.group)} value={String(group.group)}>
+                        {group.group_name}
+                      </option>
+                    ))}
+                    </select>
+                  </label>
                 <br />
-                <DatePicker
-                  className={styles.date}
-                  selected={startDate}
-                  onChange={(date) => setStartDate(date)}
-                  popperPlacement="right-start"
-                  onFocus={() => setShowSecondModal(false)}
-                />
                 <br />
-                {/* <button type="button" className={styles.group}>
-                  Select Group
-                </button> */}
-
                 <div className={styles.buttonGroup}>
-                  <button type="submit" className={styles.save}>
-                    Save
-                  </button>
+                <button
+                      type="submit"
+                      className={styles.save}
+                      onClick={() => addExpense(description, amount, selectedFriend, selectedPeople)}>
+                      Save
+                    </button>
                   <button
                     type="button"
                     onClick={toggleModal}
@@ -285,7 +320,6 @@ const Modal: React.FC = () => {
       }
 
       {showSecondModal && <SecondModal onClose={closeSecondModal} />}
-      {/*showEqualModal && <EqualModal onClose={closeEqualModal} />*/}
       {showSecondaryModal && <SecondaryModal category="split"/>}
     </>
   );

@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import participant from './ParticipantsSchema';
 
 const Schema = mongoose.Schema;
 
@@ -49,12 +48,11 @@ const ExpenseSchema = new Schema({
         },
         currency: {
             type: String,
-            required: true
+            default: 'Dollars',
         },
         created_by:{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
-            required: true
         },
         created_date:{
             type: Date,
@@ -63,7 +61,7 @@ const ExpenseSchema = new Schema({
         partition: [
             {
                 type: String,
-                required: true
+                default: "Equally",
             }
         ],
 
