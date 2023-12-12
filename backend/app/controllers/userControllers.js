@@ -155,3 +155,52 @@ export const checkAuth = function(request, response) {
     response.status(500).send('Internal Server Error');
 }
 };
+
+export const inviteFriend = async function (request, response) {
+  const AUTH_EMAIL='ashayssaoji@gmail.com';
+  const AUTH_PASS='ysws ukyp wkne qkpw';
+  try {
+    const { email } = request.body;
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: AUTH_EMAIL,
+        pass: AUTH_PASS,
+      },
+    });
+
+    //console.log(request);
+
+    const resetLink = `http://your-domain.com/user/reset-password`;
+
+    const emailContent = `Click the following link to join CentWise: ${resetLink}. `;
+
+    const mailOptions = {
+      from: AUTH_EMAIL,
+      to: email,
+      subject: 'Invitation to join Centwise',
+      text: emailContent,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        return response.status(500).json({
+          message: 'Error sending invitation email.',
+        });
+      } else {
+        console.log('Invitation email sent: ' + info.response);
+        return response.status(200).json({
+          message: 'Invitation email sent. Check your inbox.',
+        });
+      }
+    });
+   
+  } catch (error) {
+    console.error('Error occurred during Invitation:', error);
+    return response.status(500).json({
+      message: 'Internal Server Error',
+    });
+  }
+};

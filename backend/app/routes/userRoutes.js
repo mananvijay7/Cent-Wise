@@ -41,6 +41,7 @@ router.get('/checkAuth', userController.checkAuth);
 router.get('/signout', userController.sessionDestroy);
 
 router.post('/forgotpassword', userController.forgotPassword);
+router.post('/inviteFriend', userController.inviteFriend);
 
 router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 router.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: '/api/user/signin'}), userController.createSession);

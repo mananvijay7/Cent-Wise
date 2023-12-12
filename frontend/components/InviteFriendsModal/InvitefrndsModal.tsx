@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import styles from "./InviteFriendsModal.module.css";
+import axios from 'axios';
 
 interface InviteFriendsModalProps {
   closeModal: (param: boolean) => void;
@@ -20,8 +21,18 @@ function InviteFriendsModal({ closeModal }: { closeModal: (param: boolean) => vo
         setIsValidEmail(isValid);
       };
 
-      const handleSendInvite = () => {
+      const handleSendInvite = async () => {
         if (isValidEmail) {
+          try {
+            const response = await axios.post('/api/user/inviteFriend', {
+              email: email,
+            });
+            console.log(response);
+            //alert('Password reset email sent. Check your inbox.');
+            closeModal(false);
+          } catch (error) {
+            console.error('Error sending password reset email:', error);
+          }
           // Perform invite logic here
           console.log('Sending invite to:', email);
           // You can add your logic to send the invite here
