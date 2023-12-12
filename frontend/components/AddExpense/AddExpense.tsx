@@ -4,11 +4,12 @@ import styles from "./AddExpense.module.css";
 import axios from 'axios';
 import { Document, Types } from 'mongoose';
 // import "react-datepicker/dist/react-datepicker.css";
-import SelectExpenseType from "./SelectExpenseType";
-import SelectSplitMethod from "./SelectSplitMethod";
-import GroupListModal from "./GroupListModal";
-import FriendListModal from "./FriendListModal";
-import SelectPaidByModal from "./SelectPayerModal";
+import SelectExpenseType from "../ListModals/SelectExpenseType";
+import SelectSplitMethod from "../ListModals/SelectSplitMethod";
+import GroupListModal from "../ListModals/GroupListModal";
+import FriendListModal from "../ListModals/FriendListModal";
+import SelectPaidByModal from "../ListModals/SelectPayerModal";
+
 
 interface Friend {
   friend: {
@@ -67,8 +68,9 @@ interface UserData extends Document {
   groups: Group[];
 }
 
+
 const Modal: React.FC = () => {
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(true);
   const [showSecondModal, setShowSecondModal] = useState(false);
   const [showExpenseTypeModal, setShowExpenseTypeModal] = useState(false);
   const [showSplitMethodModal, setshowSplitMethodModal] = useState(false);
@@ -127,6 +129,8 @@ const Modal: React.FC = () => {
       document.removeEventListener("click", handleClick);
     };
   }, [showCalendar]);
+
+  
 
   const toggleModal = () => {
     setModal(!modal);
@@ -282,13 +286,8 @@ const Modal: React.FC = () => {
       throw error;
     }
   };
-
   return (
     <>
-      <button onClick={toggleModal} className={styles.btnModal}>
-        Open
-      </button>
-
       {
         modal && (
           <div
@@ -302,16 +301,14 @@ const Modal: React.FC = () => {
                 <label className={styles.description}>
                   <input type="text" value={description} placeholder="Enter description" onChange={(e) => setDescription(e.target.value)}/>
                 </label>
-                <br />
-                <hr />
+                <hr className={styles.hr}/>
                 <label className={styles.currency}>
                   $:
                   <input type="text" value={amount} onChange={(e) => setAmount((e.target as HTMLInputElement).value)} onInput={(e) => { e.currentTarget.value = e.currentTarget.value.replace(
                         /[^0-9.]/g,"");}}/>
                 </label>
 
-                <br />
-                <hr />
+                <hr className={styles.hr}/>
                 <label>
                   Expense type:
                   <button type="button" value="expenseType" className={styles.btn} onClick={toggleExpenseTypeModal}>

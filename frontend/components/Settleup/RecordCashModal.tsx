@@ -5,6 +5,7 @@ import UserListModal from "./UserListModal";
 import RecipientListModal from "./RecipientListModal";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
+import FriendListModal from "../ListModals/FriendListModal";
 
 interface RecordCashModalProps {
   onClose: (e?: React.MouseEvent) => void;
@@ -16,6 +17,8 @@ const RecordCashModal: React.FC<RecordCashModalProps> = ({ onClose }) => {
   const [userListModalOpen, setUserListModalOpen] = useState<boolean>(false);
   const [recipientListModalOpen, setRecipientListModalOpen] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<string | null>(null);
+  const [selectedPayer, setSelectedPayer] = useState("You");
+  const [recipient, setRecipient] = useState("...");
 
   const toggleModal = () => {
     onClose();
@@ -28,14 +31,14 @@ const RecordCashModal: React.FC<RecordCashModalProps> = ({ onClose }) => {
     e.stopPropagation();
     setUserListModalOpen(!userListModalOpen);
     setRecipientListModalOpen(false);
-    setOpenModal(userListModalOpen ? null : 'user');
+    //setOpenModal(userListModalOpen ? null : 'user');
   };
 
   const toggleRecipientListModal = (e: React.MouseEvent) => {
     e.stopPropagation();
     setRecipientListModalOpen(!recipientListModalOpen);
     setUserListModalOpen(false);
-    setOpenModal(recipientListModalOpen ? null : 'recipient');
+    //setOpenModal(recipientListModalOpen ? null : 'recipient');
   };
 
   useEffect(() => {
@@ -53,6 +56,13 @@ const RecordCashModal: React.FC<RecordCashModalProps> = ({ onClose }) => {
     };
   }, [onClose, toggleModal]);
 
+  const handlePayerChange = (payer: string[]) => {
+    setSelectedPayer(payer[0]);
+  }
+
+  const handleRecipientChange = (recipient: string[]) => {
+    setRecipient(recipient[0]);
+  }
   return (
     <>
       <div className={styles.overlay2}></div>
@@ -62,33 +72,31 @@ const RecordCashModal: React.FC<RecordCashModalProps> = ({ onClose }) => {
         <button className={styles.closeModal} onClick={toggleModal}>
           X
         </button>
-        <img className={styles.icon1} src={flightIcon} alt="Flight Icon" />
-        {/* <p className={styles.arrow}> --------| </p> */}
-        <img className={styles.icon2} src={flightIcon} alt="Flight Icon" />
-        <br/><br/>
+        <div className={styles.contentContainer}>
+        <div className={styles.imageSet}>
+        <img className={styles.icon} src={flightIcon} alt="Flight Icon" />
+        <div>----------|</div>
+        <img className={styles.icon} src={flightIcon} alt="Flight Icon" />
+        </div>
+        <br/>
+        <hr/>
         <div className={styles.buttonGroup}>
-          <button className={styles.you} onClick={(e) => toggleUserListModal(e)}>
-            You
+          Payer 
+          <button className={styles.btn} onClick={(e) => toggleUserListModal(e)}>
+            { selectedPayer }
           </button>
-                    <span className={styles.paid}>paid</span>
-          <button className={styles.user} onClick={(e) => toggleRecipientListModal(e)}>
-            User
+          <span className={styles.paid}>and Receipient </span>
+          <button className={styles.btn} onClick={(e) => toggleRecipientListModal(e)}>
+            { recipient }
           </button>
           <br/> <br/>
-          <label className={styles.dollar}>
-            $:
-            <input
-              type="text"
-              value={amount}
-              placeholder="Enter Amount"
-              onChange={(e) => setAmount((e.target as HTMLInputElement).value)}
-              onInput={(e) => {
-                e.currentTarget.value = e.currentTarget.value.replace(/[^0-9.]/g, "");
-              }}
-            />
-          </label>
+          <label className={styles.currency}>
+                  $:
+                  <input type="text" value={amount} onChange={(e) => setAmount((e.target as HTMLInputElement).value)} onInput={(e) => { e.currentTarget.value = e.currentTarget.value.replace(
+                        /[^0-9.]/g,"");}}/>
+                </label>
           <br />
-         
+          <hr/>
           <DatePicker
             className={styles.date}
             selected={startDate}
@@ -96,18 +104,17 @@ const RecordCashModal: React.FC<RecordCashModalProps> = ({ onClose }) => {
             popperPlacement="right-start"
             onFocus={() => setOpenModal(null)} // Close other modals on date picker focus
           />
-          <hr></hr>
+         <br />
           <button className={styles.saveButton} onClick={onClose}>
             Save
           </button>
-          <button className={styles.cancelButton} onClick={onClose}>
+          <button className={styles.cancel} onClick={onClose}>
             Cancel
           </button>
         </div>
-        {userListModalOpen && openModal === 'user' && <UserListModal onClose={() => setUserListModalOpen(false)} />}
-        {recipientListModalOpen && openModal === 'recipient' && (
-          <RecipientListModal onClose={() => setRecipientListModalOpen(false)} />
-        )}
+        </div>
+        {userListModalOpen && <FriendListModal onClose={() => setUserListModalOpen(false)} onClick={handlePayerChange} />}
+        {recipientListModalOpen && <FriendListModal onClose={() => setRecipientListModalOpen(false)} onClick={handleRecipientChange} />}
       </div>
     </>
   );

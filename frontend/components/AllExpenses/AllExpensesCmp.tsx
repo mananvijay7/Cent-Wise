@@ -34,8 +34,6 @@ const AllExpensesCmp: React.FC = () => {
   return (
     <div>
       <AllExpenses />
-      <AddExpense/>
-      <Settleup/>
       <div>
         {allExpensesData.map((expenseData) => (
           <div key={expenseData.id} >

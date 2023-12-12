@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useRef, useState } from "react";
-import styles from "./AddExpense.module.css";
+import styles from "../AddExpense/AddExpense.module.css";
 import axios from 'axios';
 import { Document, Types } from 'mongoose';
 

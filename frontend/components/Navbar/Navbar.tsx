@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from "./Navbar.module.css";
 import centwiseLogoPath from "../../../public/images/CentwiseLogo.png";
-import AddanExpenseButton from "../Buttons/AddanExpenseButton";
+import AddAnExpenseButton from "../Buttons/AddanExpenseButton";
 import SettleUpButton from "../Buttons/SettleUpButton";
 import DropDownProfile from '../DropDownProfile/DropDownProfile';
 import userData from "./navbarUserData.json";
@@ -98,14 +98,12 @@ function Navbar() {
         </a>
         <div className={styles.navContainer}>
           <ul className={styles.navbar}>
-            <li>
-              <div className={styles.buttons}>
-                <a href="#">
-                  <AddanExpenseButton />
-                </a>
-                <a href="#"><SettleUpButton /></a>
+            <li className={styles.navBarList}>
+              <div className={styles.buttons}>  
+              <AddAnExpenseButton />           
+              <SettleUpButton />  
               </div>
-              <p className={styles.verticalLine}>  </p>
+              <p className={styles.verticalLine}></p>
               <div className={styles.userContainer}>
                 <img className={styles.userProfile} src={userPhotoPath} alt="User Profile img" onClick={toggleDropdown} />
                 <p className={styles.userName} onClick={toggleDropdown}>

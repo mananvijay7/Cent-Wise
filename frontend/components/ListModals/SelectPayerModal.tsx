@@ -1,6 +1,6 @@
 // EqualModal.tsx
 import React, { FC, useEffect, useRef, useState } from "react";
-import styles from "./AddExpense.module.css";
+import styles from "../AddExpense/AddExpense.module.css";
 
 interface SelectPayerModalProps {
     onClose: () => void;
