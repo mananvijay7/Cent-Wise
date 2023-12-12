@@ -28,7 +28,7 @@ export const LeftSidePanelData = [
       {
         titleKey: "left.side.panel.expense.visualization",
         icon: <EqualizerIcon />,
-        link: "/dashboard"
+        link: "/expensevisualisation"
       },
       {
         titleKey: "left.side.panel.friends",
