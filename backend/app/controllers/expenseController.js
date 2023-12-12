@@ -3,7 +3,7 @@ import * as expenseService from '../services/expense-services.js';
 export const addExpense = async function(request, response){
       try {
 
-            const expenseDocuments = await expenseService.addExpense(request);
+            const expenseDocuments = await expenseService.addExpense(request); 
         
             //console.log(userDocuments);
             // Respond with a success message

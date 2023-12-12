@@ -4,9 +4,13 @@ const Schema = mongoose.Schema;
 
 const ExpenseSchema = new Schema({
       Payer:{
-            type: mongoose.Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId, 
             ref: 'User',
             required: true,
+        },
+        description:{
+          type: String,
+          required: true,
         },
         usersInvolved: [
             {
@@ -64,9 +68,13 @@ const ExpenseSchema = new Schema({
                 default: "Equally",
             }
         ],
+        expenseType:{
+          type: String,
+        },
+
 
 });
 
 const Expense = mongoose.model('Expense', ExpenseSchema);
 
-export default ExpenseSchema;
+export default Expense;

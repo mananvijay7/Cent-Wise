@@ -116,31 +116,29 @@ const SelectPayerModal: FC<SelectPayerModalProps> = (props) => {
         setSelectedUser(user);
     };
 
-    const list = ["Person1", "Person2", "Person3"];
+    //const list = ["Person1", "Person2", "Person3"];
 
     return (
         <div className={styles.EqualModal}>
             <div ref={modalContentRef} className={styles.modalContent}>
                 <h2>Select Group</h2>
                 <hr />
-                {
-                    list.map((user, index) => (
-                        <div className={`${styles.row} ${styles.card_input}`} key={index}>
-                            <label className={styles.label}>
-                                <input
-                                    type="radio"
-                                    name="splitMethod"
-                                    className={styles.card_input_element}
-                                    onChange={() => handleRadioChange(user)}
-                                    checked={selectedUser === user}
-                                />
-                                <span className={styles.panel_body}>
-                                    { user }
-                                </span>
-                            </label>
-                        </div>
-                    ))
-                }
+                {userData?.friends.map((friend) => (
+                    <div className={`${styles.row} ${styles.card_input}`} key={friend.friend._id}>
+                        <label className={styles.label}>
+                        <input
+                            type="checkbox"
+                            name="friendCheckbox"
+                            className={styles.card_input_element}
+                            onChange={() => handleRadioChange(friend.friend_first_name)}
+                            checked={selectedUser === (friend.friend_first_name)}
+                        />
+                        <span className={styles.panel_body}>
+                            {friend.friend_first_name} {friend.friend_last_name}
+                        </span>
+                        </label>
+                    </div>
+                    ))}
                 <button type="submit" className={styles.save} onClick={handleSave}>
                     Save
                 </button>
