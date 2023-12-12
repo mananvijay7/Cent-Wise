@@ -66,6 +66,12 @@ totalBalance: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Expense',
       },
+      description:{
+        type: String
+      },
+      amount:{
+        type: Number,
+      }
     }
   ],
   groups: [
