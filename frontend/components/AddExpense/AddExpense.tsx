@@ -1,22 +1,27 @@
 // Modal.tsx
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./AddExpense.module.css";
-import SecondModal from "./SecondModal";
-import EqualModal from "./EqualModal";
 // import "react-datepicker/dist/react-datepicker.css";
-import DatePicker from "react-datepicker";
-import SecondaryModal from "./SecondaryModal/SecondaryModal";
+import SelectExpenseType from "./SelectExpenseType";
+import SelectSplitMethod from "./SelectSplitMethod";
+import GroupListModal from "./GroupListModal";
+import FriendListModal from "./FriendListModal";
 
 const Modal: React.FC = () => {
   const [modal, setModal] = useState(false);
   const [showSecondModal, setShowSecondModal] = useState(false);
-  const [showEqualModal, setShowEqualModal] = useState(false);
-  const [showSecondaryModal, setSecondaryModal] = useState(false);
+  const [showExpenseTypeModal, setShowExpenseTypeModal] = useState(false);
+  const [showSplitMethodModal, setshowSplitMethodModal] = useState(false);
+  const [showGroupListModal, setShowGroupListModal] = useState(false);
+  const [showFriendListModal, setShowFriendListModal] = useState(false);
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [showCalendar, setShowCalendar] = useState(false);
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
-  const [secondModalCat, setSecondModalCat] = useState("");
+  const [splitMethod, setSplitMethod] = useState("Equal");
+  const [expenseType, setExpenseType] = useState("Individual");
+  const [participantType, setParticipantType] = useState("Friends");
+  const [selectedGroup, setSelectedGroup] = useState("");
+  const [selectedFriendList, setSelectedFriendList] = useState({});
 
   const modalContentRef = useRef<HTMLDivElement>(null);
 
@@ -32,9 +37,6 @@ const Modal: React.FC = () => {
       ) {
         handleClose();
       }
-      if (showCalendar && !target.closest(".react-calendar")) {
-        setShowCalendar(false);
-      }
     };
 
     document.addEventListener("click", handleClick);
@@ -45,35 +47,45 @@ const Modal: React.FC = () => {
 
   const toggleModal = () => {
     setModal(!modal);
-    closeSecondModal();
+    //closeSecondModal();
   };
 
   const toggleSecondModal = () => {
     setShowSecondModal(!showSecondModal);
+    console.log("sec: " + showSecondModal);
   };
 
-  const toggleEqualModal = (e?: React.MouseEvent<HTMLButtonElement>) => {
+  const toggleSplitMethodModal = (e?: React.MouseEvent<HTMLButtonElement>) => {
     if (e) {
       e.stopPropagation();
     }
-
+    setshowSplitMethodModal(!showSplitMethodModal);
   };
 
-  const toggleSecondaryModal = (e?: React.MouseEvent<HTMLButtonElement>) => {
+  const toggleParticipantModal = (e?: React.MouseEvent<HTMLButtonElement>) => {
     if (e) {
       e.stopPropagation();
     }
-    closeSecondaryModal();
-    setSecondModalCat("split");
-    setSecondaryModal(!showSecondaryModal);
+    if(participantType === "Friends") {
+      setShowFriendListModal(!showFriendListModal);
+    } else {
+      setShowGroupListModal(!showGroupListModal);
+    }
   };
+
+  const toggleExpenseTypeModal = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    setShowExpenseTypeModal(!showExpenseTypeModal);
+    console.log("showExpenseTypeModal at 62" + showExpenseTypeModal);
+  };
+
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     toggleModal();
-    toggleSecondModal();
-    toggleEqualModal();
     handleClose();
   };
 
@@ -82,22 +94,58 @@ const Modal: React.FC = () => {
     setAmount("");
     setModal(false);
     setShowSecondModal(false);
-    setShowEqualModal(false);
+    console.log("sec: " + showSecondModal);
+    closeSplitMethodModal();
     closeSecondModal();
+    closeExpenseTypeModal();
+    console.log("showExpenseTypeModal at 92" + showExpenseTypeModal);
 
   };
 
   const closeSecondModal = () => {
     setShowSecondModal(false);
+    console.log("sec: " + showSecondModal);
   };
 
-  const closeSecondaryModal = () => {
-    setSecondaryModal(false);
-  };
-  const closeEqualModal = () => {
-    setShowEqualModal(false);
+  const closeExpenseTypeModal = () => {
+    setShowExpenseTypeModal(false);
+    console.log(showExpenseTypeModal);
   };
 
+  const closeSplitMethodModal = () => {
+    setshowSplitMethodModal(false);
+  };
+
+  const closeGroupListModal = () => {
+    setShowGroupListModal(false);
+  };
+
+  const closeFriendListModal = () => {
+    setShowFriendListModal(false);
+  };
+
+  const handleChangeSplitMethod = (method: string) => {
+    setSplitMethod(method);
+  }
+
+  const handleChangeGroup = (group: string) => {
+    setSelectedGroup(group);
+  }
+
+  const handleChangeFriendList = (friendList: string[]) => {
+    setSelectedFriendList(friendList);
+  }
+
+  const handleChangeExpenseMethod = (type: string) => {
+    setExpenseType(type);
+    if(type === "Individual") {
+      setParticipantType("Friends");
+    } else {
+      setParticipantType("Groups");
+    }
+  }
+
+  console.log(selectedFriendList);
   return (
     <>
       <button onClick={toggleModal} className={styles.btnModal}>
@@ -115,43 +163,22 @@ const Modal: React.FC = () => {
               <h3>Add an expense</h3>
               <form onSubmit={handleFormSubmit}>
                 <label className={styles.description}>
-                  <input
-                    type="text"
-                    value={description}
-                    placeholder="Enter description"
-                    onChange={(e) => setDescription(e.target.value)}
-                  />
+                  <input type="text" value={description} placeholder="Enter description" onChange={(e) => setDescription(e.target.value)}/>
                 </label>
                 <br />
                 <hr />
                 <label className={styles.currency}>
                   $:
-                  <input
-                    type="text"
-                    value={amount}
-                    onChange={(e) =>
-                      setAmount((e.target as HTMLInputElement).value)
-                    }
-                    onInput={(e) => {
-                      e.currentTarget.value = e.currentTarget.value.replace(
-                        /[^0-9.]/g,
-                        ""
-                      );
-                    }}
-                  />
+                  <input type="text" value={amount} onChange={(e) => setAmount((e.target as HTMLInputElement).value)} onInput={(e) => { e.currentTarget.value = e.currentTarget.value.replace(
+                        /[^0-9.]/g,"");}}/>
                 </label>
 
                 <br />
                 <hr />
                 <label>
-                  Paid by:
-                  <button
-                    type="button"
-                    value="paidBy"
-                    className={styles.btn}
-                    onClick={toggleSecondModal}
-                  >
-                    Select
+                  Expense type:
+                  <button type="button" value="expenseType" className={styles.btn} onClick={toggleExpenseTypeModal}>
+                    { expenseType }
                   </button>
                 </label>
 
@@ -161,30 +188,24 @@ const Modal: React.FC = () => {
                     type="button"
                     value="split"
                     className={styles.btn}
-                    onClick={toggleSecondaryModal}
+                    onClick={toggleSplitMethodModal}
                   >
-                    Equally
+                    { splitMethod }
                   </button>
                 </label>
                 <br />
                 <label>
-                  People:
+                  { participantType }:
                   <button
                     type="button"
                     className={styles.btn}
-                    onClick={toggleSecondModal}
+                    onClick={toggleParticipantModal}
                   >
-                    Select
+                    { participantType === "Friends" ? "..." : selectedGroup}
                   </button>
                 </label>
                 <br />
-                <DatePicker
-                  className={styles.date}
-                  selected={startDate}
-                  onChange={(date) => setStartDate(date)}
-                  popperPlacement="right-start"
-                  onFocus={() => setShowSecondModal(false)}
-                />
+
                 <br />
                 {/* <button type="button" className={styles.group}>
                   Select Group
@@ -211,9 +232,11 @@ const Modal: React.FC = () => {
         )
       }
 
-      {showSecondModal && <SecondModal onClose={closeSecondModal} />}
-      {/*showEqualModal && <EqualModal onClose={closeEqualModal} />*/}
-      {showSecondaryModal && <SecondaryModal category="split"/>}
+      {console.log("showExpenseTypeModal at 62" + showExpenseTypeModal)}
+      {showExpenseTypeModal && <SelectExpenseType onClose={closeExpenseTypeModal} onClick={handleChangeExpenseMethod}/>}
+      {showSplitMethodModal && <SelectSplitMethod onClose={closeSplitMethodModal} onClick={handleChangeSplitMethod}/>}
+      {showGroupListModal && <GroupListModal onClose={closeGroupListModal} onClick={handleChangeGroup}/>}
+      {showFriendListModal && <FriendListModal onClose={closeFriendListModal} onClick={handleChangeFriendList}/>}
     </>
   );
 };
