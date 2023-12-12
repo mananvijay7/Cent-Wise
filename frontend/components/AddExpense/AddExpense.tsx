@@ -8,6 +8,7 @@ import SelectExpenseType from "./SelectExpenseType";
 import SelectSplitMethod from "./SelectSplitMethod";
 import GroupListModal from "./GroupListModal";
 import FriendListModal from "./FriendListModal";
+import SelectPaidByModal from "./SelectPayerModal";
 
 interface Friend {
   friend: {
@@ -73,6 +74,7 @@ const Modal: React.FC = () => {
   const [showSplitMethodModal, setshowSplitMethodModal] = useState(false);
   const [showGroupListModal, setShowGroupListModal] = useState(false);
   const [showFriendListModal, setShowFriendListModal] = useState(false);
+  const [showPayerModal, setShowPayerModal] = useState(false);
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [showCalendar, setShowCalendar] = useState(false);
@@ -86,6 +88,7 @@ const Modal: React.FC = () => {
   const [participantType, setParticipantType] = useState("Friends");
   const [selectedGroup, setSelectedGroup] = useState("");
   const [selectedFriendList, setSelectedFriendList] = useState({});
+  const [selectedPayer, setSelectedPayer] = useState("You");
   
   const modalContentRef = useRef<HTMLDivElement>(null);
 
@@ -161,6 +164,13 @@ const Modal: React.FC = () => {
     console.log("showExpenseTypeModal at 62" + showExpenseTypeModal);
   };
 
+  const togglePayerModal = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    setShowPayerModal(!showPayerModal);
+    console.log("showExpenseTypeModal at 62" + showExpenseTypeModal);
+  };
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -204,6 +214,10 @@ const Modal: React.FC = () => {
     setShowFriendListModal(false);
   };
 
+  const closePayerModal = () => {
+    setShowPayerModal(false);
+  };
+
   const handleChangeSplitMethod = (method: string) => {
     setSplitMethod(method);
   }
@@ -223,6 +237,10 @@ const Modal: React.FC = () => {
     } else {
       setParticipantType("Groups");
     }
+  }
+
+  const handleChangePayer = (user: string) => {
+    setSelectedPayer(user);
   }
 
   console.log(selectedFriendList);
@@ -300,6 +318,16 @@ const Modal: React.FC = () => {
                 </label>
                 <br />
                 <label>
+                  Paid By:
+                  <button
+                    type="button"
+                    className={styles.btn}
+                    onClick={togglePayerModal}
+                  >
+                    { selectedPayer}
+                  </button>
+                </label>
+                <label>
                   { participantType }:
                   <button
                     type="button"
@@ -338,6 +366,7 @@ const Modal: React.FC = () => {
       }
 
       {console.log("showExpenseTypeModal at 62" + showExpenseTypeModal)}
+      {showPayerModal && <SelectPaidByModal onClose={closePayerModal} onClick={handleChangePayer}/>}
       {showExpenseTypeModal && <SelectExpenseType onClose={closeExpenseTypeModal} onClick={handleChangeExpenseMethod}/>}
       {showSplitMethodModal && <SelectSplitMethod onClose={closeSplitMethodModal} onClick={handleChangeSplitMethod}/>}
       {showGroupListModal && <GroupListModal onClose={closeGroupListModal} onClick={handleChangeGroup}/>}

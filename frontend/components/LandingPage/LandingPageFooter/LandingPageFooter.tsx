@@ -42,7 +42,7 @@ const LandingPageFooter = () => {
           </section>
         </div>
         <hr className={styles.hr}/>
-        <p className={styles.p}>Design by Team Centwise</p>
+        <p className={styles.p}>Design and develop by Team Centwise</p>
       </footer>
     );
 }
