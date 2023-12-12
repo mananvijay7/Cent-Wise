@@ -1,13 +1,13 @@
 // Modal.tsx
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./AddExpense.module.css";
-import SecondModal from "./SecondModal";
-import EqualModal from "./EqualModal";
 import axios from 'axios';
 import { Document, Types } from 'mongoose';
 // import "react-datepicker/dist/react-datepicker.css";
-import DatePicker from "react-datepicker";
-import SecondaryModal from "./SecondaryModal/SecondaryModal";
+import SelectExpenseType from "./SelectExpenseType";
+import SelectSplitMethod from "./SelectSplitMethod";
+import GroupListModal from "./GroupListModal";
+import FriendListModal from "./FriendListModal";
 
 interface Friend {
   friend: {
@@ -69,8 +69,10 @@ interface UserData extends Document {
 const Modal: React.FC = () => {
   const [modal, setModal] = useState(false);
   const [showSecondModal, setShowSecondModal] = useState(false);
-  const [showEqualModal, setShowEqualModal] = useState(false);
-  const [showSecondaryModal, setSecondaryModal] = useState(false);
+  const [showExpenseTypeModal, setShowExpenseTypeModal] = useState(false);
+  const [showSplitMethodModal, setshowSplitMethodModal] = useState(false);
+  const [showGroupListModal, setShowGroupListModal] = useState(false);
+  const [showFriendListModal, setShowFriendListModal] = useState(false);
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [showCalendar, setShowCalendar] = useState(false);
@@ -79,7 +81,12 @@ const Modal: React.FC = () => {
   const [userData, setUserData] = useState<UserData | null | undefined>(undefined);
   const [selectedFriend, setSelectedFriend] = useState<string>("");
   const [selectedPeople, setSelectedPeople] = useState<string[]>([]);
-
+  const [splitMethod, setSplitMethod] = useState("Equal");
+  const [expenseType, setExpenseType] = useState("Individual");
+  const [participantType, setParticipantType] = useState("Friends");
+  const [selectedGroup, setSelectedGroup] = useState("");
+  const [selectedFriendList, setSelectedFriendList] = useState({});
+  
   const modalContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -120,35 +127,45 @@ const Modal: React.FC = () => {
 
   const toggleModal = () => {
     setModal(!modal);
-    closeSecondModal();
+    //closeSecondModal();
   };
 
   const toggleSecondModal = () => {
     setShowSecondModal(!showSecondModal);
+    console.log("sec: " + showSecondModal);
   };
 
-  const toggleEqualModal = (e?: React.MouseEvent<HTMLButtonElement>) => {
+  const toggleSplitMethodModal = (e?: React.MouseEvent<HTMLButtonElement>) => {
     if (e) {
       e.stopPropagation();
     }
-
+    setshowSplitMethodModal(!showSplitMethodModal);
   };
 
-  const toggleSecondaryModal = (e?: React.MouseEvent<HTMLButtonElement>) => {
+  const toggleParticipantModal = (e?: React.MouseEvent<HTMLButtonElement>) => {
     if (e) {
       e.stopPropagation();
     }
-    closeSecondaryModal();
-    setSecondModalCat("split");
-    setSecondaryModal(!showSecondaryModal);
+    if(participantType === "Friends") {
+      setShowFriendListModal(!showFriendListModal);
+    } else {
+      setShowGroupListModal(!showGroupListModal);
+    }
   };
+
+  const toggleExpenseTypeModal = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    setShowExpenseTypeModal(!showExpenseTypeModal);
+    console.log("showExpenseTypeModal at 62" + showExpenseTypeModal);
+  };
+
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     toggleModal();
-    toggleSecondModal();
-    toggleEqualModal();
     handleClose();
   };
 
@@ -157,21 +174,58 @@ const Modal: React.FC = () => {
     setAmount("");
     setModal(false);
     setShowSecondModal(false);
-    setShowEqualModal(false);
+    console.log("sec: " + showSecondModal);
+    closeSplitMethodModal();
     closeSecondModal();
+    closeExpenseTypeModal();
+    console.log("showExpenseTypeModal at 92" + showExpenseTypeModal);
 
   };
 
   const closeSecondModal = () => {
     setShowSecondModal(false);
+    console.log("sec: " + showSecondModal);
   };
 
-  const closeSecondaryModal = () => {
-    setSecondaryModal(false);
+  const closeExpenseTypeModal = () => {
+    setShowExpenseTypeModal(false);
+    console.log(showExpenseTypeModal);
   };
-  const closeEqualModal = () => {
-    setShowEqualModal(false);
+
+  const closeSplitMethodModal = () => {
+    setshowSplitMethodModal(false);
   };
+
+  const closeGroupListModal = () => {
+    setShowGroupListModal(false);
+  };
+
+  const closeFriendListModal = () => {
+    setShowFriendListModal(false);
+  };
+
+  const handleChangeSplitMethod = (method: string) => {
+    setSplitMethod(method);
+  }
+
+  const handleChangeGroup = (group: string) => {
+    setSelectedGroup(group);
+  }
+
+  const handleChangeFriendList = (friendList: string[]) => {
+    setSelectedFriendList(friendList);
+  }
+
+  const handleChangeExpenseMethod = (type: string) => {
+    setExpenseType(type);
+    if(type === "Individual") {
+      setParticipantType("Friends");
+    } else {
+      setParticipantType("Groups");
+    }
+  }
+
+  console.log(selectedFriendList);
 
   const addExpense = async (description: string, amount: string, selectedFriend: string, selectedPeople: string[]) => {
     try {
@@ -214,94 +268,58 @@ const Modal: React.FC = () => {
               <h3>Add an expense</h3>
               <form onSubmit={handleFormSubmit}>
                 <label className={styles.description}>
-                  <input
-                    type="text"
-                    value={description}
-                    placeholder="Enter description"
-                    onChange={(e) => setDescription(e.target.value)}
-                  />
+                  <input type="text" value={description} placeholder="Enter description" onChange={(e) => setDescription(e.target.value)}/>
                 </label>
                 <br />
                 <hr />
                 <label className={styles.currency}>
                   $:
-                  <input
-                    type="text"
-                    value={amount}
-                    onChange={(e) =>
-                      setAmount((e.target as HTMLInputElement).value)
-                    }
-                    onInput={(e) => {
-                      e.currentTarget.value = e.currentTarget.value.replace(
-                        /[^0-9.]/g,
-                        ""
-                      );
-                    }}
-                  />
+                  <input type="text" value={amount} onChange={(e) => setAmount((e.target as HTMLInputElement).value)} onInput={(e) => { e.currentTarget.value = e.currentTarget.value.replace(
+                        /[^0-9.]/g,"");}}/>
                 </label>
+
                 <br />
                 <hr />
                 <label>
-                    Paid by:
-                    <select
-                      value={selectedFriend}
-                      onChange={(e) => setSelectedFriend(e.target.value)}
-                      className={styles.dropdown}
-                    >
-                      <option value="" disabled>
-                        Select
-                      </option>
-                      {userData?.friends.map((friend) => (
-                        <option key={friend.friend._id} value={friend.friend._id}>
-                          {friend.friend.first_name} {friend.friend.last_name}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
+                  Expense type:
+                  <button type="button" value="expenseType" className={styles.btn} onClick={toggleExpenseTypeModal}>
+                    { expenseType }
+                  </button>
+                </label>
+
                 <label>
                   and Split:
                   <button
                     type="button"
                     value="split"
                     className={styles.btn}
-                    onClick={toggleSecondaryModal}
+                    onClick={toggleSplitMethodModal}
                   >
-                    Equally
+                    { splitMethod }
                   </button>
                 </label>
                 <br />
                 <label>
-                    People
-                    <select
-                        value={selectedPeople}
-                        onChange={(e) => setSelectedPeople(Array.from(e.target.selectedOptions, option => option.value))}
-                        className={styles.dropdown}
-                        multiple
-                      >
-                      <option value="" disabled>
-                        Select
-                      </option>
-                      {userData?.friends.map((friend) => (
-                      <option key={friend.friend._id} value={String(friend.friend._id)}>
-                        {friend.friend.first_name} {friend.friend.last_name}
-                      </option>
-                    ))}
-                    {userData?.groups.map((group) => (
-                      <option key={String(group.group)} value={String(group.group)}>
-                        {group.group_name}
-                      </option>
-                    ))}
-                    </select>
-                  </label>
+                  { participantType }:
+                  <button
+                    type="button"
+                    className={styles.btn}
+                    onClick={toggleParticipantModal}
+                  >
+                    { participantType === "Friends" ? "..." : selectedGroup}
+                  </button>
+                </label>
                 <br />
+
                 <br />
+                {/* <button type="button" className={styles.group}>
+                  Select Group
+                </button> */}
+
                 <div className={styles.buttonGroup}>
-                <button
-                      type="submit"
-                      className={styles.save}
-                      onClick={() => addExpense(description, amount, selectedFriend, selectedPeople)}> 
-                      Save
-                    </button>
+                  <button type="submit" className={styles.save}>
+                    Save
+                  </button>
                   <button
                     type="button"
                     onClick={toggleModal}
@@ -319,8 +337,11 @@ const Modal: React.FC = () => {
         )
       }
 
-      {showSecondModal && <SecondModal onClose={closeSecondModal} />}
-      {showSecondaryModal && <SecondaryModal category="split"/>}
+      {console.log("showExpenseTypeModal at 62" + showExpenseTypeModal)}
+      {showExpenseTypeModal && <SelectExpenseType onClose={closeExpenseTypeModal} onClick={handleChangeExpenseMethod}/>}
+      {showSplitMethodModal && <SelectSplitMethod onClose={closeSplitMethodModal} onClick={handleChangeSplitMethod}/>}
+      {showGroupListModal && <GroupListModal onClose={closeGroupListModal} onClick={handleChangeGroup}/>}
+      {showFriendListModal && <FriendListModal onClose={closeFriendListModal} onClick={handleChangeFriendList}/>}
     </>
   );
 };

@@ -24,7 +24,7 @@ body.activeModal {
     background: rgba(49,49,49,0.8);
 }
 .modalContent {
-  margin-top: 50px;
+    margin-top: 50px;
     position: fixed;
     top: 40%;
     left: 50%;
@@ -195,17 +195,24 @@ body.activeModal {
   /* AddExpense.module.css */
 
 .equalModalContent {
+  width: 1%;
+  margin-top: 50px;
   position: fixed;
-  margin-left: 43.9em;
-  margin-top: -4.5em;
-  text-align: center;
+  transform: translate(-50%,-50%);
+  line-height: 2.8;
+  background-color: #f1f1f1;
+  padding: 14px 28px;
+  border-radius: 3px;
+  max-width: 80%;
+  min-width: 30%;
   border-radius: 10px;
   border: 2px solid;
   border-color: #01ce67;
-  min-height: 15vh;
+  z-index: 1001;
+  min-height: 20vh;
   height: auto;
-  width: 300px; /* Adjust the width as needed */
-  background-color: white;
+  z-index: 1002;
+  box-shadow: 2px 4px 10px #00000029;
 }
 
 
@@ -217,7 +224,39 @@ body.activeModal {
   padding: 1px 5px; /* Adjust the value to be higher than .equalModalContent */
 }
 
- 
+.label {
+  background-color: #ffffff;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0px 3px 6px #00000029;
+  font-weight: bold;
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.3s ease;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+
+}
+
+
+.label:hover {
+  cursor: pointer;
+  background-color: #01ce67;
+  color: #fff;
+}
+
+.label:checked {
+  cursor: pointer;
+  background-color: #01ce67;
+  color: #fff;
+}
+
+.card_input_element {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
 
 
   
