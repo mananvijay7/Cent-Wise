@@ -17,6 +17,7 @@ const RightSidePanel = (params: Props) => {
         from: { opacity: 0, transform: 'translateY(-20px)' },
     });
 
+    
     let primaryHeading = "";
     let secondaryHeading = "";
     let buttonText = "";
@@ -26,13 +27,13 @@ const RightSidePanel = (params: Props) => {
 
 
     if (params.type === "signin") {
-        primaryHeading = "New Here!";
-        secondaryHeading = "Start Journey with us...";
+        primaryHeading = "New Here?";
+        secondaryHeading = "Start splitting CENTcibly today!";
         buttonText = "Sign Up";
         routePath = "/user/signup"
     } else {
-        primaryHeading = "Loyal Navigators!";
-        secondaryHeading = "Embark on Your Journey..."
+        primaryHeading = "Already splitting Centcibly?";
+        // secondaryHeading = "Sign in into CentWise!";
         buttonText = "Sign In";
         routePath = "/user/signin";
     }
@@ -49,7 +50,7 @@ const RightSidePanel = (params: Props) => {
                         {primaryHeading}
                     </div>
                     </animated.div>
-                    <div className={styles.secondaryHeading}>
+                    <div className={styles.secondaryHeading}>   
                         <TypeAnimation
                             sequence={[
                                 `${secondaryHeading}`
@@ -59,10 +60,11 @@ const RightSidePanel = (params: Props) => {
                             repeat={1}
                         />
                     </div>
-                    <div className={styles.button}>
-                        <button onClick={handleClick}>{buttonText}</button>
                     </div>
-            </div>
+                    <div className={styles.button}>
+                        <button className={styles.signUp} onClick={handleClick}>{buttonText}</button>
+                    </div>
+            
         </div>
     );
 }
