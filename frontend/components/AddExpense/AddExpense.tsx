@@ -245,28 +245,42 @@ const Modal: React.FC = () => {
 
   console.log(selectedFriendList);
 
-  const addExpense = async (description: string, amount: string, selectedFriend: string, selectedPeople: string[]) => {
+  const addExpense = async (
+    Payer: string,
+    description: string,
+    amount: string,
+    expenseType: string,
+    splitMethod: string,
+    participantType: string,
+    selectedGroup: string,
+    selectedFriendList: {}
+  ) => {
     try {
-    // Create an expenseData object to send in the request
-    const expenseData = {
-      Payer: selectedFriend,
-      description: description,
-      amount: amount,
-      peopleInvolved: selectedPeople,
-    };
-
-    // Use Axios to send a POST request
-    const response = await axios.post('/api/expense/addExpense', expenseData,);
-
-    console.log('Expense added successfully:', response.data);
-    // You can also return the response if needed
-    return response.data;
-  } catch (error: any) {
-    // Handle errors
-    console.error('Error adding expense:', error.message);
-    // You might want to throw the error or handle it accordingly
-    throw error;
-  }
+      // Create an expenseData object to send in the request
+      const expenseData = {
+        payer: selectedPayer,
+        description: description,
+        usersInvolved: selectedFriendList,
+        groupInvolved: selectedGroup,
+        amount: amount, // Convert amount to a number if needed
+        created_by: userData?._id,
+        partition: splitMethod,
+        expenseType: expenseType,
+         // Assuming selectedFriend is the payer's ID
+      };
+  
+      // Use Axios to send a POST request
+      const response = await axios.post('/api/expense/addExpense', expenseData);
+  
+      console.log('Expense added successfully:', response.data);
+      // You can also return the response if needed
+      return response.data;
+    } catch (error: any) {
+      // Handle errors
+      console.error('Error adding expense:', error.message);
+      // You might want to throw the error or handle it accordingly
+      throw error;
+    }
   };
 
   return (
@@ -334,7 +348,7 @@ const Modal: React.FC = () => {
                     className={styles.btn}
                     onClick={toggleParticipantModal}
                   >
-                    { participantType === "Friends" ? "..." : selectedGroup}
+                    { participantType === "Friends" ? "Friends" : selectedGroup}
                   </button>
                 </label>
                 <br />
@@ -345,9 +359,10 @@ const Modal: React.FC = () => {
                 </button> */}
 
                 <div className={styles.buttonGroup}>
-                  <button type="submit" className={styles.save}>
-                    Save
-                  </button>
+                <button type="submit" className={styles.save} 
+                onClick={() => addExpense(selectedPayer, description, amount, expenseType, splitMethod, participantType, selectedGroup, selectedFriendList)}>
+                        Save
+                      </button>
                   <button
                     type="button"
                     onClick={toggleModal}
