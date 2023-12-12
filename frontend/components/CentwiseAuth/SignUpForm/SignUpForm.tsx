@@ -122,7 +122,7 @@ const SignInForm: React.FC = () => {
 
                 <button className={styles.googleButton} onClick={handleGoogleOauth}>
                     <img className={styles.googleLogo} src={googleLogoPath} alt="Google Logo" />
-                    <p className={styles.googleText}><b>Sign in with Google</b></p>
+                    <p className={styles.googleText}><b>Sign up with Google</b></p>
                 </button>
 
                 <div className={styles.Or}>OR</div>
@@ -145,7 +145,7 @@ const SignInForm: React.FC = () => {
                     )}
                     <br /><input className={styles.inputs} value={confirmPassword} onChange={handleConfirmPasswordChange} type={showConfirmPassword ? "text" : "password"} placeholder="Confirm password" required id="confirmPassword" name='cnfPassword' />
                     <button className={styles.showconfirmpassword} type="button" onClick={toggleConfirmShowPassword}>{showConfirmPassword ? "Hide" : "Show"} Password</button>
-                    <br /><button className={styles.submitBtn} type="submit">Sign Up</button>
+                    <br /><button className={styles.signBtn} type="submit">Sign Up</button>
                 </form>
 
             </div>
