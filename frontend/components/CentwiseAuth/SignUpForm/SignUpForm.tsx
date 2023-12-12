@@ -115,7 +115,7 @@ const SignInForm: React.FC = () => {
     return (
         <div className={styles.container}>
             <div className={styles.centwiseLogo}>
-                <img src={centwiseLogo} alt="Centwise Logo" height="40" width="160" />
+                <img src={centwiseLogo} alt="Centwise Logo" height="40" width="190" />
             </div>
             <div className={styles.mainFormContainer}>
                 <h2 className={styles.formHeading}>Sign up to account</h2>
