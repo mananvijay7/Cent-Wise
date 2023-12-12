@@ -7,80 +7,76 @@ import axios from 'axios';
 import { Document, Types } from 'mongoose';
 
 
-interface Friend {
-    friend: {
-      _id: string;
-      email: string;
-      password: string;
-      first_name: string;
-      last_name: string;
-      ph_no: string;
-      created_date: Date;
-      totalOweAmount: number;
-      totalOweToSelf: number;
-      totalBalance: number;
-      friends: Friend[];
-      expenses: Expense[];
-    };
-    amountInDeal: number;
-    friend_first_name: string;
-    friend_last_name: string;
-  }
-  
-  interface Participant {
-    _id: Types.ObjectId;
-  }
-  
-  interface Expense {
-    _id: string,
-    Payer: Types.ObjectId;
-    participants: Participant[];
-    amount: number;
-    currency: string;
-    created_by: Types.ObjectId;
-    created_date: Date;
-    partition: string[];
-  }
+interface UserInvolved {
+  user: Types.ObjectId;
+  paidShare: number;
+  owedShare: number;
+  user_first_name: string;
+  user_last_name: string;
+}
 
-  interface Group {
-    group: Types.ObjectId;
-    group_name: string;
-    you_paid: number;
-    you_lent: number;
-  }
-  
-  interface UserData extends Document {
-    _id: string,
-    email: string;
-    password: string;
-    first_name: string;
-    last_name: string;
-    ph_no: string;
-    created_date: Date;
-    totalOweAmount: number;
-    totalOweToSelf: number;
-    totalBalance: number;
-    friends: Friend[];
-    expenses: Expense[];
-    groups: Group[];
-  }
+interface GroupInvolved {
+  group: Types.ObjectId;
+  group_name: string;
+}
+
+interface Partition {
+  type: string;
+}
+
+interface Expense extends Document {
+  Payer: Types.ObjectId;
+  description: string;
+  usersInvolved: UserInvolved[];
+  groupInvolved: GroupInvolved[];
+  amount: number;
+  currency: string;
+  created_by: Types.ObjectId;
+  created_date: Date;
+  partition: Partition[];
+  expenseType: string;
+}
+
+interface UserData extends Document {
+  _id: string,
+  email: string;
+  password: string;
+  first_name: string;
+  last_name: string;
+  ph_no: string;
+  created_date: Date;
+  totalOweAmount: number;
+  totalOweToSelf: number;
+  totalBalance: number;
+}
+
 
 const DashboardCmp = () => {
+    const [friendExpense, setFriendExpense] = useState<Expense[] | null>(null);
+    const [groupExpense, setGroupExpense] = useState<Expense[] | null>(null);
     const [userData, setUserData] = useState<UserData | null>(null);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-              const response = await axios.get('/api/dashboard');
-              const data = response.data;
-              setUserData(data);
-            } catch (error: any) {
+      const fetchData = async () => {
+          try {
+              const friendResponse = axios.get('/api/expense/FriendData', { params: { expenseType: 'Individual' } });
+              const groupResponse = axios.get('/api/expense/GroupData', { params: { expenseType: 'Group' } });
+              const userResponse = axios.get('/api/dashboard');
+  
+              const [friendData, groupData, userData] = await Promise.all([friendResponse, groupResponse, userResponse]);
+  
+              setFriendExpense(friendData.data);
+              setGroupExpense(groupData.data);
+              setUserData(userData.data);
+  
+              console.log('friendExpense', groupData.data);
+          } catch (error: any) {
               console.error('Error getting data from the database:', error.message);
-            }
-          };
-
-          fetchData();
-    }, []);
+          }
+      };
+      fetchData();
+  }, []);
+  
 
     return (
         <div>
@@ -96,13 +92,13 @@ const DashboardCmp = () => {
                 </div>
                 <div className={styles.listCard}>
                     <div className={styles.summary}>Friends</div>
-                    <ShowDebtOwesList userData={userData}/>
+                    <ShowDebtOwesList friendExpense={friendExpense}/>
                 </div>
             </div>
             <hr className={styles.hr} />
             <div className={styles.listCard}>
                 <div className={styles.summary}>Groups</div>
-                <ShowDebtOwesGroupList userData={userData}/>
+                <ShowDebtOwesGroupList groupExpense={groupExpense}/>
             </div>
         </div>
     );
