@@ -64,7 +64,7 @@ export const forgotPassword = async function (request, response) {
 
     const resetLink = `http://your-domain.com/user/reset-password/${resetToken}`;
 
-    const emailTo = 'saoji.a@northeastern.edu'; 
+    const emailTo = email; 
     const emailContent = `Click the following link to reset your password: ${resetLink}`;
 
     const mailOptions = {

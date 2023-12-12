@@ -100,7 +100,7 @@ const ShowDebtOwesList: React.FC<Props> = ({ userData }) => {
         <div className={styles.flexChild}>
           <div className={styles.label}>You are owed</div>
           {friendsList.map((friend) => (
-            friend.amountInDeal > 0 && (
+            friend.amountInDeal >= 0 && (
               <ShowDebtOwesListCard
                 key={friend.friend._id}
                 imgSrc={"src/assets/person.jpg"}

@@ -4,6 +4,7 @@ import Group from '../models/GroupSchema.js';
 
 export const addExpense = async (request) => {
             try {
+                  console.log(request);
                   const { description, amount, selectedFriend, selectedPeople } = request.body;
               
                   // Create an expenseData object to send in the request
@@ -14,33 +15,35 @@ export const addExpense = async (request) => {
                     peopleInvolved: selectedPeople,
                   };
 
-                  console.log('selectedPeople');
-                  console.log(selectedPeople);
+                  console.log('expense Data');
+                  //console.log(peopleInvolved);
+
+                  console.log(expenseData);
               
                   // Determine if it's a group or individual expense
-                  // if (selectedPeople.length === 1) {
-                  //   // Individual expense
+                  if (selectedPeople.length === 1) {
+                    // Individual expense
                     
-                  //   expenseData.usersInvolved = selectedPeople.map((user) => ({
-                  //     user,
-                  //     paidShare: 0,
-                  //     owedShare: 0,
-                  //     user_first_name: '', // You may need to fetch user details here
-                  //     user_last_name: '',
-                  //   }));
-                  // } else {
-                  //   // Group expense
-                  //   expenseData.groupInvolved = selectedPeople.map((group) => ({
-                  //     group,
-                  //     group_name: '', // You may need to fetch group details here
-                  //   }));
-                  // }
+                    expenseData.usersInvolved = selectedPeople.map((user) => ({
+                      user,
+                      paidShare: 0,
+                      owedShare: 0,
+                      user_first_name: '', // You may need to fetch user details here
+                      user_last_name: '',
+                    }));
+                  } else {
+                    // Group expense
+                    expenseData.groupInvolved = selectedPeople.map((group) => ({
+                      group,
+                      group_name: '', // You may need to fetch group details here
+                    }));
+                  }
               
                   // Use Mongoose to create a new expense
                   const createdExpense = await Expense.create(expenseData);
               
                   console.log('Expense added successfully:', createdExpense);
-                  res.status(201).json(createdExpense);
+                  ressponse.status(201).json(createdExpense);
                 } catch (error) {
                   // Handle errors
                   console.error('Error adding expense:', error.message);

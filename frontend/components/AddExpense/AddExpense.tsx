@@ -184,7 +184,7 @@ const Modal: React.FC = () => {
     };
 
     // Use Axios to send a POST request
-    const response = await axios.post('/api/expense/createExpense', expenseData,);
+    const response = await axios.post('/api/expense/addExpense', expenseData,);
 
     console.log('Expense added successfully:', response.data);
     // You can also return the response if needed
@@ -299,7 +299,7 @@ const Modal: React.FC = () => {
                 <button
                       type="submit"
                       className={styles.save}
-                      onClick={() => addExpense(description, amount, selectedFriend, selectedPeople)}>
+                      onClick={() => addExpense(description, amount, selectedFriend, selectedPeople)}> 
                       Save
                     </button>
                   <button

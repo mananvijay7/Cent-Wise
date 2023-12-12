@@ -48,9 +48,10 @@ const SignInForm = () => {
   const handleGoogleOauth = () => {
     window.location.href = '/api/user/auth/google';
   }
-  const handleForgotPasswordClick = async (): Promise<void> => {
+  const handleForgotPasswordClick = async () => {
     try {
-      await axios.post('/api/user/forgot-password', { email: 'saoji.a@northeastern.edu' });
+      const response = await axios.post('/api/user/forgotpassword', { email: 'saoji.a@northeastern.edu' });
+      console.log(response);
       alert('Password reset email sent. Check your inbox.');
     } catch (error) {
       console.error('Error sending password reset email:', error);

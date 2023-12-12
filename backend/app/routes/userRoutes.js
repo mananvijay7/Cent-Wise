@@ -40,9 +40,7 @@ router.post('/uploadfile', upload.single('file'), userController.create);
 router.get('/checkAuth', userController.checkAuth);
 router.get('/signout', userController.sessionDestroy);
 
-// router.post('/forgot-password', userController.forgotPassword);
-
-router.get('/forgot-password', userController.forgotPassword);
+router.post('/forgotpassword', userController.forgotPassword);
 
 router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 router.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: '/api/user/signin'}), userController.createSession);

@@ -39,12 +39,14 @@ const AddedCentwiseFriend: React.FC = () => {
               email: email,
             },
           );
-    
+
+          console.log("add friend tsx");
+          console.log(response);
           navigate('/friends');
     
           // Log the response or handle it as needed
           console.log('Group creation response:', response.data);
-        } catch (error: any) {
+        } catch (error: any) { 
           // Handle errors, e.g., log them or show an error message to the user
           console.error('Error creating group:', error.message);
         }
