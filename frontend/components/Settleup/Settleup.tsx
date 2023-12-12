@@ -76,9 +76,6 @@ export default function SettleupModal() {
               applicable. Splitwise charges no additional fees.
             </p>
 
-            <button className={styles.saveButton} onClick={toggleModal}>
-              Save
-            </button>
             <button className={styles.cancelButton} onClick={toggleModal}>
               Cancel
             </button>
