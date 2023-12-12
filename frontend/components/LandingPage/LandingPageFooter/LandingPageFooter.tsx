@@ -8,10 +8,10 @@ const LandingPageFooter = () => {
             <div>
               <div><img className={styles.footer_logo} src={whiteLogo} width="150px" height="30px" /></div>
               <div className={styles.socialIcons}>
-                <a href="#"><img className={styles.social} src="assets/assets/images/facebook_app_symbol.png" alt="fb"/></a>
+                {/* <a href="#"><img className={styles.social} src="assets/assets/images/facebook_app_symbol.png" alt="fb"/></a>
                 <a href="#"><img className={styles.social} src="assets/assets/images/twitter.png" alt="fb"/></a>
                 <a href="#"><img className={styles.social} src="assets/assets/images/youtube.png" alt="fb"/></a>
-                <a href="#"><img className={styles.social} src="assets/assets/images/instagram.png" alt="fb"/></a>
+                <a href="#"><img className={styles.social} src="assets/assets/images/instagram.png" alt="fb"/></a> */}
               </div>
             </div>
           </section>
