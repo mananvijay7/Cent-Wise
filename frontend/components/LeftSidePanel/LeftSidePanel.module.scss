@@ -54,7 +54,11 @@ $display: flex;
 
 .title {
   margin-left: 8px; /* Add space between title and icons */
-}s
+}
+
+.focused .title {
+  /* Apply styles for focused state, if needed */
+}
 
 .mainDiv {
   display: $display;

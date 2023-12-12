@@ -52,7 +52,11 @@
   margin-left: 8px; /* Add space between title and icons */
 }
 
-s .mainDiv {
+.focused .title {
+  /* Apply styles for focused state, if needed */
+}
+
+.mainDiv {
   display: flex;
   flex-direction: row;
   align-items: center;
