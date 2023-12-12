@@ -6,71 +6,43 @@ import { useState } from "react";
 
 
 
-interface Friend {
-      friend: {
-        _id: string;
-        email: string;
-        password: string;
-        first_name: string;
-        last_name: string;
-        ph_no: string;
-        created_date: Date;
-        totalOweAmount: number;
-        totalOweToSelf: number;
-        totalBalance: number;
-        friends: Friend[];
-        expenses: Expense[];
-      };
-      amountInDeal: number;
-      friend_first_name: string;
-      friend_last_name: string;
-    }
-    
-    interface Participant {
-      _id: Types.ObjectId;
-    }
-    
-    interface Expense {
-      _id: string,
-      Payer: Types.ObjectId;
-      participants: Participant[];
-      amount: number;
-      currency: string;
-      created_by: Types.ObjectId;
-      created_date: Date;
-      partition: string[];
-    }
-  
-    interface Group {
-      group: Types.ObjectId;
-      group_name: string;
-      you_paid: string;
-      you_lent: string;
-    }
-    
-    interface UserData extends Document {
-      _id: string,
-      email: string;
-      password: string;
-      first_name: string;
-      last_name: string;
-      ph_no: string;
-      created_date: Date;
-      totalOweAmount: number;
-      totalOweToSelf: number;
-      totalBalance: number;
-      friends: Friend[];
-      expenses: Expense[];
-      groups: Group[];
-    }
-
-interface Props {
-  userData?: UserData | null;
+interface UserInvolved {
+  user: Types.ObjectId;
+  paidShare: number;
+  owedShare: number;
+  user_first_name: string;
+  user_last_name: string;
 }
 
-const ShowDebtOwesGroupList: React.FC<Props> = ({userData}) => {
+interface GroupInvolved {
+  group: Types.ObjectId;
+  group_name: string;
+}
 
-    const groupList = userData?.groups || [];
+interface Partition {
+  type: string;
+}
+
+interface Expense extends Document {
+  Payer: Types.ObjectId;
+  description: string;
+  usersInvolved: UserInvolved[];
+  groupInvolved: GroupInvolved[];
+  amount: number;
+  currency: string;
+  created_by: Types.ObjectId;
+  created_date: Date;
+  partition: Partition[];
+  expenseType: string;
+}
+
+interface Props {
+  groupExpense?: Expense[] | null;
+}
+
+const ShowDebtOwesGroupList: React.FC<Props> = ({groupExpense}) => {
+
+    const groupList = groupExpense?.[0]?.groupInvolved || [];
     const [isModalVisible, setModalVisible] = useState(false);
 
     const viewChartHandler = () => {
@@ -101,7 +73,7 @@ const ShowDebtOwesGroupList: React.FC<Props> = ({userData}) => {
               imgSrc={"src/assets/person.jpg"} 
               username={`${group.group_name}`} 
               you_lent={''} 
-              you_paid={group.you_paid} 
+              you_paid={210} 
             />
           ))}
         </div>
@@ -112,7 +84,7 @@ const ShowDebtOwesGroupList: React.FC<Props> = ({userData}) => {
             key={group.group.toString()} 
             imgSrc={"src/assets/person.jpg"} 
             username={`${group.group_name}`} 
-            you_lent={group.you_lent} 
+            you_lent={120} 
             you_paid={''}  
             />
           ))}

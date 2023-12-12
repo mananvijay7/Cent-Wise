@@ -4,70 +4,46 @@ import styles from "./ShowDebtOwesList.module.css";
 import ChartModal from "../ChartVisuals/ChartModal";
 import { Document, Types } from 'mongoose';
 
-interface Friend {
-  friend: {
-    _id: string;
-    email: string;
-    password: string;
-    first_name: string;
-    last_name: string;
-    ph_no: string;
-    created_date: Date;
-    totalOweAmount: number;
-    totalOweToSelf: number;
-    totalBalance: number;
-    friends: Friend[];
-    expenses: Expense[];
-  };
-  amountInDeal: number;
-  friend_first_name: string;
-  friend_last_name: string;
+interface UserInvolved {
+  user: Types.ObjectId;
+  paidShare: number;
+  owedShare: number;
+  user_first_name: string;
+  user_last_name: string;
 }
 
-interface Participant {
-  _id: Types.ObjectId;
+interface GroupInvolved {
+  group: Types.ObjectId;
+  group_name: string;
 }
 
-interface Expense {
-  _id: string;
+interface Partition {
+  type: string;
+}
+
+interface Expense extends Document {
   Payer: Types.ObjectId;
-  participants: Participant[];
+  description: string;
+  usersInvolved: UserInvolved[];
+  groupInvolved: GroupInvolved[];
   amount: number;
   currency: string;
   created_by: Types.ObjectId;
   created_date: Date;
-  partition: string[];
-}
-
-interface Group {
-  group: Types.ObjectId;
-  group_name: string;
-  you_paid: number;
-  you_lent: number;
-}
-
-interface UserData extends Document {
-  email: string;
-  password: string;
-  first_name: string;
-  last_name: string;
-  ph_no: string;
-  created_date: Date;
-  totalOweAmount: number;
-  totalOweToSelf: number;
-  totalBalance: number;
-  friends: Friend[];
-  expenses: Expense[];
-  groups: Group[];
+  partition: Partition[];
+  expenseType: string;
 }
 
 interface Props {
-  userData?: UserData | null;
+  friendExpense?: Expense[] | null;
 }
 
-const ShowDebtOwesList: React.FC<Props> = ({ userData }) => {
-  const friendsList = userData?.friends || [];
+const ShowDebtOwesList: React.FC<Props> = ({ friendExpense }) => {
+  const friendsList = friendExpense?.[0]?.usersInvolved || [];
   const [isModalVisible, setModalVisible] = useState(false);
+
+  // console.log('friendsList');
+  // console.log({`${friendExpense?.description}`});
 
   const viewChartHandler = () => {
     setModalVisible(true);
@@ -87,28 +63,28 @@ const ShowDebtOwesList: React.FC<Props> = ({ userData }) => {
         <div className={styles.flexChild}>
           <div className={styles.label}>You Owe</div>
           {friendsList.map((friend) => (
-            friend.amountInDeal < 0 && (
+            friend.owedShare > 0 && (
               <ShowDebtOwesListCard
-                key={friend.friend._id}
+                key={friend.user.toString()}
                 imgSrc={"src/assets/person.jpg"}
-                username={`${friend.friend_first_name}`}
-                amount={`$${Math.abs(friend.amountInDeal).toFixed(2)}`}
+                username={`${friend.user_first_name}`}
+                amount={`$${Math.abs(friend.owedShare).toFixed(2)}`}
               />
             )
-          ))}
+            ))}
         </div>
         <div className={styles.flexChild}>
           <div className={styles.label}>You are owed</div>
-          {friendsList.map((friend) => (
-            friend.amountInDeal >= 0 && (
+            {friendsList.map((friend) => (
+               friend.paidShare > 0 && (
               <ShowDebtOwesListCard
-                key={friend.friend._id}
+                key={friend.user.toString()}
                 imgSrc={"src/assets/person.jpg"}
-                username={`${friend.friend_first_name}`}
-                amount={`$${friend.amountInDeal.toFixed(2)}`}
+                username={`${friend.user_first_name}`}
+                amount={`$${friend.paidShare.toFixed(2)}`}
               />
-            )
-          ))}
+               )
+            ))}
         </div>
       </div>
     </div>
