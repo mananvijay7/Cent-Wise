@@ -24,27 +24,29 @@ const LandingPageLeftPanel = () => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.animatedTitle}>
             <animated.div style={props}>
-                <h1 className={styles.titleContent}>
-                    <TypeAnimation
-                        sequence={[
-                            'Welcome to Centwise'
-                        ]}
-                        speed={200} // Typing speed in ms
-                        style={{ fontSize: '1.5em', color: '#353434' }}
-                        repeat={1}
-                    />
-                </h1>
+                <div className={styles.animatedTitle}>
+
+                    <h1 className={styles.titleContent}>
+                        <TypeAnimation
+                            sequence={[
+                                'Welcome to Centwise'
+                            ]}
+                            speed={200} // Typing speed in ms
+                            style={{ fontSize: '1.5em', color: '#353434' }}
+                            repeat={1}
+                        />
+                    </h1>
+
+                </div>
+                <div className={styles.secondaryContent}>
+                    Elevate your shared living experience with Centwise – the key to fair and friendly expense management.
+                </div>
+                <div className={styles.buttonContainer}>
+                    <button className={styles.login} onClick={handleLogin}>Login</button>
+                    <button className={styles.signup} onClick={handleSignup}>Sign Up</button>
+                </div>
             </animated.div>
-            </div>
-            <div className={styles.secondaryContent}>
-            Elevate your shared living experience with Centwise – the key to fair and friendly expense management.
-            </div>
-            <div className={styles.buttonContainer}>
-                <button className={styles.login} onClick={handleLogin}>Login</button>
-                <button className={styles.signup} onClick={handleSignup}>Sign Up</button> 
-            </div>
         </div>
     );
 }
