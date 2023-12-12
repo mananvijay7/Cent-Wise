@@ -4,6 +4,7 @@ import {LeftSidePanelData} from "./LeftSidePanelData";
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import InviteFriendsModal from '../InviteFriendsModal/InvitefrndsModal';
+import ChartModal from '../ChartVisuals/ChartModal';
 
 interface LeftSidePanelItem {
   titleKey: string;
@@ -16,19 +17,26 @@ function LeftSidePanel() {
     const [focusedItem, setFocusedItem] = useState<number | null>(null);
     const [currPage, setCurrPage] = useState<string | null>("/");
     const [isInviteFriendsModalOpen, setInviteFriendsModalOpen] = useState<boolean>(false);
-
+    const [isChartModalOpen, setChartModalOpen] = useState<boolean>(false)
     const handleItemClick = (index: number) => {
       setFocusedItem(index);
       if (LeftSidePanelData[index]?.link === '/invitefriends') {
         console.log('Opening Invite Friends modal');
         setInviteFriendsModalOpen(true);
+        setChartModalOpen(false); // Close ChartModal if it was open
+      } else if (LeftSidePanelData[index]?.link === '/expensevisualisation') {
+        console.log('Opening Chart modal');
+        setChartModalOpen(true);
+        setInviteFriendsModalOpen(false); // Close InviteFriendsModal if it was open
       } else {
-        console.log('Closing Invite Friends modal');
+        console.log('Closing Modals');
         setInviteFriendsModalOpen(false);
+        setChartModalOpen(false);
       }
     };
     const closeModal = () => {
       setInviteFriendsModalOpen(false);
+      setChartModalOpen(false);
     };
 
     return (
@@ -64,6 +72,7 @@ function LeftSidePanel() {
           </ul>
         </div>
         {isInviteFriendsModalOpen && <InviteFriendsModal closeModal={closeModal} />}
+        {isChartModalOpen && <ChartModal isVisible={isChartModalOpen} onClose={closeModal} />}
       </>
     );
   }

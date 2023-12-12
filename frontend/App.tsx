@@ -13,14 +13,19 @@ import Navbar from './components/Navbar/Navbar';
 import axios from 'axios';
 import CentwiseAuth from './components/CentwiseAuth/CentwiseAuth';
 import InviteFriendsModal from './components/InviteFriendsModal/InvitefrndsModal';
+import ChartModal from './components/ChartVisuals/ChartModal';
 
 
 
 const App: React.FC = () => {
   const [isInviteFriendsModalOpen, setInviteFriendsModalOpen] = useState(false);
+  const [isChartModalOpen, setChartModalOpen] = useState(false);
 
   const handleInviteFriendsClick = () => {
     setInviteFriendsModalOpen(!isInviteFriendsModalOpen);
+  };
+  const handleChartModalClick = () => {
+    setChartModalOpen(!isChartModalOpen);
   };
 
   return (
@@ -53,6 +58,17 @@ const App: React.FC = () => {
             </ProtectedRoute>
           }
         />
+
+      <Route
+                path="/expensevisualisation"
+                element={
+                  <ProtectedRoute>
+                     {/* <ChartModal closeModal={handleChartModalClick} title="Expense Visualization" /> */}
+    
+                      <ChartModal isVisible={isChartModalOpen} onClose={handleChartModalClick} />
+                  </ProtectedRoute>
+                }
+              />
 
         <Route
           path="/friends"
