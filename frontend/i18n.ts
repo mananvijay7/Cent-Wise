@@ -9,7 +9,7 @@ i18n.use(HttpAPI)
     .use(initReactI18next)
 
     .init({
-        lng: 'ta',
+        lng: 'en',
         fallbackLng: 'en',
         ns: ['common'],
         // defaultNS: 'common',
