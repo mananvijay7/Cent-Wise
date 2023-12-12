@@ -116,7 +116,7 @@ function MyProfileModal({ closeModal }: { closeModal: (flag: boolean) => void })
       <div className={styles.modalBackground}>
         <div className={styles.modalContainer}>
           <div className={styles.titleCloseBtn}>
-            <button onClick={() => closeModal(false)}> + </button>
+            <button onClick={() => closeModal(false)}> x </button>
           </div>
           <div className={styles.title}>
           
