@@ -1,20 +1,10 @@
 import User from '../models/UserSchema.js';
 import multer from 'multer';
+import nodemailer from 'nodemailer';
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-import nodemailer from 'nodemailer';
-
-import 'dotenv/config'
-
-let transporter = nodemailer.createTransport({
-  service:"gmail",
-  auth:{
-    user: process.env.AUTH_EMAIL,
-    pass: process.env.AUTH_PASS,
-  }
-});
 
 export const create = async function(request, response){
   //console.log(request);
@@ -52,8 +42,12 @@ export const create = async function(request, response){
 
 
 export const forgotPassword = async function (request, response) {
+  const AUTH_EMAIL='ashayssaoji@gmail.com';
+  const AUTH_PASS='ysws ukyp wkne qkpw';
   try {
     const { email } = request.body;
+
+    console.log(request.body);
     const user = await User.findOne({ email });
 
     if (!user) {
@@ -62,15 +56,24 @@ export const forgotPassword = async function (request, response) {
       });
     }
 
-    const resetLink = `http://your-domain.com/user/reset-password/${resetToken}`;
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: AUTH_EMAIL,
+        pass: AUTH_PASS,
+      },
+    });
 
-    const emailTo = email; 
+    //console.log(request);
+
+    const resetLink = `http://your-domain.com/user/reset-password`;
+
     const emailContent = `Click the following link to reset your password: ${resetLink}`;
 
     const mailOptions = {
-      from: process.env.AUTH_EMAIL,
-      to: emailTo,
-      subject: 'Password Reset',
+      from: AUTH_EMAIL,
+      to: email,
+      subject: 'Reset Centwise Password Reset',
       text: emailContent,
     };
 

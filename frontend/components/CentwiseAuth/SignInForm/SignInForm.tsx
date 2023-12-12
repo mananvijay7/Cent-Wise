@@ -41,7 +41,7 @@ const SignInForm = () => {
           }
     
         } catch (error) {
-          console.error('Error logging in:', error);
+          console.error('Error logging in:', error); 
         }
       };
 
@@ -50,12 +50,13 @@ const SignInForm = () => {
   }
   const handleForgotPasswordClick = async () => {
     try {
-      const response = await axios.post('/api/user/forgotpassword', { email: 'saoji.a@northeastern.edu' });
+      const response = await axios.post('/api/user/forgotpassword', {
+        email: 'mananvijay7@gmail.com',
+      });
       console.log(response);
-      alert('Password reset email sent. Check your inbox.');
+      //alert('Password reset email sent. Check your inbox.');
     } catch (error) {
       console.error('Error sending password reset email:', error);
-      alert('Error sending password reset email.');
     }
   };
     // const handleBackToSignInClick = (): void => {
