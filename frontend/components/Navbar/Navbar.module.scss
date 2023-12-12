@@ -1,3 +1,7 @@
+@mixin pointerCursor {
+  cursor: pointer;
+}
+
 .nav {
   display: flex;
   align-items: center;
@@ -5,7 +9,7 @@
   height: 40px;
   padding: 20px 80px;
   background: #ffffff 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1607843137);
+  box-shadow: 0px 3px 6px #00000029;
   border-radius: 0px 0px 10px 10px;
   opacity: 1;
   z-index: 2;
@@ -21,6 +25,8 @@
   margin-right: 80px;
 }
 
+
+
 .navbar {
   display: flex;
   align-items: center;
@@ -32,14 +38,15 @@
   list-style: none;
   padding: 0 20px;
   gap: 50px;
+  a{
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+  }
 }
-.navbar li a {
-  display: flex;
-  flex-direction: row;
-  text-decoration: none;
-  align-items: center;
-  justify-content: center;
-}
+
 
 .centwiseLogo {
   width: 130px;
@@ -51,16 +58,19 @@
   flex-direction: row;
   align-items: center;
   margin-right: 50px;
-}
-.userContainer:hover {
-  cursor: pointer;
+
+  &:hover{
+    @include pointerCursor();
+  }
 }
 
 .buttons {
   display: flex;
   flex-direction: row;
-  cursor: pointer;
+  @include pointerCursor();
 }
+
+
 
 .userProfile {
   width: 40px;
@@ -74,7 +84,7 @@
   font-weight: 900;
   color: #353434;
   font-size: 100%;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .verticalLine {
@@ -87,4 +97,4 @@
   top: 100%;
   position: relative;
   right: 50px;
-}/*# sourceMappingURL=Navbar.module.css.map */
+}

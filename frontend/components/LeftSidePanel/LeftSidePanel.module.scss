@@ -1,5 +1,9 @@
+$primaryColor: #01ce67;
+$display: flex;
+
+
 .LeftPanel {
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1607843137);
+  box-shadow: 0px 3px 6px #00000029;
   height: 100vh;
   width: 19vw;
   background-color: #FFFFFF;
@@ -17,11 +21,11 @@
 
 .row {
   margin-top: 20%;
-  display: flex;
+  display: $display;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: bolder;
   border-right: 10px solid transparent;
   width: 90%;
@@ -32,8 +36,8 @@
 
 .row.focused {
   cursor: pointer;
-  color: #01ce67;
-  border-color: #01ce67;
+  color: $primaryColor;
+  border-color: $primaryColor;
 }
 
 .icon {
@@ -50,17 +54,17 @@
 
 .title {
   margin-left: 8px; /* Add space between title and icons */
-}
+}s
 
-s .mainDiv {
-  display: flex;
+.mainDiv {
+  display: $display;
   flex-direction: row;
   align-items: center;
   color: black;
 }
 
 .mainDiv:hover {
-  color: #01ce67;
+  color: $primaryColor;
 }
 
 .LeftSideBarList {
@@ -70,4 +74,5 @@ s .mainDiv {
 /* Adjust spacing between icons and title */
 .icon > :not(:last-child) {
   margin-right: 8px;
-}/*# sourceMappingURL=LeftSidePanel.module.css.map */
+}
+
