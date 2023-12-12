@@ -1,8 +1,8 @@
 // EqualModal.tsx
 import React, { FC, useEffect, useRef, useState } from "react";
-import styles from "./AddExpense.module.css";
+import styles from "../AddExpense/AddExpense.module.css";
 
-interface GroupListModalProps {
+interface SelectPayerModalProps {
     onClose: () => void;
     onClick: (method: string) => void;
 }
@@ -68,9 +68,9 @@ interface UserData extends Document {
   groups: Group[];
 }
 
-const GroupListModal: FC<GroupListModalProps> = (props) => {
+const SelectPayerModal: FC<SelectPayerModalProps> = (props) => {
     const modalContentRef = useRef<HTMLDivElement>(null);
-    const [selectedGroup, setSelectedGroup] = useState<string>("");
+    const [selectedUser, setSelectedUser] = useState<string>("");
     const [userData, setUserData] = useState<UserData | null>(null);
 
     useEffect(() => {
@@ -107,16 +107,16 @@ const GroupListModal: FC<GroupListModalProps> = (props) => {
     }, [props.onClose]);
 
     const handleSave = () => {
-        props.onClick(selectedGroup);
+        props.onClick(selectedUser);
         props.onClose();
     }
 
 
-    const handleRadioChange = (group: string) => {
-        setSelectedGroup(group);
+    const handleRadioChange = (user: string) => {
+        setSelectedUser(user);
     };
 
-    //const list = ["Group1", "Group2", "Group3", "Group4", "Group5"];
+    const list = ["Person1", "Person2", "Person3"];
 
     return (
         <div className={styles.EqualModal}>
@@ -124,18 +124,18 @@ const GroupListModal: FC<GroupListModalProps> = (props) => {
                 <h2>Select Group</h2>
                 <hr />
                 {
-                    userData?.groups.map((group) => (
-                        <div className={`${styles.row} ${styles.card_input}`} key={group.group.toString()}>
+                    list.map((user, index) => (
+                        <div className={`${styles.row} ${styles.card_input}`} key={index}>
                             <label className={styles.label}>
                                 <input
                                     type="radio"
                                     name="splitMethod"
                                     className={styles.card_input_element}
-                                    onChange={() => handleRadioChange(group.group_name)}
-                                    checked={selectedGroup === group.group_name}
+                                    onChange={() => handleRadioChange(user)}
+                                    checked={selectedUser === user}
                                 />
                                 <span className={styles.panel_body}>
-                                    {group.group_name}
+                                    { user }
                                 </span>
                             </label>
                         </div>
@@ -152,4 +152,4 @@ const GroupListModal: FC<GroupListModalProps> = (props) => {
     );
 };
 
-export default GroupListModal;
+export default SelectPayerModal;

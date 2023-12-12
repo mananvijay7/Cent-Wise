@@ -8,15 +8,14 @@
   border: 2px solid #FF7600;
   font-size: 13px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1607843137);
-  margin-left: -80%;
   background-size: 200% 200%;
   background-color: #fff;
   font-weight: bold;
-  margin-right: 50px;
   height: 40px;
   width: 150px;
   transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   cursor: pointer;
+  margin-right: 50px;
 }
 .addExpenseBtn:hover {
   background-color: #FF7600;

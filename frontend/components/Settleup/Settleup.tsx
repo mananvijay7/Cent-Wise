@@ -4,7 +4,7 @@ import styles from "./Settleup.module.css";
 import RecordCashModal from "./RecordCashModal";
 
 export default function SettleupModal() {
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(true);
   const [showRecordCashModal, setShowRecordCashModal] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -45,15 +45,7 @@ export default function SettleupModal() {
 
   return (
     <>
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          toggleModal();
-        }}
-        className={styles.btnModal}
-      >
-        Settle
-      </button>
+
 
       {(modal || showRecordCashModal) && (
         <div className={styles.modal} ref={modalRef}>
@@ -73,10 +65,10 @@ export default function SettleupModal() {
             <p className={styles.disclaimer}>
               When you use a payment service, your payment is shared with that
               company under its Privacy Policy and Terms, including any fees if
-              applicable. Splitwise charges no additional fees.
+              applicable. Centwise charges no additional fees.
             </p>
 
-            <button className={styles.cancelButton} onClick={toggleModal}>
+            <button className={styles.cancel} onClick={toggleModal}>
               Cancel
             </button>
           </div>

@@ -1,13 +1,13 @@
 // EqualModal.tsx
 import React, { FC, useEffect, useRef, useState } from "react";
-import styles from "./AddExpense.module.css";
+import styles from "../AddExpense/AddExpense.module.css";
 
-interface SelectExpenseTypeProps {
+interface SelectSplitMethodProps {
   onClose: () => void;
   onClick: (method: string) => void;
 }
 
-const SelectExpenseType: FC<SelectExpenseTypeProps> = (props) => {
+const SelectSplitMethod: FC<SelectSplitMethodProps> = (props) => {
   const modalContentRef = useRef<HTMLDivElement>(null);
 
 
@@ -31,41 +31,41 @@ const SelectExpenseType: FC<SelectExpenseTypeProps> = (props) => {
     };
   }, [props.onClose]);
 
-  const [ExpenseType, setExpenseType] = useState("Individual");
+  const [splitMethod, setSplitMethod] = useState("Equal");
 
-  const individualTypeSelected = () => {
-    setExpenseType("Individual");
+  const equalMethodSelected = () => {
+    setSplitMethod("Equal");
   };
 
-  const groupTypeSelected = () => {
-    setExpenseType("Group");
+  const customMethodSelected = () => {
+    setSplitMethod("Custom");
     
   };
 
   const handleSave = () => {
-    props.onClick(ExpenseType);
+    props.onClick(splitMethod);
     props.onClose();
   }
 
   return (
     <div className={styles.EqualModal}>
       <div ref={modalContentRef} className={styles.modalContent}>
-        <h2>Choose Expense Type</h2>
+        <h2>Choose split options</h2>
         <hr />
 
         <div className={`${styles.row} ${styles.card_input}`}>
           <label className={styles.label}>
-            <input type="radio" name="expenseType" className={styles.card_input_element} onChange={individualTypeSelected}/>
+            <input type="radio" name="splitMethod" className={styles.card_input_element} onChange={equalMethodSelected}/>
             <span className={styles.panel_body}>
-              Individual
+              Equally
             </span>
           </label>
         </div>
         <div className={`${styles.row} ${styles.card_input}`}>
           <label className={styles.label}>
-            <input type="radio" name="expenseType" className={styles.card_input_element} onChange={groupTypeSelected}/>
+            <input type="radio" name="splitMethod" className={styles.card_input_element} onChange={customMethodSelected}/>
             <span className={styles.panel_body}>
-              Group
+              Custom
             </span>
           </label>
         </div>
@@ -80,4 +80,4 @@ const SelectExpenseType: FC<SelectExpenseTypeProps> = (props) => {
   );
 };
 
-export default SelectExpenseType;
+export default SelectSplitMethod;
