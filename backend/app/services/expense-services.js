@@ -38,9 +38,9 @@ export const addExpense = async (request) => {
                     if (usersInfo && usersInfo.length > 0) {
                       usersInfo.forEach(async user => {
                         //console.log(user._id + " " + currUser._id);
-                        if(user && user._id && currUser && currUser._id && user._id.equals(currUser._id)){
+                        if(user && user._id && payerUser && payerUser._id && user._id.equals(payerUser._id)){
                           friendPaidShare = parseFloat(amount);
-                          console.log("reached line 41");
+                          //console.log("reached line 41");
                           //Total owe amount of user dashboard
                           if(user.totalOweToSelf - (friendPaidShare-friendOwedShare) >= 0){
                             user.totalOweToSelf = user.totalOweToSelf - (friendPaidShare-friendOwedShare);
@@ -61,9 +61,10 @@ export const addExpense = async (request) => {
 
                         user.totalBalance = user.totalOweAmount - user.totalOweToSelf;
 
-                        if(user && user._id && currUser && currUser._id && user._id.equals(currUser._id)){
-                          user.friends.amountInDeal = parseFloat(amount);
-                        }
+                        
+                        user.friends.amountInDeal = friendOwedShare;
+                        console.log("Manan");
+                        console.log(user.friends.amountInDeal);
 
                         expenseData.usersInvolved.push({
                           user: user._id,
@@ -80,8 +81,11 @@ export const addExpense = async (request) => {
                             totalOweToSelf: user.totalOweToSelf,
                             totalOweAmount: user.totalOweAmount,
                             totalBalance: user.totalBalance,
+                          },
+                          $push: {
+                            'friends.$[elem].amountInDeal': user.friends.amountInDeal,
                           }
-                        });
+                        }, { arrayFilters: [{ 'elem.friend': user._id }] });
 
                       });
                     } else {
@@ -102,7 +106,7 @@ export const addExpense = async (request) => {
 
                           if (groupInfo) {                  
                             groupInfo.users.forEach(async user => {
-                                if(user && user._id && currUser && currUser._id && user._id.equals(currUser._id)){
+                                if(user && user._id && payerUser && payerUser._id && user._id.equals(payerUser._id)){
                                   groupPaidShare = parseFloat(amount);
                                   //Total owe amount of user dashboard
                                   if(user.totalOweToSelf - (groupPaidShare-groupOwedShare) >= 0){
@@ -124,9 +128,8 @@ export const addExpense = async (request) => {
         
                                 user.totalBalance = user.totalOweAmount - user.totalOweToSelf;
         
-                                if(user && user._id && currUser && currUser._id && user._id.equals(currUser._id)){
-                                  user.friend.amountInDeal = parseFloat(amount);
-                                }
+                                user.friends.amountInDeal = groupOwedShare;
+                                
 
                                 expenseData.usersInvolved.push({
                                   user: user._id,
@@ -136,12 +139,17 @@ export const addExpense = async (request) => {
                                   owedShare: groupOwedShare, //algo left part
                                 });
 
-                                await User.findByIdAndUpdate(user._id, {
-                                  $set: {
-                                    totalOweToSelf: user.totalOweToSelf,
-                                    totalOweAmount: user.totalOweAmount,
-                                    totalBalance: user.totalBalance,
-                                  }
+                                groupInfo.users.forEach(async user => {
+                                  await User.findByIdAndUpdate(user._id, {
+                                    $set: {
+                                      totalOweToSelf: user.totalOweToSelf,
+                                      totalOweAmount: user.totalOweAmount,
+                                      totalBalance: user.totalBalance,
+                                    },
+                                    $push: {
+                                      'friends.$[elem].amountInDeal': user.friends.amountInDeal,
+                                    }
+                                  }, { arrayFilters: [{ 'elem.friend': user._id }] });
                                 });
                             });
 
@@ -160,7 +168,7 @@ export const addExpense = async (request) => {
                   
                   console.log('expense Data');
 
-                  console.log(expenseData);
+                  //.log(expenseData);
               
                   
               
@@ -206,7 +214,7 @@ export const addExpense = async (request) => {
                   }
                   
               
-                  console.log('Expense added successfully:', createdExpense);
+                  //console.log('Expense added successfully:', createdExpense);
                   //response.status(201).json(createdExpense);
                 } catch (error) {
                   // Handle errors
