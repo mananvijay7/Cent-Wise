@@ -2,9 +2,14 @@
 
 ## 🌟About CENTWISE
 
-1. CentWise is a collaborative expense tracking and bill-splitting application
-2. Centwise is designed to simplify financial interactions among friends, roommates, or colleagues. 
-3. It helps users keep track of shared expenses and settle debts effortlessly.
+1. Expense Tracking:
+CentWise allows users to record and track shared expenses in real time. Users can input details such as the amount spent, the purpose of the expense, and the participants involved.
+
+2. Bill Splitting:
+The application provides a convenient way to split bills among multiple individuals. Whether it's splitting the rent, utilities, groceries, or any other shared expense, CentWise ensures a fair and accurate distribution of costs.
+
+3. Collaborative Platform:
+CentWise operates as a collaborative platform, enabling users to invite others to join expense groups. This is particularly useful for roommates, friends, or colleagues who regularly share expenses.
 
 ## Key Features 🚀
 
