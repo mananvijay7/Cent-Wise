@@ -46,3 +46,21 @@ export const fetchGroup = async function(request, response){
     response.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
+export const fetchAll = async function(request, response){ 
+  try {
+    const userId = request.user._id;
+    const expenses = await Expense.find({'usersInvolved.user': userId});
+
+    const expensesWithUserId = expenses.map(expense => ({ ...expense.toObject(), userId }));
+            // console.log("Groups");
+            // console.log(expenses);
+
+    //expenses.push({userId: request.user._id});
+    console.log(expensesWithUserId);
+    return response.json(expensesWithUserId);
+  } catch (error) {
+    console.error('Error fetching expenses:', error.message);
+    return response.status(500).json({ error: 'Internal Server Error' });
+  }
+};

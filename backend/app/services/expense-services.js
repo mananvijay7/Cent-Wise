@@ -223,3 +223,9 @@ export const addExpense = async (request) => {
                 }  
       
 };
+
+
+export const fetchUserData = async (id) => {
+  const expense = await Expense.findById(id).exec();
+  return expense;
+}
