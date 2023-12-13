@@ -27,7 +27,8 @@ export const addExpense = async (request) => {
                     partition,
                     expenseType,
                   };
-                  
+                  console.log('usersInvolved');
+                  console.log(usersInvolved);
                   //Individual Expense
                   if (groupInvolved === '' && usersInvolved.length > 0) {
                      usersInfo = await User.find({ first_name: { $in: usersInvolved } });
@@ -37,32 +38,32 @@ export const addExpense = async (request) => {
                     let friendPaidShare;
                     if (usersInfo && usersInfo.length > 0) {
                       usersInfo.forEach(async user => {
-                        //console.log(user._id + " " + currUser._id);
+                        console.log(user.first_name);
                         if(user && user._id && payerUser && payerUser._id && user._id.equals(payerUser._id)){
                           friendPaidShare = parseFloat(amount);
                           //console.log("reached line 41");
                           //Total owe amount of user dashboard
-                          if(user.totalOweToSelf - (friendPaidShare-friendOwedShare) >= 0){
-                            user.totalOweToSelf = user.totalOweToSelf - (friendPaidShare-friendOwedShare);
+                          if(user.totalOweAmount - (friendPaidShare-friendOwedShare) >= 0){
+                            user.totalOweAmount = user.totalOweAmount - (friendPaidShare-friendOwedShare);
                           }else{
-                            let diff = Math.abs(user.totalOweToSelf- (friendPaidShare-friendOwedShare));
-                            user.totalOweToSelf = 0;
-                            user.totalOweAmount += diff;
+                            user.totalOweToSelf += Math.abs(user.totalOweAmount-(friendPaidShare-friendOwedShare));
+                            user.totalOweAmount = 0;
                           }
                         }else{
                           friendPaidShare = 0;
-                          if(user.totalOweAmount-friendOwedShare >= 0){ 
-                            user.totalOweAmount -= friendOwedShare;
+                          if(user.totalOweToSelf-friendOwedShare >= 0){ 
+                            user.totalOweToSelf -= friendOwedShare;
                           }else{
-                            let diff1 = Math.abs(user.totalOweAmount-(friendOwedShare));
-                            user.totalOweToSelf += friendOwedShare;
+                            user.totalOweAmount = Math.abs(user.totalOweToSelf-(friendOwedShare));
+                            user.totalOweToSelf = 0;
                           }
                         }
-
-                        user.totalBalance = user.totalOweAmount - user.totalOweToSelf;
-
+  
+                        user.totalBalance = user.totalOweToSelf - user.totalOweAmount;
+  
+                        user.friends.amountInDeal = friendPaidShare - friendOwedShare;
                         
-                        user.friends.amountInDeal = friendOwedShare;
+                        
                         console.log("Manan");
                         console.log(user.friends.amountInDeal);
 

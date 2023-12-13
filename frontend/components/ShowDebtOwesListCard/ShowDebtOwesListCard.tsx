@@ -3,7 +3,8 @@ import styles from "./ShowDebtOwesListCard.module.css";
 type Props = {
     imgSrc: string,
     username: string,
-    amount: string
+    lastname: string,
+    amount: string,
 }
 
 const ShowDebtOwesListCard = (props: Props) => {
@@ -12,6 +13,8 @@ const ShowDebtOwesListCard = (props: Props) => {
 
     const username: string = props.username;
 
+    const lastname: string = props.lastname;
+
     const amount: string = props.amount;
 
     return (
@@ -19,7 +22,7 @@ const ShowDebtOwesListCard = (props: Props) => {
             <div className={styles.imgRec}>
                 <img className={styles.img} src={imagePath} alt="user-icon" />
             </div>
-            <div className={styles.username}>{username}</div>
+            <div className={styles.username}>{username} {lastname}</div>
             <div className={styles.amount}>{amount}</div>
         </div>
     );

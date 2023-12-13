@@ -86,7 +86,8 @@ const DashboardCmp = () => {
                     <div className={styles.container}>
                         <ShowAmountDetails label="Total amount you owe" amount={`$${userData?.totalOweAmount}`} color="orange" />
                         <ShowAmountDetails label="Total amount owe to you" amount={`$${userData?.totalOweToSelf}`} color="green" />
-                        <ShowAmountDetails label="Total balance" amount={`$${userData?.totalBalance}`} color="grey" />
+                        <ShowAmountDetails label="Total balance" amount={`$${(userData?.totalBalance ?? 0)}`} color="grey" />
+
                     </div>
                     <hr className={styles.hr} />
                 </div>

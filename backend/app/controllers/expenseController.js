@@ -5,11 +5,6 @@ export const addExpense = async function(request, response){
       try {
 
             const expenseDocuments = await expenseService.addExpense(request); 
-        
-            //console.log(userDocuments);
-            // Respond with a success message
-            // console.log("Friends");
-            // console.log(expenseDocument);
             return response.json({ message: 'Expense created successfully', expenseDocuments });
           } catch (error) {
             // Handle errors
