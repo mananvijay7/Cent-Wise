@@ -8,7 +8,7 @@ import userData from "./navbarUserData.json";
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { Document, Types } from 'mongoose';
-import userPhotoPath from "../../../public/images/YashLimbodiya.jpg";
+import userPhotoPath from "../../../public/images/userIcon.png";
 
 
 interface Friend {

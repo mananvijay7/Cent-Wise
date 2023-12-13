@@ -3,37 +3,38 @@
     font-size: 15px;
     background-color: white; 
     width: 160px;
-    height: 74px;
-    padding: 5px;
     box-shadow: 10px rgba(black);
-    top:-1.5rem;
+    top:2em;
     right:-3rem;
     position: absolute;
-    margin-left: 200px;
+    margin-left: 150px;
     border-radius: 5px;
-    border: 1px solid gray;
     padding-bottom: 11px;
+    display: flex;
+    box-shadow: 3px 6px 15px rgba(0, 0, 0, 0.1607843137);
+    flex-direction: row;
 } 
 
 .dropDown{
-    padding: 3px;
-    align-items: center;
     font-size: 16px ;
-    line-height:  28px; 
-    margin-right: 1px;
-    margin-left: -37px;   
+    list-style: none;
+    margin-top: 20px;
+    width: 100%;
 }
 
 .div
 {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    width: 100%;
+}
+
+.ul {
+    width: 100%;
+    padding: 20px;
 }
 
 .div li{
-    border-bottom: 1px solid black;
-    border-width: 100%;
+    width: 100%;
+    list-style: none;
 }
 
 .dropDown:hover{

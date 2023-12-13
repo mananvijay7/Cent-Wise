@@ -3,6 +3,7 @@ import styles from './MyProfileModal.module.css';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import axios from 'axios';
 import { Document } from 'mongoose';
+import userIcon from "../../../public/images/userIcon.png";
 
 interface UserData extends Document {
   _id: string;
@@ -123,7 +124,7 @@ function MyProfileModal({ closeModal }: { closeModal: (flag: boolean) => void })
           <div className={styles.imageContainer}>
   {editModeProfilePicture ? (
     <>
-      <img className={styles.userImg} src={profilePicture || 'src\assets\Yash Lambodiya.jpg'} alt="User" />
+      <img className={styles.userImg} src={userIcon} alt="User" />
       <div className={styles.fileInputWrapper}>
         <input type="file" className={styles.choosefile}onChange={(e) => handleProfilePictureChange(e)} />
         <button onClick={handleSaveClick} className={styles.saveButton}>Save</button>
@@ -132,7 +133,7 @@ function MyProfileModal({ closeModal }: { closeModal: (flag: boolean) => void })
     </>
   ) : (
     <>
-      <img className={styles.userImg} src={profilePicture || 'src\assets\Yash Lambodiya.jpg'} alt="User" />
+      <img className={styles.userImg} src={userIcon} alt="User" />
       <ModeEditIcon onClick={handleEditClickProfilePicture} className={styles.editIcon}/>
     </>
   )}

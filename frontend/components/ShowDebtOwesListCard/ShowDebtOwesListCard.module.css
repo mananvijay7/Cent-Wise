@@ -15,14 +15,13 @@
     width: 30px; 
     height: 30px; 
     overflow: hidden; 
-    border: 3px solid #DCDCDC;
+    border: 3px solid #dcdcdc;
     border-radius: 50%; 
 } 
 
 .imgRec img { 
     width: auto; 
     height: 100%; 
-    margin-left: -10px; 
     z-index: -2;
 }
 

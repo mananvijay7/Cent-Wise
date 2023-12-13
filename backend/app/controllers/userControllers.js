@@ -42,7 +42,9 @@ export const create = async function(request, response){
 
 
 export const forgotPassword = async function (request, response) {
-  const AUTH_EMAIL='ashayssaoji@gmail.com';
+  console.log(request.body.email);
+  const { email } = request.body;
+  const AUTH_EMAIL= email;
   const AUTH_PASS='ysws ukyp wkne qkpw';
   try {
     const { email } = request.body;
