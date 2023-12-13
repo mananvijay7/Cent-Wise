@@ -1,10 +1,10 @@
 import styles from "./Friends.module.css";
-import ShowDebtOwesList from "../ShowDebtOwesList/ShowDebtOwesList";
 import React, { useState, ChangeEvent, FormEvent,useEffect  } from "react";
 import axios from 'axios';
 import { Document, Types } from 'mongoose';
 import { useNavigate } from "react-router-dom";
 import AddedCentwiseFriend from "../AddCentwiseFriend/AddCentwiseFriend";
+import ShowFriendsList from './showFriendsList';
 
 
 interface Friend {
@@ -100,7 +100,7 @@ const DashboardCmp = () => {
                   </button>
                   </div>
                   <hr className={styles.hr}/>
-                    <ShowDebtOwesList userData={userData}/>
+                    <ShowFriendsList userData={userData}/>
                 </div>
             </div>
         </div>

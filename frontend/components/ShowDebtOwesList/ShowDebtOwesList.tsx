@@ -42,8 +42,8 @@ const ShowDebtOwesList: React.FC<Props> = ({ friendExpense }) => {
   const friendsList = friendExpense?.[0]?.usersInvolved || [];
   const [isModalVisible, setModalVisible] = useState(false);
 
-  // console.log('friendsList');
-  // console.log({`${friendExpense?.description}`});
+  console.log('friendsList');
+  console.log(friendsList);
 
   const viewChartHandler = () => {
     setModalVisible(true);
@@ -63,11 +63,12 @@ const ShowDebtOwesList: React.FC<Props> = ({ friendExpense }) => {
         <div className={styles.flexChild}>
           <div className={styles.label}>You Owe</div>
           {friendsList.map((friend) => (
-            friend.owedShare > 0 && (
+            friend.owedShare >= 0 && (
               <ShowDebtOwesListCard
                 key={friend.user.toString()}
                 imgSrc={"src/assets/person.jpg"}
                 username={`${friend.user_first_name}`}
+                lastname={`${friend.user_last_name}`}
                 amount={`$${Math.abs(friend.owedShare).toFixed(2)}`}
               />
             )
@@ -76,11 +77,12 @@ const ShowDebtOwesList: React.FC<Props> = ({ friendExpense }) => {
         <div className={styles.flexChild}>
           <div className={styles.label}>You are owed</div>
             {friendsList.map((friend) => (
-               friend.paidShare > 0 && (
+               friend.paidShare >= 0 && (
               <ShowDebtOwesListCard
                 key={friend.user.toString()}
                 imgSrc={"src/assets/person.jpg"}
                 username={`${friend.user_first_name}`}
+                lastname={`${friend.user_last_name}`}
                 amount={`$${friend.paidShare.toFixed(2)}`}
               />
                )

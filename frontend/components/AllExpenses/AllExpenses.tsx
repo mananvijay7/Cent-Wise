@@ -5,7 +5,7 @@ const AllExpenses: React.FC = () => {
 
     return(
         <div className={styles.monthlabel}>
-            <p>November 2023</p>
+            <p>December 2023</p>
 
         </div>
     )

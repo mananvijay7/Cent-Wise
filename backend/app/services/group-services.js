@@ -8,6 +8,8 @@ export const findUsers = async (request) => {
             const userDocuments = await User.find({ email: { $in: users } });
             const userReferences = userDocuments.map((user) => ({ user: user._id }));
             userReferences.push({ user: request.user._id });
+            console.log('userReferences');
+            console.log(userReferences);
             const newGroup = new Group({
               description,
               users: userReferences,

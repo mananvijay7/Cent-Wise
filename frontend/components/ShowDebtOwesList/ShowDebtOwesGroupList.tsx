@@ -45,6 +45,9 @@ const ShowDebtOwesGroupList: React.FC<Props> = ({groupExpense}) => {
     const groupList = groupExpense?.[0]?.groupInvolved || [];
     const [isModalVisible, setModalVisible] = useState(false);
 
+    console.log('groupList');
+    console.log(groupList);
+
     const viewChartHandler = () => {
       setModalVisible(true);
     };
