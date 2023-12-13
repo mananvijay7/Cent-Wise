@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import styles from "./GroupNameCard.module.css";
 import { Document, Types } from 'mongoose';
 import axios from 'axios';
+import groupIcon from "../../../public/images/groupIcon.png"
 
 interface Friend {
   friend: {
@@ -87,7 +88,7 @@ function GroupNameCard() {
                     {/* Adjust the image source accordingly */}
                     <img
                       className={styles.userProfile}
-                      //src={/* group.icon */} 
+                      src={groupIcon} 
                       alt={`Group Icon for ${group.group_name}`} 
                     />
                     <div className={styles.groupDetails}>

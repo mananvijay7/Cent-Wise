@@ -1,6 +1,7 @@
 import React, { useState, useRef, ChangeEvent } from 'react';
 // import styles from './ForgotPassModal.module.css';
 import styles from "../../AddCentwiseFriend/AddCentwiseFriend.module.css";
+import axios from 'axios';
 
 interface ModalProps {
   closeModal: () => void;
@@ -22,11 +23,26 @@ const ForgotPassModal: React.FC<ModalProps> = ({ closeModal }) => {
   };
 
   const handleFormSubmit = () => {
-    if(email === ''){
-        alert("Add Friend's email address");
+    if(email === ""){
+        alert("Email address cannot be empty");
     }else{
-        // addFriend(email);   
+        sendEmail(email);   
     }
+}
+
+const sendEmail = async (email:string) => {
+  try {
+    // Make a request to your server to create the group
+    const response = await axios.post('/api/user/forgotPassword',
+      {
+        email: email,
+      },
+    );
+      alert("Email sent successfully.");
+  } catch (error: any) { 
+    // Handle errors, e.g., log them or show an error message to the user
+    alert(error);
+  }
 }
 
   return (

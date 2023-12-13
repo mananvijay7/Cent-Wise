@@ -62,7 +62,7 @@ const handleMenuClick = (menu: string) => {
         {isDropdownVisible && (
         <div 
           className={styles.DropDownMenu}>
-            <ul>
+            <ul className={styles.ul}>
               <div className={styles.div}>
                 {
                 Menus.map((menu)=>(

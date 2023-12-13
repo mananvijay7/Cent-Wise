@@ -3,6 +3,8 @@ import styles from "./ShowDebtOwesList.module.css";
 import { Document, Types } from 'mongoose';
 import ChartModal from "../ChartVisuals/ChartModal";
 import { useState } from "react";
+import groupIcon from "../../../public/images/groupIcon.png";
+import groupIcon1 from "../../../public/images/groupIcon1.png";
 
 
 
@@ -98,7 +100,7 @@ const ShowDebtOwesGroupList: React.FC<Props> = ({userData}) => {
                     {groupList.map((group) => (
             <ShowDebtOwesListGroupCard
               key={group.group.toString()} 
-              imgSrc={"src/assets/person.jpg"} 
+              imgSrc={groupIcon} 
               username={`${group.group_name}`} 
               you_lent={''} 
               you_paid={group.you_paid} 
@@ -110,7 +112,7 @@ const ShowDebtOwesGroupList: React.FC<Props> = ({userData}) => {
           {groupList.map((group) => (
             <ShowDebtOwesListGroupCard
             key={group.group.toString()} 
-            imgSrc={"src/assets/person.jpg"} 
+            imgSrc={groupIcon1} 
             username={`${group.group_name}`} 
             you_lent={group.you_lent} 
             you_paid={''}  
