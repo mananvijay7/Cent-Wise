@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+//Group schema to store details about a group
+
 const Schema = mongoose.Schema;
 
 const groupSchema = new Schema({

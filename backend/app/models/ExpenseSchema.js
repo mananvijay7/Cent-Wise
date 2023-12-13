@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+//Expense Schema to store Expenses between Individual users and Groups
+
 const Schema = mongoose.Schema;
 
 const ExpenseSchema = new Schema({

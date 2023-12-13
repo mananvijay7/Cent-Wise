@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+//User schema to store users details and its friends, groups, expense. Everything all at once
+
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
