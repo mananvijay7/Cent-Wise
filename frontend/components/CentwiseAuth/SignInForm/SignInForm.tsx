@@ -217,10 +217,9 @@ const SignInForm = () => {
             name="password"
           />
           <br /><br />
+          <div className={styles.forgotPassword} onClick={handleForgotPasswordClick}>Forgot Password?</div>
           <button className={styles.submitBtn} type="submit">Sign in</button>
         </form>
-
-        <button className={styles.forgotPassword} onClick={handleForgotPasswordClick}>Forgot Password?</button>
       </div>
 
       {showForgotPasswordModal && (

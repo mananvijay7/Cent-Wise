@@ -145,7 +145,7 @@ const SignInForm: React.FC = () => {
                     )}
                     <br /><input className={styles.inputs} value={confirmPassword} onChange={handleConfirmPasswordChange} type={showConfirmPassword ? "text" : "password"} placeholder="Confirm password" required id="confirmPassword" name='cnfPassword' />
                     <button className={styles.showconfirmpassword} type="button" onClick={toggleConfirmShowPassword}>{showConfirmPassword ? "Hide" : "Show"} Password</button>
-                    <br /><button className={styles.signBtn} type="submit">Sign Up</button>
+                    <br /><button className={styles.submitBtn} type="submit">Sign Up</button>
                 </form>
 
             </div>

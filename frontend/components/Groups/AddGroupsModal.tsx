@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./AddGroupsModal.module.css";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import centwiseLogo from "../../../public/images/CentwiseLogo.png"
 
 interface AddGroupModalProps {
   isOpen: boolean;
@@ -41,9 +42,16 @@ const AddGroupModal: React.FC<AddGroupModalProps> = ({ isOpen, onClose }) => {
     // You can handle the save action here, for example, send the group name and members to a function or API
     //console.log("Group Name:", groupName);
     //console.log("Group Members:", groupMembers);
-    createGroup(groupName, groupMembers);
-    // Close the modal after saving
-    onClose();
+    if(groupName === "" || groupName.length == 0) {
+      alert("Group name cannot be empty !");
+    } if (groupMembers.length == 0) {
+      alert("Please add group members!");
+    } else {
+      createGroup(groupName, groupMembers);
+      // Close the modal after saving
+      onClose();
+    }
+    
   };
 
   const handleModalClose = () => {
@@ -82,16 +90,8 @@ const AddGroupModal: React.FC<AddGroupModalProps> = ({ isOpen, onClose }) => {
   return (
     <div className={styles.modal}>
       <div className={styles.modalContainer}>
-        <div className={styles.header}>
-          <img className={styles.logo} src="../components/Assets/Centwise.png" alt="Logo" />
-          <span>
-            <button className={styles.close} onClick={handleModalClose}>
-              <span>+</span>
-            </button>
-          </span>
-        </div>
         <div className={styles.body}>
-          <p className={styles.startANewGrp}>START A NEW GROUP</p>
+          <h2 className={styles.startANewGrp}>START A NEW GROUP</h2>
           <div>
             <div className={styles.myGrpShallBCalld}>My group shall be called...</div>
             <input
@@ -99,15 +99,15 @@ const AddGroupModal: React.FC<AddGroupModalProps> = ({ isOpen, onClose }) => {
               placeholder="Enter group name"
               value={groupName}
               onChange={handleGroupNameChange}
-              className={styles.groupNameInput}
+              className={styles.inputs}
             />
           </div>
           {showAddMembers && (
             <div>
-              <p className={styles.groupMembers}>Group Members:</p>
+              <p className={styles.groupMembers}><b>Group Members:</b></p>
               <ul className={styles.memberList}>
                 {groupMembers.map((member, index) => (
-                  <li key={index}>{member}</li>
+                  <li key={index} className={styles.members}>{member}</li>
                 ))}
               </ul>
               <div>
@@ -116,16 +116,19 @@ const AddGroupModal: React.FC<AddGroupModalProps> = ({ isOpen, onClose }) => {
                   placeholder="Enter members email address"
                   value={newMemberName}
                   onChange={(event) => setNewMemberName(event.target.value)}
-                  className={styles.addAPerson}
+                  className={styles.inputs}
                 />
                 <button onClick={handleAddMember} className={styles.addMembersButton}>
-                   Add a person
+                   Add
                 </button>
               </div>
             </div>
           )}
-          <button onClick={handleSave} className={styles.saveButton}>
+          <button onClick={handleSave} className={styles.save}>
             Save
+          </button>
+          <button type="button" onClick={handleModalClose} className={styles.cancel}>
+                    Cancel
           </button>
         </div>
       </div>
