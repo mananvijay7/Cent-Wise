@@ -1,4 +1,5 @@
 
+//users routes
 
 import express from 'express';
 import passport from 'passport';
@@ -14,17 +15,17 @@ router.get('/signin', userController.signin);
 router.post('/create-session', passport.authenticate(
   'local',
   {failureRedirect: '/user/signin'}, 
-), userController.createSession);
+), userController.createSession);     //session creation on login through local strategy
 
 router.post('/localLogin', passport.authenticate(
   'local',
   {failureRedirect: '/user/signin'}, 
-), userController.localLogin);
+), userController.localLogin);    //login through local strategy
 
-router.post('/create', userController.create);
+router.post('/create', userController.create);    //account creation path
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/ProfilePicture'); // Specify the directory where files will be stored
+    cb(null, 'uploads/ProfilePicture');
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
@@ -36,14 +37,14 @@ const storage = multer.diskStorage({
 const fileUpload = multer({ storage: storage });
 
 // Route for uploading a file
-router.post('/uploadfile', upload.single('file'), userController.create);
-router.get('/checkAuth', userController.checkAuth);
-router.get('/signout', userController.sessionDestroy);
+router.post('/uploadfile', upload.single('file'), userController.create); //upload file path in DB 
+router.get('/checkAuth', userController.checkAuth); //check if user is authenticated
+router.get('/signout', userController.sessionDestroy); //destroy session on logout
 
-router.post('/forgotpassword', userController.forgotPassword);
-router.post('/inviteFriend', userController.inviteFriend);
+router.post('/forgotpassword', userController.forgotPassword); //forget password path
+router.post('/inviteFriend', userController.inviteFriend); //invite friends modal path
 
-router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
-router.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: '/api/user/signin'}), userController.createSession);
+router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']})); //login through google oauth
+router.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: '/api/user/signin'}), userController.createSession); //google oauth callback
 
 export default router;
