@@ -1,30 +1,27 @@
 .mainContainer {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .container {
-    display: flex; 
-	flex-direction: row; 
-	flex-wrap: wrap;
-	margin-bottom: 40px; 
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
 }
 
 .summary {
-	font-weight: bold;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	font-size: 14px;
-	color: #353434;
+  font-weight: bold;
+  margin: 10px 0;
+  font-size: 14px;
+  color: #353434;
 }
 
 .hr {
-	border: none;
-  	height: 1.5px;
-  	/* Set the hr color */
-  	background-color: #DCDCDC;  /* Modern Browsers */
+  border: none;
+  height: 1.5px;
+  background-color: #DCDCDC;
 }
 
 .listCard {
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
+  margin: 20px 0;
+}/*# sourceMappingURL=DashboardCmp.module.css.map */

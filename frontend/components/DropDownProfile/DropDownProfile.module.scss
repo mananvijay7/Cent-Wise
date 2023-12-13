@@ -1,0 +1,55 @@
+$primary-color: #01CE67;
+$box-shadow-color: rgba(0, 0, 0, 0.1);
+
+@mixin commonStyles {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+}
+
+@mixin boxStyles {
+    background-color: white;
+    width: 160px;
+    height: 93.2px;
+    padding: 5px;
+    box-shadow: 10px 10px 20px $box-shadow-color;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding-bottom: 11px;
+}
+
+.DropDownMenu {
+    @include commonStyles;
+    @include boxStyles;
+    top: 1.5rem;
+    right: -4.5rem;
+    position: absolute;
+    margin-left: 200px;
+
+    .div {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        li {
+            border-bottom: 1px solid black;
+            list-style: none;
+            text-decoration: none;
+
+            &:hover {
+                cursor: pointer;
+                background-color: $primary-color;
+                border-radius: 5px;
+                color: aliceblue;
+            }
+        }
+    }
+
+    .dropDown {
+        padding: 3px;
+        align-items: center;
+        font-size: 16px;
+        line-height: 28px;
+        margin-right: 1px;
+        margin-left: -37px;
+    }
+}

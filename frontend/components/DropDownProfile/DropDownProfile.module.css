@@ -1,54 +1,40 @@
-.DropDownMenu{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
-    background-color: white; 
-    width: 160px;
-    height: 74px;
-    padding: 5px;
-    box-shadow: 10px rgba(black);
-    top:-1.5rem;
-    right:-3rem;
-    position: absolute;
-    margin-left: 200px;
-    border-radius: 5px;
-    border: 1px solid gray;
-    padding-bottom: 11px;
-} 
-
-.dropDown{
-    padding: 3px;
-    align-items: center;
-    font-size: 16px ;
-    line-height:  28px; 
-    margin-right: 1px;
-    margin-left: -37px;   
+.DropDownMenu {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  background-color: white;
+  width: 160px;
+  height: 93.2px;
+  padding: 5px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  border: 1px solid gray;
+  padding-bottom: 11px;
+  top: 1.5rem;
+  right: -4.5rem;
+  position: absolute;
+  margin-left: 200px;
 }
-
-.div
-{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.DropDownMenu .div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
-
-.div li{
-    border-bottom: 1px solid black;
-    border-width: 100%;
+.DropDownMenu .div li {
+  border-bottom: 1px solid black;
+  list-style: none;
+  text-decoration: none;
 }
-
-.dropDown:hover{
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    background-color: #01CE67;
-    border-radius: 5px;
-    /* border-bottom: none; */
-    /* border-top: none; */
-    color: aliceblue;
+.DropDownMenu .div li:hover {
+  cursor: pointer;
+  background-color: #01CE67;
+  border-radius: 5px;
+  color: aliceblue;
 }
-
-
-
-
-
-
-
+.DropDownMenu .dropDown {
+  padding: 3px;
+  align-items: center;
+  font-size: 16px;
+  line-height: 28px;
+  margin-right: 1px;
+  margin-left: -37px;
+}/*# sourceMappingURL=DropDownProfile.module.css.map */
