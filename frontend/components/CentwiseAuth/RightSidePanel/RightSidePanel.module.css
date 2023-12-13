@@ -3,29 +3,29 @@
 
 .mainContainer {
     margin: auto;
-    margin-right: 5%;
     font-family: Montserrat;
     height: auto;
 }
 
 .contentContainer {
     margin-top: 50%;
-    margin-left: 15.5%;
     /* margin-right: 10%; */
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
 .primaryHeading {
     font-size: 2em;
     color: #ffff;
-    margin-bottom: 5%;
-    margin-left: 25%;
 }
 
 .secondaryHeading {
   font-size: 1.2em;
   color: #ffff;
   margin-bottom: 6%;
-  margin-left:-5%; 
 }
 
   .signUp{
@@ -64,11 +64,9 @@
     border: 2px solid #FF7600;
     font-size: 13px;
     box-shadow: 0px 3px 6px #00000029;
-    margin-left: 40%;
     background-size: 200% 200%;
     background-color: #fff;
     font-weight: bold;
-    margin-right: 50px;
     height: 40px;
     width: 150px;
     transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;

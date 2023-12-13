@@ -55,7 +55,7 @@ const ForgotPassModal: React.FC<ModalProps> = ({ closeModal }) => {
     <div ref={modalContentRef} className={styles.modal}>
     <div onClick={closeModal} className={styles.overlay}></div>
     <div className={styles.modalContent}>
-        <h3 className={styles.formHeading}>Add Friend</h3>
+        <h3 className={styles.formHeading}>Reset Password</h3>
         <form onSubmit={handleFormSubmit}>
             <input
                 className={styles.inputs}
@@ -67,7 +67,7 @@ const ForgotPassModal: React.FC<ModalProps> = ({ closeModal }) => {
             <br />
             <div className={styles.buttonGroup}>
                 <button type="submit" className={styles.add}>
-                    Add Friend 
+                    Send Link 
                 </button>
                 <button
                     type="button"
