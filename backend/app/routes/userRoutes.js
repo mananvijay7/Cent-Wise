@@ -9,8 +9,7 @@ import * as userController from '../controllers/userControllers.js';
 const router = express.Router();
 const upload = multer(); 
 
-
-
+router.get('/settleup', userController.settleup);
 router.get('/signin', userController.signin);
 router.post('/create-session', passport.authenticate(
   'local',

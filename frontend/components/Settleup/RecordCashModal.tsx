@@ -4,8 +4,9 @@ import flightIcon from "../../../public/images/AeroplaneIcon.png";
 import UserListModal from "./UserListModal";
 import RecipientListModal from "./RecipientListModal";
 import "react-datepicker/dist/react-datepicker.css";
-import DatePicker from "react-datepicker";
 import FriendListModal from "../ListModals/FriendListModal";
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 interface RecordCashModalProps {
   onClose: (e?: React.MouseEvent) => void;
@@ -20,6 +21,7 @@ const RecordCashModal: React.FC<RecordCashModalProps> = ({ onClose }) => {
   const [selectedPayer, setSelectedPayer] = useState("You");
   const [recipient, setRecipient] = useState("...");
 
+  const navigate = useNavigate();
   const toggleModal = () => {
     onClose();
 
@@ -63,6 +65,35 @@ const RecordCashModal: React.FC<RecordCashModalProps> = ({ onClose }) => {
   const handleRecipientChange = (recipient: string[]) => {
     setRecipient(recipient[0]);
   }
+
+
+  const handleSave = async () => {
+    try {
+      // Make an Axios GET request to your API endpoint
+      const response = await axios.get("/api/user/settleup", {
+        params: {
+          payer: selectedPayer,
+          recipient: recipient,
+          amount: amount,
+        },
+      });
+
+      // Handle the response as needed (e.g., show a success message)
+      console.log("Save successful", response.data);
+
+      // Close the modal or perform other actions
+      onClose();
+
+      navigate('/dashboard');
+    } catch (error) {
+      // Handle errors (e.g., show an error message)
+      console.error("Error saving data", error);
+
+      // Close the modal or perform other actions
+      onClose();
+    }
+  };
+
   return (
     <>
       <div className={styles.overlay2}></div>
@@ -97,15 +128,15 @@ const RecordCashModal: React.FC<RecordCashModalProps> = ({ onClose }) => {
                 </label>
           <br />
           <hr/>
-          <DatePicker
+          {/*<DatePicker
             className={styles.date}
             selected={startDate}
             onChange={(date) => setStartDate(date)}
             popperPlacement="right-start"
             onFocus={() => setOpenModal(null)} // Close other modals on date picker focus
-          />
+          />*/}
          <br />
-          <button className={styles.saveButton} onClick={onClose}>
+          <button className={styles.saveButton} onClick={handleSave}>
             Save
           </button>
           <button className={styles.cancel} onClick={onClose}>

@@ -178,3 +178,63 @@ export const inviteFriend = async function(request, response) {
     return response.status(500).json({ message: 'Internal Server Error' });
   }
 };
+
+
+export const settleup = async function(request, response) {
+  try{
+    // console.log("settle up");
+
+    // console.log(request.query);
+
+    // console.log(request.user.first_name);
+
+    const { payer, recipient, amount } = request.query;
+    let payerUser;
+    if(payer === 'You'){
+      payerUser = await User.findOne({ first_name: request.user.first_name });
+    }else{
+      payerUser = await User.findOne({ first_name: payer });
+    }
+    const recipientUser = await User.findOne({ first_name: recipient });
+
+    if(payerUser){
+      if(payerUser.totalOweAmount-amount >= 0){
+        payerUser.totalOweAmount -= amount;
+        payerUser.totalBalance += amount;
+      }else{
+        let diff = Math.abs(payerUser.totalOweAmount-amount);
+        payerUser.totalOweToSelf += diff;
+        payerUser.totalOweAmount = 0;
+        payerUser.totalBalance += diff;
+      }
+
+      console.log(payerUser);
+
+      await payerUser.save();
+    }
+
+    if(recipientUser){
+      if(recipientUser.totalOweToSelf-amount >= 0){
+        recipientUser.totalOweToSelf -= amount;
+        recipientUser.totalBalance -= amount;
+      }else{
+        let diff = Math.abs(recipientUser.totalOweToSelf-amount);
+        recipientUser.totalOweAmount += diff;
+        recipientUser.totalOweToSelf = 0;
+        recipientUser.totalBalance -= diff;
+      }
+
+      console.log(payerUser);
+
+      await recipientUser.save();
+    }
+    
+    return response.status(200).send("Settled up");
+
+  }catch(error){
+    console.log("Error in settling up " + error);
+    return response.status(500).send(": error in settling up");
+  }
+}
+
+
