@@ -18,9 +18,7 @@ import React, { useEffect, useState } from "react";
 // Importing styles, sub-components, images, axios for making HTTP requests, and necessary TypeScript types
 import styles from "./AllExpensesCmp.module.css";
 import AllExpenses from "./AllExpenses";
-import flightIcon from "../../../public/images/AeroplaneIcon.png";
-import AddExpense from "../AddExpense/AddExpense";
-import Settleup from "../Settleup/Settleup";
+import flightIcon from "../../../public/images/expenseIcon.png";
 import axios from 'axios';
 import { Document, Types } from 'mongoose';
 
@@ -83,6 +81,8 @@ const AllExpensesCmp: React.FC = () => {
   }, []);
 
   // Rendering JSX
+  const [ paidshare, setPaidShare] = useState(0);
+  let tmp = 0;
   return (
     <div>
       {/* Render the AllExpenses component */}
@@ -94,7 +94,7 @@ const AllExpensesCmp: React.FC = () => {
             <span className={styles.expenseItem}>
               {/* Displaying month, date, and icon */}
               <span className={styles.monthdate}>
-                <p className={styles.month}> {'December'}</p>
+                <p className={styles.month}> {'DEC'}</p>
                 <p className={styles.date}> {'12'}</p>
               </span>
               <img className={styles.icon} src={flightIcon} alt="Flight Icon" />
@@ -107,12 +107,12 @@ const AllExpensesCmp: React.FC = () => {
               <span>
                 {/* Displaying "You Paid" information */}
                 <p className={styles.paid}>You Paid:</p>
-                <p className={styles.paidData}>{expenseData.usersInvolved.map((user) => user.paidShare).join(', ')}</p>
+                <p className={styles.paidData}>{expenseData.usersInvolved[expenseData.usersInvolved.length-1].paidShare}</p>
               </span>
               <span>
                 {/* Displaying "You Lent" information */}
                 <p className={styles.lent}>You Lent:</p>
-                <p className={styles.lentData}>{expenseData.usersInvolved.map((user) => user.owedShare).join(', ')}</p>
+                <p className={styles.lentData}>{expenseData.usersInvolved[expenseData.usersInvolved.length-1].owedShare}</p>
               </span>
             </span>
             {/* Horizontal line as a separator between expense items */}

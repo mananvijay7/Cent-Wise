@@ -16,18 +16,18 @@ const ChartModal: React.FC<ChartModalProps> = ({ isVisible, onClose }) => {
   const [chartData, setChartData] = useState({
     datasets: [
       {
-        data: [10, 20, 30],
-        backgroundColor: ['#00CE67', '#ffa500', '#FFE347'],   // Green, Orange, Yellow
+        data: [10, 20, 30, 56],
+        backgroundColor: ['#CB429F', '#ffa500', '#FFE347','5688C7'],   // Green, Orange, Yellow
       },
       {
-        data: [5, 15, 25],
-        backgroundColor: ['#D81E5B', '#731DD8', '#FAEDCA'], // Pink, Violet, White
+        data: [5, 15, 25, 18],
+        backgroundColor: ['#D81E5B', '#731DD8', '#FAEDCA','#00CE67'], // Pink, Violet, White
       },
     ],
-    labels: ['#00CE67', '#FFE347', '#ffa500'],
+    labels: ['Manan Vijayvargiya', 'Ashay Soaji', 'Kshiti Dongre', 'Yash Limbodiya'],
   });
 
-  useEffect(() => {
+  /*useEffect(() => {
     const fetchData = () => {
       console.log('Fetching data...');
       fetch('https://jsonplaceholder.typicode.com/users')
@@ -60,7 +60,7 @@ const ChartModal: React.FC<ChartModalProps> = ({ isVisible, onClose }) => {
     };
 
     fetchData();
-  }, []);
+  }, []);*/
 
   return (
     <div className={`${styles.modalOverlay} ${isVisible ? styles.visible : ''}`}>
