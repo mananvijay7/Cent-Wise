@@ -3,6 +3,8 @@ import ShowDebtOwesListCard from "../ShowDebtOwesListCard/ShowDebtOwesListCard";
 import styles from "../ShowDebtOwesList/ShowDebtOwesList.module.css";
 import ChartModal from "../ChartVisuals/ChartModal";
 import { Document, Types } from 'mongoose';
+import userIcon1 from "../../../public/images/userIcon1.png";
+import userIcon2 from "../../../public/images/userIcon2.png";
 interface Friend {
   friend: {
     _id: string;
@@ -80,8 +82,9 @@ const showFriendsList: React.FC<Props> = ({ userData }) => {
             friend.amountInDeal < 0 && (
               <ShowDebtOwesListCard
                 key={friend.friend._id}
-                imgSrc={"src/assets/person.jpg"}
+                imgSrc={userIcon1}
                 username={`${friend.friend_first_name}`}
+                lastname={`${friend.friend_last_name}`}
                 amount={`$${Math.abs(friend.amountInDeal).toFixed(2)}`}
               />
             )
@@ -93,8 +96,9 @@ const showFriendsList: React.FC<Props> = ({ userData }) => {
             friend.amountInDeal >= 0 && (
               <ShowDebtOwesListCard
                 key={friend.friend._id}
-                imgSrc={"src/assets/person.jpg"}
+                imgSrc={userIcon2}
                 username={`${friend.friend_first_name}`}
+                lastname={`${friend.friend_last_name}`}
                 amount={`$${friend.amountInDeal.toFixed(2)}`}
               />
             )
