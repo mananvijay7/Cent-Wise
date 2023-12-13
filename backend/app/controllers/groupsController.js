@@ -1,10 +1,11 @@
 import * as groupService from '../services/group-services.js';
 
 
+//Group creation post method
 export const createGroup = async function(request, response){
       try {
       
-            const userDocuments = await groupService.findUsers(request);
+            const userDocuments = await groupService.findUsers(request);  //API service call
         
             //console.log(userDocuments);
             // Respond with a success message
