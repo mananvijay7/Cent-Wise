@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import styles from "./GroupNameCard.module.css";
+import styles from "./GroupNameCard.module.scss";
 import { Document, Types } from 'mongoose';
 import axios from 'axios';
 import groupIcon from "../../../public/images/groupIcon.png"

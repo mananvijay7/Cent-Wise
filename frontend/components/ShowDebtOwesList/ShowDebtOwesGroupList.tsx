@@ -1,5 +1,5 @@
 import ShowDebtOwesListGroupCard from "../ShowDebtOwesListCard/ShowDebtOwesListGroupCard";
-import styles from "./ShowDebtOwesList.module.css";
+import styles from "./ShowDebtOwesList.module.scss";
 import { Document, Types } from 'mongoose';
 import ChartModal from "../ChartVisuals/ChartModal";
 import { useState } from "react";

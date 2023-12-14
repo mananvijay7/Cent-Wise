@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import styles from "./InviteFriendsModal.module.css";
+import styles from "./InviteFriendsModal.module.scss";
 import axios from 'axios';
 
 interface InviteFriendsModalProps {

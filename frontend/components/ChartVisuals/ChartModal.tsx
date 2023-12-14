@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Chart as ChartJs, Tooltip, Title, ArcElement, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
-import styles from "./ChartModal.module.css";
+import styles from "./ChartModal.module.scss";
 
 ChartJs.register(Tooltip, Title, ArcElement, Legend);
 
@@ -16,15 +16,15 @@ const ChartModal: React.FC<ChartModalProps> = ({ isVisible, onClose }) => {
   const [chartData, setChartData] = useState({
     datasets: [
       {
-        data: [10, 20, 30, 56],
-        backgroundColor: ['#CB429F', '#ffa500', '#FFE347','5688C7'],   // Green, Orange, Yellow
+        data: [10, 20, 30, 46],
+        backgroundColor: ['#00CE67',  '#ffa500', '#FFE347','#D81E5B'],   
       },
       {
-        data: [5, 15, 25, 18],
-        backgroundColor: ['#D81E5B', '#731DD8', '#FAEDCA','#00CE67'], // Pink, Violet, White
+        data: [15, 2, 17, 6],
+        backgroundColor: ['#D81E5B', '#731DD8', '#FAEDCA','#00CE67'], 
       },
     ],
-    labels: ['Manan Vijayvargiya', 'Ashay Soaji', 'Kshiti Dongre', 'Yash Limbodiya'],
+    labels: ['Manan Vijayvargiya', 'Ashay Saoji', 'Kshiti Dangore', 'Yash Limbodiya'],
   });
 
   /*useEffect(() => {

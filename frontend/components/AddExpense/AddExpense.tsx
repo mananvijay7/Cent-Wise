@@ -1,6 +1,6 @@
 // Modal.tsx
 import React, { useState, useEffect, useRef } from "react";
-import styles from "./AddExpense.module.css";
+import styles from "./AddExpense.module.scss";
 import axios from 'axios';
 import { Document, Types } from 'mongoose';
 // import "react-datepicker/dist/react-datepicker.css";

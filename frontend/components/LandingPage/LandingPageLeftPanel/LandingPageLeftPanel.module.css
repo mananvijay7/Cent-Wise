@@ -36,13 +36,14 @@
   font-weight: bold;
   cursor: pointer;
   color: #fff;
-  border: 2px solid #fff;
-  background-color: #01CE67;
+  border: 2px solid #FF7600;
+  background-color: #fff;
+  background-color: #FF7600;
 }
 .login:hover {
-  background-color: hwb(0 100% 0%);
-  color: #01CE67;
-  border-color: #01CE67;
+  background-color: hwb(136 89% 0%);
+  color: #FF7600;
+  border-color: #FF7600;
 }
 
 .signup {
@@ -57,14 +58,14 @@
   transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   font-weight: bold;
   cursor: pointer;
-  border: 1px solid #fff;
-  color: #fff;
-  background-color: #FF7600;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  background-color: #01CE67;
 }
 .signup:hover {
-  color: #FF7600;
+  color: #01CE67;
   border: 2px solid;
-  border-color: #FF7600;
-  background-color: #fff;
+  border-color: #01CE67;
+  background-color: hwb(136 89% 0%);
   animation: none; /* Stop the animation on hover */
 }/*# sourceMappingURL=LandingPageLeftPanel.module.css.map */

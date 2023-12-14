@@ -1,6 +1,6 @@
 import { useState } from "react";
 import SettleupModal from "../Settleup/Settleup";
-import styles from "./SettleUpButton.module.css";
+import styles from "./SettleUpButton.module.scss";
 import { useTranslation } from 'react-i18next';
 
 

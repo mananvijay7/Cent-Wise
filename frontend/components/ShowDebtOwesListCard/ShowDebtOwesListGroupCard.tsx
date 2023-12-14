@@ -1,4 +1,4 @@
-import styles from "./ShowDebtOwesListCard.module.css";
+import styles from "./ShowDebtOwesListCard.module.scss";
 
 type Props = {
     imgSrc: string,

@@ -19,7 +19,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ShowAmountDetails from '../ShowAmountDetails/ShowAmountDetails';
-import styles from './DashboardCmp.module.css';
+import styles from './DashboardCmp.module.scss';
 import ShowDebtOwesList from '../ShowDebtOwesList/ShowDebtOwesList';
 import ShowDebtOwesGroupList from '../ShowDebtOwesList/ShowDebtOwesGroupList';
 import { Document, Types } from 'mongoose';

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./AddAnExpenseButton.module.css";
+import styles from "./AddAnExpenseButton.module.scss";
 import { useTranslation } from 'react-i18next';
 import AddExpense from "../AddExpense/AddExpense";
 

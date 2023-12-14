@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ShowDebtOwesListCard from "../ShowDebtOwesListCard/ShowDebtOwesListCard";
-import styles from "../ShowDebtOwesList/ShowDebtOwesList.module.css";
+import styles from "../ShowDebtOwesList/ShowDebtOwesList.module.scss";
 import ChartModal from "../ChartVisuals/ChartModal";
 import { Document, Types } from 'mongoose';
 import userIcon1 from "../../../public/images/userIcon1.png";

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import GroupNameCard from "./GroupNameCard";
-import styles from "./GroupCmp.module.css";
+import styles from "./GroupCmp.module.scss";
 import AddGroupModal from "./AddGroupsModal";
 
 const GroupCmp: React.FC = () => {

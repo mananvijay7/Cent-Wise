@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./AddGroupsModal.module.css";
+import styles from "./AddGroupsModal.module.scss";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import centwiseLogo from "../../../public/images/CentwiseLogo.png"

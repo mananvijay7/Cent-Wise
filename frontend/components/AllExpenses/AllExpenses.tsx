@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from "react";
-import styles from "./AllExpenses.module.css"
+import styles from "./AllExpenses.module.scss"
 const AllExpenses: React.FC = () => {
 
     return(

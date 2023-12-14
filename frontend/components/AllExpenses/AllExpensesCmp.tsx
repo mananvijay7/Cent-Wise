@@ -16,7 +16,7 @@
 import React, { useEffect, useState } from "react";
 
 // Importing styles, sub-components, images, axios for making HTTP requests, and necessary TypeScript types
-import styles from "./AllExpensesCmp.module.css";
+import styles from "./AllExpensesCmp.module.scss";
 import AllExpenses from "./AllExpenses";
 import flightIcon from "../../../public/images/expenseIcon.png";
 import axios from 'axios';

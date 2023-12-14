@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from "./DropDownProfile.module.css"
+import styles from "./DropDownProfile.module.scss"
 import MyProfileModal from '../myProfileModal/MyProfileModal.tsx';
 import InviteFriendsModal from '../InviteFriendsModal/InvitefrndsModal.tsx';
 import axios from 'axios';

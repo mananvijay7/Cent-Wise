@@ -16,7 +16,7 @@
 import React, { useRef, useState } from "react";
 
 // Importing styles, axios for making HTTP requests, and the react-router-dom hook for navigation
-import styles from "./AddCentwiseFriend.module.css";
+import styles from "./AddCentwiseFriend.module.scss";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
