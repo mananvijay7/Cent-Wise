@@ -92,14 +92,34 @@ CentWise operates as a collaborative platform, enabling users to invite others t
 ### Our development roadmap includes exciting features such as:
 
 #### Milestone 1: Login and Signup Functionality
-
 1. Develop a system for users to create new accounts and securely log in to the app
-
 2. Implement basic profile customization options (e.g. profile picture, username, etc)
 
-#### Milestone 2: Dashboard
+#### Milestone 2: Google Auth
+1. Ability to sign-in into the application using users google account
 
-1. Build a dashboard 
+#### Milestone 3: Dashboard and 
+1. Creating the dashboard card to show all the active expense and transaction list
+   
+#### Milestone 4: Navigation Panel
+1. Setting up the Navigation bar with the "Add an expense" and "Settle Up" buttons
+2. Integrating the User Profile section in the navigation bar, along with the functionality to edit user's personal details, invite friends functionality
+
+#### Milestone 4: Create groups and add new friends
+1. Integrating the functionality to create a new expense group with the added Centwise users
+2. Adding new friends to the group by adding new centwise friends 
+   
+#### Milestone 5: Add and Settle expense functionality 
+1. Adding the functionality to add an individual or a group expense with the help of "+add expense" button a
+2. Settling up the logged expenses uing the settle Up functionality integrated on the "Settle Up" button
+
+#### Milestone 6: internationalization in UI
+1. Adding the feature to switch between English, Hindi and Tamil languages on the base keywords of the application
+
+#### Milestone 7: internationalization in UI
+1. Integrating Additional features in the application such as View Charts functionality and integrating nodemailer to send emails 
+
+
 ## Steps to setup VS code for the Developers ⚙️
  Initialize the project:
 
@@ -116,9 +136,5 @@ CentWise operates as a collaborative platform, enabling users to invite others t
  dangore.k@northeastern.edu
  vijayvargiya.m@northeastern.edu
  limbodiya.y@northeastern.edu 
-
-## Acknowledgements 🙌
-
-CentWise is made possible by the collaborative efforts of our talented development team and the valuable feedback from our incredible user community. Together, we're transforming the way we manage shared finances.
 
 #### Thank you from team CentWise! 🚀 💰
