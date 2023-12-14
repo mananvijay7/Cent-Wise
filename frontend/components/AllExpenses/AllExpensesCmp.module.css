@@ -1,41 +1,53 @@
-.expenseItem {
-  display: flex;
+.expenseItem{
+    display: flex;
 }
-
-.monthdate {
-  display: flex;
-  flex-direction: column;
+ 
+.monthdate{
+    display: flex;
+    flex-direction: column;
+ 
 }
-.monthdate .date {
-  font-size: 22px;
-  font-weight: bolder;
-  margin-top: -18px;
+.date{
+    font-size: 22px;
+    font-weight: bolder;
+    margin-top: -18px;
+ 
 }
-.monthdate .icon {
-  margin-left: 12px;
-  height: 30px;
-  margin-top: 20px;
+.icon{
+    margin-left: 12px;
+    height: 30px;
+    margin-top: 20px;
 }
-
-.dataExpense {
-  display: flex;
-  flex-direction: column;
-  width: 800px;
+.dataExpense{
+    display: flex;
+    flex-direction: column;
+    width: 800px;
 }
-.dataExpense .expense, .dataExpense .lent, .dataExpense .expense_type, .dataExpense .paid, .dataExpense .paidData, .dataExpense .lentData {
-  margin-left: -250px;
-  font-weight: bolder;
+.expense{
+    margin-left: 20px;
+    font-weight: bolder;
 }
-.dataExpense .expense {
-  margin-left: 20px;
+.expense_type{
+    margin-left: 20px;
+    margin-top: -10px;
+    font-size: smaller;
 }
-.dataExpense .expense_type {
-  margin-top: -10px;
-  font-size: smaller;
+.paid{
+    margin-left: -250px;
+   
 }
-.dataExpense .lent {
-  margin-left: -120px;
+.paidData
+{
+    margin-left: -250px;
+    font-weight: bolder;
+   
 }
-.dataExpense .lentData {
-  margin-left: -120px;
-}/*# sourceMappingURL=AllExpensesCmp.module.css.map */
+.lent{
+    margin-left: -120px;
+   
+}
+.lentData{
+    margin-left: -120px;
+    font-weight: bolder;
+   
+}
