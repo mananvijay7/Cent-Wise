@@ -1,10 +1,10 @@
-import styles from "./Friends.module.css";
+import styles from "./Friends.module.scss";
 import React, { useState, ChangeEvent, FormEvent,useEffect  } from "react";
 import axios from 'axios';
 import { Document, Types } from 'mongoose';
 import { useNavigate } from "react-router-dom";
 import AddedCentwiseFriend from "../AddCentwiseFriend/AddCentwiseFriend";
-import ShowFriendsList from './showFriendsList';
+import ShowFriendsList from './ShowFriendsList';
 
 
 interface Friend {
