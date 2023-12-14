@@ -1,6 +1,6 @@
-# CENTWISE 💸
+# CentWise 💸
 
-## 🌟About CENTWISE
+## 🌟About CentWise
 
 1. Expense Tracking:
 CentWise allows users to record and track shared expenses in real time. Users can input details such as the amount spent, the purpose of the expense, and the participants involved.
@@ -14,44 +14,34 @@ CentWise operates as a collaborative platform, enabling users to invite others t
 ## Key Features 🚀
 
 1. Login and Signup
-
-   Allows user to create a new profile or login into existing account
+   Allows the user to create a new profile or login into an existing account
 
 2. Forgot password functionality
-
-   Allows user to reset their password, with the forgot password functionality, using the nodeMailer
+   Allows the user to reset their password, with the forgot password functionality, using the nodeMailer
 
 3. Google Authentication
-
-   Users can create and log-in into the application using their google accounts
+   Users can create and log in to the application using their Google accounts
 
 4. Expense Tracking:
-
    A. Easily log and categorize shared expenses.
    B. Settle Up logged expenses
 
-5. Real-time Balances: 
-
+6. Real-time Balances: 
    Keep track of who owes money and who is owed in real-time
 
-6. Group Bill Splitting:
-
+7. Group Bill Splitting:
    Calculate and distribute costs among group members
 
-7. View Charts:
+8. View Charts:
+   Visual representation of the amount you owe and the amount you are owed in the form of pie charts
 
-   Visual representation of the amount you owe and the amount you are owed in the form of pie-charts
+9. Update User Profile:
+   Allows users to update the personal profile details
 
-8. Update User Profile:
-
-   Allows user to update the peronal profile details
-
-9. Profile picture:
-
+10. Profile picture:
    Used Multer to add the functionality for uploading and updating user profile display picture
 
-10. Invite friends:
-
+11. Invite friends:
     Send an email to friends using the invite friends functionality
 
 ## CentWise - Object Model Diagram 🌐
@@ -63,7 +53,7 @@ CentWise operates as a collaborative platform, enabling users to invite others t
 
 1. Clone the repository:
 
-   git clone https://github.com/info-6150-fall-2023/final-project-centwise.git
+   git clone https://github.com/info-6150-fall-2023/final-project-CentWise.git
 
 
 2. Install project dependencies:
@@ -76,7 +66,7 @@ CentWise operates as a collaborative platform, enabling users to invite others t
 3. Initialize a remote MongoDB instance
 
 
-4. Build and run backend project
+4. Build and run the backend project
 
    $ npm run start
 
@@ -96,31 +86,31 @@ CentWise operates as a collaborative platform, enabling users to invite others t
 2. Implement basic profile customization options (e.g. profile picture, username, etc)
 
 #### Milestone 2: Google Auth
-1. Ability to sign-in into the application using users google account
+1. Ability to sign in to the application using the user's google account
 
 #### Milestone 3: Dashboard and 
-1. Creating the dashboard card to show all the active expense and transaction list
+1. Creating the dashboard card to show all the active expenses and transaction list
    
 #### Milestone 4: Navigation Panel
 1. Setting up the Navigation bar with the "Add an expense" and "Settle Up" buttons
-2. Integrating the User Profile section in the navigation bar, along with the functionality to edit user's personal details, invite friends functionality
+2. Integrating the User Profile section in the navigation bar, along with the functionality to edit the user's personal details, invite friends functionality
 
 #### Milestone 4: Create groups and add new friends
-1. Integrating the functionality to create a new expense group with the added Centwise users
-2. Adding new friends to the group by adding new centwise friends 
+1. Integrating the functionality to create a new expense group with the added CentWise users
+2. Adding new friends to the group by adding new CentWise friends 
    
 #### Milestone 5: Add and Settle expense functionality 
-1. Adding the functionality to add an individual or a group expense with the help of "+add expense" button a
-2. Settling up the logged expenses uing the settle Up functionality integrated on the "Settle Up" button
+1. Adding the functionality to add an individual or a group expense with the help of the "+add expense" button a
+2. Settling up the logged expenses using the settle Up functionality integrated into the "Settle Up" button
 
 #### Milestone 6: internationalization in UI
 1. Adding the feature to switch between English, Hindi and Tamil languages on the base keywords of the application
 
 #### Milestone 7: internationalization in UI
-1. Integrating Additional features in the application such as View Charts functionality and integrating nodemailer to send emails 
+1. Integrating Additional features in the application such as View Charts functionality and integrating Nodemailer to send emails 
 
 
-## Steps to setup VS code for the Developers ⚙️
+## Steps to set VS code for the Developers ⚙️
  Initialize the project:
 
 * npm init
