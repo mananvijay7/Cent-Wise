@@ -11,6 +11,7 @@
   justify-content: center;
   align-items: center;
   backdrop-filter: blur(18px); /* Add backdrop-filter for blurring effect */
+  z-index: 5;
 
   &.visible {
     display: flex;
@@ -27,7 +28,7 @@
   width: 80%; /* Adjust the width as needed */
   background-color: white;
   position: relative; /* Ensure z-index works correctly */
-  z-index: 1; /* Set z-index to be above the blurred background */
+  z-index: 5; /* Set z-index to be above the blurred background */
   display: flex; /* Use flex to align the charts side by side */
   justify-content: space-around; /* Adjust as needed */
   align-items: center; /* Adjust as needed */
